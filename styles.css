@@ -356,3 +356,19 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+/* Responsive Mobile View for Team Images */
+@media (max-width: 768px) {
+    .team-img-wrapper {
+        width: 120px;  /* Slightly smaller, cleaner circle for mobile screens */
+        height: 120px;
+        margin-bottom: 1rem;
+    }
+    
+    .team-card {
+        padding: 1.5rem 1rem; /* Saves vertical space on small phone displays */
+    }
+
+    .team-card h3 {
+        font-size: 1.25rem; /* Keeps the text scaled nicely with the smaller photo */
+    }
+}
