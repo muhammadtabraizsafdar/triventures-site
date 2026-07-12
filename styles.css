@@ -7,7 +7,7 @@
 }
 
 :root {
-    --primary-color: #0284c7; /* Vibrant Vibrant Sky Blue */
+    --primary-color: #0284c7; /* Vibrant Sky Blue */
     --primary-dark: #0369a1;
     --dark-bg: #0f172a;       /* Slate Dark Blue */
     --light-bg: #f8fafc;
@@ -279,6 +279,79 @@ header {
     display: none;
 }
 
+/* Team Members Base Layout (Desktop) */
+.team-section {
+    padding-bottom: 5rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    margin-top: -1rem;
+    margin-bottom: 3rem;
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.team-card {
+    background: var(--white);
+    padding: 2.5rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.team-img-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    overflow: hidden;
+    border: 4px solid var(--white);
+    box-shadow: 0 0 0 4px #e0f2fe; /* Subtle sky blue ring style */
+}
+
+.team-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.team-card h3 {
+    font-size: 1.4rem;
+    color: var(--dark-bg);
+    margin-bottom: 0.2rem;
+}
+
+.team-card p {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.team-bio {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.6;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
 /* Testimonials */
 .testimonials-grid {
     display: grid;
@@ -313,7 +386,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Mobile Breakpoints */
+/* Responsive Mobile Breakpoints */
 @media(max-width: 768px) {
     .nav-links {
         display: none;
@@ -355,20 +428,19 @@ footer {
     .testimonials-grid {
         grid-template-columns: 1fr;
     }
-}
-/* Responsive Mobile View for Team Images */
-@media (max-width: 768px) {
+
+    /* Combined Mobile Responsive Rules for Team Images */
     .team-img-wrapper {
-        width: 120px;  /* Slightly smaller, cleaner circle for mobile screens */
+        width: 120px;  /* Clean smaller picture size on mobile view */
         height: 120px;
         margin-bottom: 1rem;
     }
     
     .team-card {
-        padding: 1.5rem 1rem; /* Saves vertical space on small phone displays */
+        padding: 1.5rem 1rem;
     }
 
     .team-card h3 {
-        font-size: 1.25rem; /* Keeps the text scaled nicely with the smaller photo */
+        font-size: 1.25rem;
     }
 }
