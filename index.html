@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="styles.css?v=1.1">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Center the person inside the first profile circle perfectly */
-        #member1-img {
-            object-fit: cover !important;
-            object-position: center center !important; /* Resetting horizontal alignment to match others */
-        }
+        /* Adjust vertical anchoring so the head isn't cut off */
+#member1-img {
+    object-fit: cover !important;
+    object-position: center 15% !important; 
+}
 
         /* Direct override to fix mobile image sizes instantly */
         @media (max-width: 768px) {
