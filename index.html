@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri Ventures Official | Customized Tours & Trips</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for a premium look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Tri Ventures<span>Official</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#tours">Featured Tours</a></li>
+                    <li><a href="#plan-trip">Plan Custom Trip</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Craft Your Perfect Journey</h1>
+            <p>Don't just travel. Experience customized tours tailored uniquely to your style, budget, and pace.</p>
+            <a href="#plan-trip" class="btn btn-primary">Start Planning Your Custom Trip</a>
+        </div>
+    </section>
+
+    <!-- Featured Tours Section -->
+    <section id="tours" class="tours-section container">
+        <h2 class="section-title">Popular Customized Experiences</h2>
+        <div class="tours-grid">
+            <div class="tour-card">
+                <div class="tour-img" style="background: #e0e0e0 url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
+                <div class="tour-info">
+                    <h3>Coastal Escape</h3>
+                    <p>A beautifully tailored sun, sand, and surf itinerary customizable up to 10 days.</p>
+                    <a href="#plan-trip" class="btn btn-secondary">Inquire Now</a>
+                </div>
+            </div>
+            <div class="tour-card">
+                <div class="tour-img" style="background: #e0e0e0 url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
+                <div class="tour-info">
+                    <h3>Mountain Expedition</h3>
+                    <p>For the thrill-seekers. Custom trekking routes, guides, and premium mountain stays.</p>
+                    <a href="#plan-trip" class="btn btn-secondary">Inquire Now</a>
+                </div>
+            </div>
+            <div class="tour-card">
+                <div class="tour-img" style="background: #e0e0e0 url('https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
+                <div class="tour-info">
+                    <h3>Cultural & Heritage Journey</h3>
+                    <p>Immerse yourself in history, local cuisines, and deeply personalized historic city tours.</p>
+                    <a href="#plan-trip" class="btn btn-secondary">Inquire Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Custom Inquiry Form -->
+    <section id="plan-trip" class="form-section">
+        <div class="container form-container">
+            <h2>Plan Your Custom Trip</h2>
+            <p>Tell us what you're dreaming of, and our travel specialists will build the perfect itinerary for you.</p>
+            
+            <form id="inquiryForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Where do you want to go?</label>
+                        <input type="text" id="destination" required placeholder="e.g. Swat Valley, Bali, Hunza">
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration (Days)</label>
+                        <input type="number" id="duration" min="1" required placeholder="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Estimated Budget per Person</label>
+                        <select id="budget">
+                            <option value="economy">Economy / Budget-Friendly</option>
+                            <option value="standard" selected>Standard / Comfort</option>
+                            <option value="luxury">Luxury / Premium</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="travelers">Number of Travelers</label>
+                        <input type="number" id="travelers" min="1" value="2" required>
+                    </div>
+                </div>
+                <div class="form-group msg-group">
+                    <label for="notes">Special Requirements / Notes</label>
+                    <textarea id="notes" rows="4" placeholder="Tell us about your ideal stay, activities you love, or specific places you want to hit..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn">Request Custom Itinerary</button>
+            </form>
+            <div id="formResponse" class="form-response hidden"></div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials container">
+        <h2 class="section-title">What Our Travelers Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"Tri Ventures Official planned our family tour perfectly. The custom schedule gave us the exact flexibility we needed with kids!"</p>
+                <h4>- Sarah K.</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"Best travel experience ever. The itinerary hit hidden gems we never would have found on our own. Exceptional service!"</p>
+                <h4>- Raza M.</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Tri Ventures Official. All rights reserved.</p>
+            <p>Your Premier Partner for Customized Tours & Trips.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
