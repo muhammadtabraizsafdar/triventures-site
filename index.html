@@ -77,27 +77,34 @@
             <h2>Plan Your Custom Trip</h2>
             <p>Tell us what you're dreaming of, and our travel specialists will build the perfect itinerary for you.</p>
             
-            <form id="inquiryForm">
+            <!-- Web3Forms Integration Active -->
+            <form action="https://api.web3forms.com/submit" method="POST" id="inquiryForm">
+                <!-- Your Web3Forms Secret Access Key -->
+                <input type="hidden" name="access_key" value="8b32457c-5301-4fb5-9708-59787b063b1a">
+                
+                <!-- Optional: Customizes the email subject line you receive -->
+                <input type="hidden" name="subject" value="New Custom Trip Plan Request - Tri Ventures">
+
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" required placeholder="John Doe">
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" required placeholder="john@example.com">
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
                     </div>
                     <div class="form-group">
                         <label for="destination">Where do you want to go?</label>
-                        <input type="text" id="destination" required placeholder="e.g. Swat Valley, Bali, Hunza">
+                        <input type="text" id="destination" name="destination" required placeholder="e.g. Swat Valley, Bali, Hunza">
                     </div>
                     <div class="form-group">
                         <label for="duration">Duration (Days)</label>
-                        <input type="number" id="duration" min="1" required placeholder="5">
+                        <input type="number" id="duration" name="duration" min="1" required placeholder="5">
                     </div>
                     <div class="form-group">
                         <label for="budget">Estimated Budget per Person</label>
-                        <select id="budget">
+                        <select id="budget" name="budget">
                             <option value="economy">Economy / Budget-Friendly</option>
                             <option value="standard" selected>Standard / Comfort</option>
                             <option value="luxury">Luxury / Premium</option>
@@ -105,12 +112,12 @@
                     </div>
                     <div class="form-group">
                         <label for="travelers">Number of Travelers</label>
-                        <input type="number" id="travelers" min="1" value="2" required>
+                        <input type="number" id="travelers" name="travelers" min="1" value="2" required>
                     </div>
                 </div>
                 <div class="form-group msg-group">
                     <label for="notes">Special Requirements / Notes</label>
-                    <textarea id="notes" rows="4" placeholder="Tell us about your ideal stay, activities you love, or specific places you want to hit..."></textarea>
+                    <textarea id="notes" name="notes" rows="4" placeholder="Tell us about your ideal stay, activities you love, or specific places you want to hit..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary submit-btn">Request Custom Itinerary</button>
             </form>
@@ -118,7 +125,7 @@
         </div>
     </section>
 
-    <!-- *** NEW TEAM MEMBERS SECTION *** -->
+    <!-- *** TEAM MEMBERS SECTION *** -->
     <section id="team" class="team-section container">
         <h2 class="section-title">Meet Our Team</h2>
         <p class="section-subtitle">Our dedicated experts are here to craft your perfect journey.</p>
@@ -126,35 +133,34 @@
             <!-- Team Member 1 -->
             <div class="team-card">
                 <div class="team-img-wrapper">
-                    <!-- Replace 'team-placeholder.jpg' with your actual image filename later -->
-                    <img src="Team Member 1.jpeg" alt="Team Member" class="team-img" id="member1-img">
+                    <img src="Team Member 1.jpeg" alt="Rana Shahzaib Rajput" class="team-img" id="member1-img">
                 </div>
-                <h3>[Founder Name]</h3>
-                <p>Founder & CEO</p>
+                <h3>Rana Shahzaib Rajput</h3>
+                <p>Lead Tour Organizer</p>
                 <div class="team-bio">Leading the vision for personalized travel experiences.</div>
             </div>
             <!-- Team Member 2 -->
             <div class="team-card">
                 <div class="team-img-wrapper">
-                    <img src="Team Member 2.jpeg" alt="Team Member" class="team-img" id="member2-img">
+                    <img src="Team Member 2.jpeg" alt="Malik Umar Awan" class="team-img" id="member2-img">
                 </div>
-                <h3>[Expert Name]</h3>
+                <h3>Malik Umar Awan</h3>
                 <p>Lead Travel Specialist</p>
                 <div class="team-bio">Specialist in customized Northern Pakistan itineraries.</div>
             </div>
             <!-- Team Member 3 -->
             <div class="team-card">
                 <div class="team-img-wrapper">
-                    <img src="Team Member 3.jpeg" alt="Team Member" class="team-img" id="member3-img">
+                    <img src="Team Member 3.jpeg" alt="Malik Arslan Bari" class="team-img" id="member3-img">
                 </div>
-                <h3>[Manager Name]</h3>
+                <h3>Malik Arslan Bari</h3>
                 <p>Operations Manager</p>
                 <div class="team-bio">Ensures smooth logistics and happy clients.</div>
             </div>
         </div>
     </section>
 
-    <!-- *** UPDATED CLIENT REVIEWS (TESTIMONIALS) SECTION *** -->
+    <!-- *** CLIENT REVIEWS (TESTIMONIALS) SECTION *** -->
     <section id="testimonials" class="testimonials container">
         <h2 class="section-title">What Our Travelers Say</h2>
         <div class="testimonials-grid">
@@ -165,7 +171,7 @@
             </div>
             <!-- Review 2: Rana Shayan Ali -->
             <div class="testimonial-card">
-                <p>"I highly recommend Tri Ventures for personalized tours. We visited Hunza and the customized plan made the whole experience stress-free. Every detail was organized, from great hotels to smooth transport. It was truly a premium experience."</p>
+                <p>"I highly recommend Tri Ventures for personalized tours. We visited Umbrella Waterfall & Mabali Island and the customized plan made the whole experience stress-free. Every detail was organized, from great hotels to smooth transport. It was truly a premium experience."</p>
                 <h4>- Rana Shayan Ali</h4>
             </div>
         </div>
