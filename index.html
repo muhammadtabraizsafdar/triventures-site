@@ -9,7 +9,25 @@
     
     <link rel="stylesheet" href="styles.css?v=1.1">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Added Playfair Display Font for Logo -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    
     <style>
+        /* New Logo Styles */
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            font-weight: 700;
+        }
+        .logo span {
+            font-family: 'Poppins', sans-serif;
+            font-style: normal;
+            font-size: 1rem;
+            font-weight: 300;
+            margin-left: 5px;
+        }
+
         /* Adjust vertical anchoring so the head isn't cut off */
         #member1-img {
             object-fit: cover !important;
@@ -41,6 +59,7 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#tours">Featured Tours</a></li>
+                    <li><a href="#rates-calculator">Trip Calculator</a></li>
                     <li><a href="#plan-trip">Plan Custom Trip</a></li>
                     <li><a href="#team">Our Team</a></li>
                     <li><a href="#testimonials">Reviews</a></li>
@@ -93,6 +112,61 @@
         </div>
     </section>
 
+    <!-- New Rates & Calculator Section Added Here -->
+    <section id="rates-calculator" class="container" style="padding: 4rem 0;">
+        <h2 class="section-title" style="text-align: center;">Destinations & Trip Calculator</h2>
+        <p class="section-subtitle" style="text-align: center; margin-bottom: 2rem;">Plan your private couple or family trip with our transparent base rates.</p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+            
+            <!-- Rate List Box -->
+            <div style="flex: 1; min-width: 300px; background: #f8f9fa; padding: 2rem; border-radius: 8px; border-left: 4px solid #007bff;">
+                <h3 style="margin-bottom: 1.5rem;">Standard Base Rates</h3>
+                <p style="font-size: 0.9rem; color: #555; margin-bottom: 1rem;">Per person, per day (includes transport & standard stay):</p>
+                <ul style="list-style: none; padding: 0; line-height: 2;">
+                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd;"><strong>Swat Valley:</strong> <span>PKR 6,000</span></li>
+                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd;"><strong>Naran Kaghan:</strong> <span>PKR 7,000</span></li>
+                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd;"><strong>Hunza / Gilgit:</strong> <span>PKR 9,000</span></li>
+                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd;"><strong>Skardu:</strong> <span>PKR 10,000</span></li>
+                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd;"><strong>Mabali Island (Day Trip):</strong> <span>PKR 5,000</span></li>
+                </ul>
+            </div>
+
+            <!-- Calculator Box -->
+            <div style="flex: 1; min-width: 300px; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                <h3 style="margin-bottom: 1.5rem;">Cost Estimator</h3>
+                <form id="costCalculator" onsubmit="calculateCost(event)">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="calc-destination" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Destination</label>
+                        <select id="calc-destination" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-family: inherit;">
+                            <option value="6000">Swat Valley</option>
+                            <option value="7000">Naran Kaghan</option>
+                            <option value="9000">Hunza / Gilgit</option>
+                            <option value="10000">Skardu</option>
+                            <option value="5000">Mabali Island</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label for="calc-travelers" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Number of Travelers</label>
+                        <input type="number" id="calc-travelers" min="2" value="2" placeholder="e.g., 2 for couples" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="calc-days" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Duration (Days)</label>
+                        <input type="number" id="calc-days" min="1" value="3" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer; padding: 0.75rem; font-family: inherit;">Calculate Estimate</button>
+                </form>
+                
+                <!-- Result Display -->
+                <div id="calc-result" style="margin-top: 1.5rem; font-size: 1.2rem; text-align: center; display: none;">
+                    Estimated Cost: <br><strong style="color: #28a745; font-size: 1.8rem;"><span id="total-cost"></span> PKR</strong>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Existing Plan Trip Section (Unchanged) -->
     <section id="plan-trip" class="form-section">
         <div class="container form-container">
             <h2>Plan Your Custom Trip</h2>
@@ -203,6 +277,30 @@
         </div>
     </footer>
 
+    <!-- Existing Script File -->
     <script src="script.js"></script>
+
+    <!-- New Script for Calculator Logic -->
+    <script>
+        function calculateCost(event) {
+            // Prevent form from reloading the page
+            event.preventDefault(); 
+            
+            // Get values from the inputs
+            const ratePerDay = parseInt(document.getElementById('calc-destination').value);
+            const travelers = parseInt(document.getElementById('calc-travelers').value);
+            const days = parseInt(document.getElementById('calc-days').value);
+            
+            // Calculate total
+            const totalCost = ratePerDay * travelers * days;
+            
+            // Format the number with commas (e.g., 45,000)
+            const formattedCost = totalCost.toLocaleString();
+            
+            // Display the result
+            document.getElementById('total-cost').innerText = formattedCost;
+            document.getElementById('calc-result').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
