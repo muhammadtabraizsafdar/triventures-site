@@ -12,70 +12,239 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     
     <style>
-        /* Logo Styles */
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-style: italic; font-weight: 700; }
-        .logo span { font-family: 'Poppins', sans-serif; font-style: normal; font-size: 1rem; font-weight: 300; margin-left: 5px; }
+        /* ==========================================================
+           TRI VENTURES OFFICIAL - ALPINE ELEGANCE THEME
+        ========================================================== */
+        :root {
+            --primary: #113231;      /* Deep Alpine Green */
+            --primary-light: #235c5a;
+            --accent: #d4af37;       /* Elegant Gold */
+            --accent-hover: #b5952f;
+            --bg-page: #f4f6f5;      /* Off-white */
+            --bg-card: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --border: #eaeaea;
+            --shadow-sm: 0 4px 10px rgba(0,0,0,0.03);
+            --shadow-md: 0 10px 30px rgba(17, 50, 49, 0.08);
+            --shadow-lg: 0 20px 40px rgba(17, 50, 49, 0.12);
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-page); color: var(--text-dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Typography */
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-style: italic; font-weight: 700; color: var(--primary); }
+        .logo span { font-family: 'Poppins', sans-serif; font-style: normal; font-size: 1rem; font-weight: 300; margin-left: 5px; color: var(--accent); }
+
+        .container { width: 92%; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2.8rem; text-align: center; margin-bottom: 0.5rem; font-weight: 700; }
+        .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 3.5rem; font-size: 1.1rem; }
+
+        /* Navigation */
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); padding: 1.2rem 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: 0.3s; }
+        .nav-links li a:hover { color: var(--accent); }
+        
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .bar { width: 25px; height: 3px; background-color: var(--primary); transition: 0.3s; }
+
+        /* Buttons */
+        .btn { display: inline-block; padding: 0.8rem 2.5rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; cursor: pointer; border: none; transition: 0.3s; }
+        .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4); }
+        .btn-secondary { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-secondary:hover { background: var(--primary); color: #fff; }
+
+        /* --- HERO SECTION (NEW PORTRAIT-FRIENDLY IMAGE) --- */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            /* Stunning vertical-friendly mountain landscape */
+            background: linear-gradient(to bottom, rgba(17, 50, 49, 0.4), rgba(17, 50, 49, 0.85)), url('https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            padding: 3rem 2rem;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255,255,255,0.2);
+            max-width: 800px;
+            animation: fadeIn 1s ease forwards;
+        }
+        .hero h1 { font-size: 4.5rem; color: #fff; margin-bottom: 1rem; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.2rem; margin-bottom: 2.5rem; color: #f0f0f0; font-weight: 300; }
+
+        /* --- FEATURED TOURS --- */
+        .tours-section { padding: 7rem 0; }
+        .tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .tour-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: 0.4s;
+            position: relative;
+        }
+        .tour-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+        .tour-img { height: 280px; transition: 0.6s ease; }
+        .tour-card:hover .tour-img { transform: scale(1.08); }
+        .tour-info { padding: 2.5rem 2rem; background: var(--bg-card); position: relative; z-index: 2; border-top: 4px solid var(--accent); }
+        .tour-info h3 { font-size: 1.6rem; margin-bottom: 0.8rem; }
+        .tour-info p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem; }
+
+        /* --- CALCULATOR & INFO BLOCKS --- */
+        .grid-layout { display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; }
+        .info-panel { flex: 1; min-width: 300px; background: var(--bg-card); padding: 2.5rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-md); position: relative; overflow: hidden; border: 1px solid var(--border); }
+        .info-panel::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--accent); }
+        .info-panel.green-edge::before { background: var(--primary); }
+        
+        .info-panel h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .rate-list { list-style: none; padding: 0; }
+        .rate-list li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed var(--border); color: var(--text-dark); }
+        .rate-list li:last-child { border-bottom: none; }
+        
+        .form-input { width: 100%; padding: 1rem; border: 1.5px solid var(--border); border-radius: 8px; font-family: inherit; margin-bottom: 1.2rem; transition: 0.3s; background: #fafafa; }
+        .form-input:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1); }
+        .form-label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--primary); font-size: 0.9rem; }
+
+        /* --- MODERN TABS (EXPLORE ITINERARIES) --- */
+        .tab-container { margin: 4rem 0; }
+        .location-tabs {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: #fff;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: var(--shadow-sm);
+        }
+        .tab-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+        .tab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: 0 8px 20px rgba(17, 50, 49, 0.2); }
+        
+        .location-content { display: none; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .location-content.active { display: block; }
+
+        /* --- HIGHLIGHTS WITH NEW EMOJIS --- */
+        .highlight-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 3rem; }
+        .highlight-tag {
+            background: #fff;
+            color: var(--primary);
+            padding: 0.7rem 1.4rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: 0.3s;
+        }
+        .highlight-tag:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: var(--shadow-md); }
+
+        /* --- SLEEK TIMELINE --- */
+        .timeline { position: relative; padding-left: 3rem; margin-top: 1rem; border-left: 3px solid rgba(17, 50, 49, 0.1); }
+        .timeline-item { position: relative; margin-bottom: 3rem; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-badge {
+            position: absolute;
+            left: -3.9rem;
+            top: 0;
+            background: var(--primary);
+            color: var(--accent);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 0 0 6px var(--bg-page);
+        }
+        .timeline-content { background: var(--bg-card); padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border); }
+        .timeline-content h4 { font-size: 1.4rem; color: var(--primary); margin-bottom: 1rem; }
+        .timeline-content ul { list-style: none; padding-left: 0; }
+        .timeline-content ul li { color: var(--text-muted); margin-bottom: 0.6rem; position: relative; padding-left: 1.5rem; font-size: 1rem; }
+        .timeline-content ul li::before { content: "✦"; position: absolute; left: 0; color: var(--accent); font-size: 0.9rem; }
+
+        /* --- PLAN TRIP FORM SECTION --- */
+        .form-section { background: var(--primary); color: #fff; padding: 6rem 0; }
+        .form-container h2 { color: #fff; font-size: 2.8rem; margin-bottom: 1rem; text-align: center; }
+        .form-container p { text-align: center; margin-bottom: 3rem; opacity: 0.8; }
+        .contact-form { background: #fff; padding: 3rem; border-radius: var(--radius-xl); box-shadow: 0 20px 50px rgba(0,0,0,0.2); color: var(--text-dark); max-width: 900px; margin: 0 auto; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .msg-group { grid-column: 1 / -1; }
+
+        /* --- TEAM SECTION --- */
+        .team-section { padding: 6rem 0; background: #fff; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; text-align: center; }
+        .team-card { padding: 2rem; transition: 0.3s; }
+        .team-card:hover { transform: translateY(-8px); }
+        .team-img-wrapper { width: 160px; height: 160px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; border: 4px solid var(--bg-page); box-shadow: var(--shadow-md); }
+        .team-img { width: 100%; height: 100%; object-fit: cover; }
+        .team-card h3 { font-size: 1.5rem; margin-bottom: 0.3rem; }
+        .team-card p { color: var(--accent); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+
+        /* --- FOOTER --- */
+        footer { background: #0a1f1e; color: #d0d0d0; padding: 4rem 0 2rem; text-align: center; }
+        .footer-content strong { color: var(--accent); }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: flex; }
+            .hero h1 { font-size: 2.8rem; }
+            .section-title { font-size: 2.2rem; }
+            
+            /* Make tabs horizontal scrollable on mobile for better UX */
+            .location-tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 15px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .tab-btn { flex: 0 0 auto; }
+            
+            .timeline { padding-left: 1.5rem; }
+            .timeline-badge { left: -2.3rem; width: 34px; height: 34px; font-size: 1rem; }
+            .timeline-content { padding: 1.5rem; }
+            .contact-form { padding: 1.5rem; }
+            
+            .grid-layout { flex-direction: column; }
+        }
+        
         /* Mobile Image Fix */
         #member1-img { object-fit: cover !important; object-position: center 23% !important; }
-        @media (max-width: 768px) {
-            .team-img-wrapper { width: 120px !important; height: 120px !important; margin-bottom: 1rem !important; }
-            .team-card { padding: 1.5rem 1rem !important; }
-            .team-card h3 { font-size: 1.25rem !important; }
-        }
-
-        /* --- STYLES FOR TRIP DETAILS & TABS --- */
-        .details-wrapper { background: #fdfdfd; padding: 2.5rem; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.04); margin-bottom: 3rem; border: 1px solid #f0f0f0; }
-        .details-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: #007bff; font-weight: 700; margin-bottom: 0.5rem; display: block; }
-        .details-heading { font-size: 1.8rem; font-weight: 700; color: #222; margin-bottom: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 1rem; }
-
-        /* Stylish Tabs Container */
-        .location-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 2rem; justify-content: center; }
-        .tab-btn { background: #fff; border: 2px solid #e0e0e0; color: #555; padding: 0.8rem 1.5rem; border-radius: 50px; font-size: 0.95rem; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .tab-btn:hover { border-color: #007bff; color: #007bff; transform: translateY(-2px); }
-        .tab-btn.active { background: linear-gradient(135deg, #007bff, #0056b3); border-color: transparent; color: #fff; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); }
-
-        /* Tab Content Animation */
-        .location-content { display: none; animation: slideUpFade 0.5s ease forwards; }
-        .location-content.active { display: block; }
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Highlights */
-        .highlight-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
-        .highlight-tag { background: #edf5ff; color: #0056b3; padding: 0.6rem 1.2rem; border-radius: 50px; font-size: 0.95rem; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; border: 1px solid #cce5ff; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .highlight-tag:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,86,179,0.15); }
-
-        /* Timeline Itinerary */
-        .timeline { position: relative; padding-left: 2.5rem; margin-top: 1rem; border-left: 2px solid #e0e0e0; }
-        .timeline-item { position: relative; margin-bottom: 2.5rem; }
-        .timeline-item:last-child { margin-bottom: 0; }
-        .timeline-badge { position: absolute; left: -3.4rem; top: 0; background: linear-gradient(135deg, #007bff, #0056b3); color: white; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; box-shadow: 0 0 0 4px #fdfdfd; }
-        .timeline-content h4 { font-size: 1.2rem; color: #111; margin-bottom: 0.8rem; font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 0.5px; }
-        .timeline-content ul { list-style: none; padding-left: 0; margin: 0; }
-        .timeline-content ul li { color: #555; margin-bottom: 0.5rem; position: relative; padding-left: 1.2rem; font-size: 0.95rem; }
-        .timeline-content ul li::before { content: "—"; position: absolute; left: 0; color: #007bff; font-weight: bold; }
-
-        /* Grids & Cards */
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
-        .info-card { background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid #eaeaea; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-        
-        /* Payment & Policies */
-        .payment-row { display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-size: 0.9rem; border-bottom: 1px dashed #eee; padding-bottom: 0.5rem; }
-        .payment-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .payment-label { color: #888; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
-        .payment-value { font-weight: 600; color: #222; text-align: right; }
-        .card-header { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: #333; }
-        .cancel-card { text-align: center; padding: 1.5rem 1rem; background: #fafafa; border: 1px solid #eee; border-radius: 8px; }
-        .cancel-time { font-size: 0.75rem; font-weight: 700; color: #777; text-transform: uppercase; letter-spacing: 0.5px; }
-        .cancel-percent { font-size: 2rem; font-weight: 700; color: #007bff; margin: 0.5rem 0; }
-        .cancel-label { font-size: 0.8rem; color: #999; }
-        .tc-list { padding-left: 0; list-style: none; counter-reset: tc-counter; }
-        .tc-list li { position: relative; padding-left: 3rem; margin-bottom: 1rem; font-size: 0.95rem; color: #444; line-height: 1.6; }
-        .tc-list li::before { counter-increment: tc-counter; content: counter(tc-counter, decimal-leading-zero); position: absolute; left: 0; top: 0; background: #edf5ff; color: #0056b3; font-size: 0.75rem; font-weight: 700; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
     </style>
 </head>
 <body>
@@ -87,7 +256,7 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#tours">Featured Tours</a></li>
-                    <li><a href="#rates-calculator">Trip Details & Cost</a></li>
+                    <li><a href="#rates-calculator">Trip Details</a></li>
                     <li><a href="#plan-trip">Plan Custom Trip</a></li>
                     <li><a href="#team">Our Team</a></li>
                 </ul>
@@ -104,19 +273,20 @@
         <div class="hero-content">
             <h1>Craft Your Perfect Journey</h1>
             <p>Don't just travel. Experience customized tours tailored uniquely to your style, budget, and pace.</p>
-            <a href="#plan-trip" class="btn btn-primary">Start Planning Your Custom Trip</a>
+            <a href="#plan-trip" class="btn btn-primary">Start Planning</a>
         </div>
     </section>
 
     <section id="tours" class="tours-section container">
-        <h2 class="section-title">Popular Customized Experiences</h2>
+        <h2 class="section-title">Popular Experiences</h2>
+        <p class="section-subtitle">Discover our most requested premium getaways.</p>
         <div class="tours-grid">
             <div class="tour-card">
                 <div class="tour-img" style="background: #e0e0e0 url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
                 <div class="tour-info">
                     <h3>Coastal Escape</h3>
                     <p><strong>Coming Soon!</strong> We are currently crafting an exclusive, premium beach itinerary for our travelers. Stay tuned!</p>
-                    <span class="btn btn-secondary" style="opacity: 0.6; cursor: not-allowed; background-color: #6c757d; display: inline-block; text-align: center;">Coming Soon</span>
+                    <span class="btn btn-secondary" style="opacity: 0.5; cursor: not-allowed; border-color: #999; color: #999;">Coming Soon</span>
                 </div>
             </div>
             <div class="tour-card">
@@ -138,83 +308,77 @@
         </div>
     </section>
 
-    <section id="rates-calculator" class="container" style="padding: 4rem 0;">
-        <h2 class="section-title" style="text-align: center;">Cost Estimator & Trip Info</h2>
-        <p class="section-subtitle" style="text-align: center; margin-bottom: 2rem;">Calculate your costs and view our comprehensive trip guidelines.</p>
+    <section id="rates-calculator" class="container" style="padding: 2rem 0;">
+        <h2 class="section-title">Cost Estimator</h2>
+        <p class="section-subtitle">Calculate your base costs for private couple or family trips.</p>
 
-        <!-- Calculator Block -->
-        <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem;">
+        <div class="grid-layout">
             <!-- Base Rates -->
-            <div style="flex: 1; min-width: 300px; background: #f8f9fa; padding: 2rem; border-radius: 12px; border-left: 4px solid #007bff;">
-                <h3 style="margin-bottom: 1.5rem;">Standard Base Rates</h3>
-                <p style="font-size: 0.9rem; color: #555; margin-bottom: 1rem;">Per person, per day (includes transport & standard stay):</p>
-                <ul style="list-style: none; padding: 0; line-height: 2;">
-                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd;"><strong>Swat Valley:</strong> <span>PKR 6,000</span></li>
-                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd;"><strong>Naran Kaghan:</strong> <span>PKR 7,000</span></li>
-                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd;"><strong>Hunza / Gilgit:</strong> <span>PKR 9,000</span></li>
-                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd;"><strong>Skardu:</strong> <span>PKR 10,000</span></li>
-                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd;"><strong>Mabali Island (Day Trip):</strong> <span>PKR 5,000</span></li>
+            <div class="info-panel green-edge">
+                <h3>Standard Base Rates</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Per person, per day (includes transport & standard stay):</p>
+                <ul class="rate-list">
+                    <li><strong>Swat Valley:</strong> <span>PKR 6,000</span></li>
+                    <li><strong>Naran Kaghan:</strong> <span>PKR 7,000</span></li>
+                    <li><strong>Hunza / Gilgit:</strong> <span>PKR 9,000</span></li>
+                    <li><strong>Skardu:</strong> <span>PKR 10,000</span></li>
+                    <li><strong>Mabali Island (1 Day):</strong> <span>PKR 5,000</span></li>
                 </ul>
             </div>
 
             <!-- Calculator -->
-            <div style="flex: 1; min-width: 300px; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">
-                <h3 style="margin-bottom: 1.5rem;">Cost Estimator</h3>
+            <div class="info-panel">
+                <h3>Calculate Your Trip</h3>
                 <form id="costCalculator" onsubmit="calculateCost(event)">
-                    <div style="margin-bottom: 1rem;">
-                        <label for="calc-destination" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #444;">Destination</label>
-                        <select id="calc-destination" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 6px; font-family: inherit;">
-                            <option value="6000">Swat Valley</option>
-                            <option value="7000" selected>Naran Kaghan</option>
-                            <option value="9000">Hunza / Gilgit</option>
-                            <option value="10000">Skardu</option>
-                            <option value="5000">Mabali Island</option>
-                        </select>
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label for="calc-travelers" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #444;">Number of Travelers</label>
-                        <input type="number" id="calc-travelers" min="2" value="2" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 6px;">
-                    </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label for="calc-days" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #444;">Duration (Days)</label>
-                        <input type="number" id="calc-days" min="1" value="3" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 6px;">
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer; padding: 0.75rem; border-radius: 6px;">Calculate Estimate</button>
+                    <label class="form-label" for="calc-destination">Destination</label>
+                    <select class="form-input" id="calc-destination">
+                        <option value="6000">Swat Valley</option>
+                        <option value="7000" selected>Naran Kaghan</option>
+                        <option value="9000">Hunza / Gilgit</option>
+                        <option value="10000">Skardu</option>
+                        <option value="5000">Mabali Island</option>
+                    </select>
+
+                    <label class="form-label" for="calc-travelers">Number of Travelers</label>
+                    <input class="form-input" type="number" id="calc-travelers" min="2" value="2">
+
+                    <label class="form-label" for="calc-days">Duration (Days)</label>
+                    <input class="form-input" type="number" id="calc-days" min="1" value="3">
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate Estimate</button>
                 </form>
                 
-                <div id="calc-result" style="margin-top: 1.5rem; font-size: 1.2rem; text-align: center; display: none; background: #f0fdf4; padding: 1rem; border-radius: 6px; border: 1px solid #bbf7d0;">
+                <div id="calc-result" style="margin-top: 1.5rem; text-align: center; display: none; background: #f0fdf4; padding: 1rem; border-radius: 8px; border: 1px solid #bbf7d0;">
                     Estimated Cost: <br><strong style="color: #166534; font-size: 1.8rem;"><span id="total-cost"></span> PKR</strong>
                 </div>
             </div>
         </div>
 
-        <!-- ================= DYNAMIC DESTINATION TABS ================= -->
-        <div class="details-wrapper">
-            <h2 class="details-heading" style="text-align: center; border: none; margin-bottom: 1rem;">Explore Itineraries</h2>
+        <!-- ================= DYNAMIC TABS ================= -->
+        <div class="tab-container">
+            <h2 class="section-title">Explore Itineraries</h2>
+            <p class="section-subtitle">Select a destination to view highlights and detailed day-by-day plans.</p>
             
-            <!-- Tab Buttons -->
             <div class="location-tabs">
-                <button class="tab-btn active" onclick="openLocation('naran')">Naran Kaghan</button>
-                <button class="tab-btn" onclick="openLocation('swat')">Swat Kalam</button>
-                <button class="tab-btn" onclick="openLocation('hunza')">Hunza Valley</button>
-                <button class="tab-btn" onclick="openLocation('skardu')">Skardu</button>
-                <button class="tab-btn" onclick="openLocation('mabali')">Mabali & Khanpur (1 Day)</button>
-                <button class="tab-btn" onclick="openLocation('mushkpuri')">Mushkpuri (1 Day)</button>
-                <button class="tab-btn" onclick="openLocation('thandiani')">Thandiani (1 Day)</button>
+                <button class="tab-btn active" onclick="openLocation('naran', event)">Naran Kaghan</button>
+                <button class="tab-btn" onclick="openLocation('swat', event)">Swat Kalam</button>
+                <button class="tab-btn" onclick="openLocation('hunza', event)">Hunza Valley</button>
+                <button class="tab-btn" onclick="openLocation('skardu', event)">Skardu</button>
+                <button class="tab-btn" onclick="openLocation('mabali', event)">Mabali (1 Day)</button>
+                <button class="tab-btn" onclick="openLocation('mushkpuri', event)">Mushkpuri (1 Day)</button>
+                <button class="tab-btn" onclick="openLocation('thandiani', event)">Thandiani (1 Day)</button>
             </div>
 
-            <!-- Tab Content: Naran Kaghan (Default) -->
+            <!-- Tab: Naran -->
             <div id="naran" class="location-content active">
-                <span class="details-title">Highlights</span>
                 <div class="highlight-tags">
-                    <span class="highlight-tag">📍 Shogran & Siri Paya</span>
-                    <span class="highlight-tag">📍 Naran</span>
-                    <span class="highlight-tag">📍 Babusar Top</span>
-                    <span class="highlight-tag">📍 Saif-ul-Mulook</span>
-                    <span class="highlight-tag">📍 Lulusar Lake</span>
-                    <span class="highlight-tag">📍 Balakot</span>
+                    <span class="highlight-tag">🏔️ Shogran & Siri Paya</span>
+                    <span class="highlight-tag">✨ Naran</span>
+                    <span class="highlight-tag">🌲 Babusar Top</span>
+                    <span class="highlight-tag">🌊 Saif-ul-Mulook</span>
+                    <span class="highlight-tag">🌊 Lulusar Lake</span>
+                    <span class="highlight-tag">✨ Balakot</span>
                 </div>
-                <span class="details-title">Day By Day Itinerary</span>
                 <div class="timeline">
                     <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Travel to Naran</h4><ul><li>Departure & Breakfast at Balakot/Kiwai</li><li>Transfer to 4x4 Jeeps for Shogran & Siri Paya</li><li>Dinner & night stay in Naran</li></ul></div></div>
                     <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4>Babusar Top Expedition</h4><ul><li>Off to Babusar Top with stays at Lulusar Lake</li><li>Reach Babusar Top & spend time</li><li>Back to Naran for Bonfire & Dinner</li></ul></div></div>
@@ -222,18 +386,16 @@
                 </div>
             </div>
 
-            <!-- Tab Content: Swat Kalam -->
+            <!-- Tab: Swat -->
             <div id="swat" class="location-content">
-                <span class="details-title">Highlights</span>
                 <div class="highlight-tags">
-                    <span class="highlight-tag">📍 Mingora</span>
-                    <span class="highlight-tag">📍 Malam Jabba</span>
-                    <span class="highlight-tag">📍 Kalam Forest</span>
-                    <span class="highlight-tag">📍 Mahodand Lake</span>
-                    <span class="highlight-tag">📍 Bahrain</span>
-                    <span class="highlight-tag">📍 Ushu Forest</span>
+                    <span class="highlight-tag">✨ Mingora</span>
+                    <span class="highlight-tag">🏔️ Malam Jabba</span>
+                    <span class="highlight-tag">🌲 Kalam Forest</span>
+                    <span class="highlight-tag">🌊 Mahodand Lake</span>
+                    <span class="highlight-tag">✨ Bahrain</span>
+                    <span class="highlight-tag">🌲 Ushu Forest</span>
                 </div>
-                <span class="details-title">Day By Day Itinerary</span>
                 <div class="timeline">
                     <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Journey to the Switzerland of the East</h4><ul><li>Departure and scenic drive via Swat Motorway</li><li>Stopover at Fizagat & Mingora</li><li>Arrival in Bahrain/Kalam for Dinner & Stay</li></ul></div></div>
                     <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4>Mahodand Lake & Ushu Forest</h4><ul><li>Breakfast and transfer to 4x4 Jeeps</li><li>Explore the majestic Ushu Forest</li><li>Sightseeing at Mahodand Lake (Boating optional)</li><li>Return to Kalam for Bonfire</li></ul></div></div>
@@ -241,18 +403,16 @@
                 </div>
             </div>
 
-            <!-- Tab Content: Hunza -->
+            <!-- Tab: Hunza -->
             <div id="hunza" class="location-content">
-                <span class="details-title">Highlights</span>
                 <div class="highlight-tags">
-                    <span class="highlight-tag">📍 Rakaposhi View</span>
-                    <span class="highlight-tag">📍 Karimabad</span>
-                    <span class="highlight-tag">📍 Altit & Baltit Forts</span>
-                    <span class="highlight-tag">📍 Attabad Lake</span>
-                    <span class="highlight-tag">📍 Passu Cones</span>
-                    <span class="highlight-tag">📍 Khunjerab Pass</span>
+                    <span class="highlight-tag">🏔️ Rakaposhi View</span>
+                    <span class="highlight-tag">✨ Karimabad</span>
+                    <span class="highlight-tag">🏰 Altit & Baltit Forts</span>
+                    <span class="highlight-tag">🌊 Attabad Lake</span>
+                    <span class="highlight-tag">🏔️ Passu Cones</span>
+                    <span class="highlight-tag">🛣️ Khunjerab Pass</span>
                 </div>
-                <span class="details-title">Day By Day Itinerary</span>
                 <div class="timeline">
                     <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Travel to Chilas/Naran</h4><ul><li>Departure towards North</li><li>Overnight stay midway (Chilas or Naran depending on weather)</li></ul></div></div>
                     <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4>Enter the Majestic Hunza</h4><ul><li>Drive on Karakoram Highway</li><li>Stop at Rakaposhi View Point</li><li>Arrival in Karimabad, Hunza for overnight stay</li></ul></div></div>
@@ -262,18 +422,16 @@
                 </div>
             </div>
 
-            <!-- Tab Content: Skardu -->
+            <!-- Tab: Skardu -->
             <div id="skardu" class="location-content">
-                <span class="details-title">Highlights</span>
                 <div class="highlight-tags">
-                    <span class="highlight-tag">📍 Shangrila Resort</span>
-                    <span class="highlight-tag">📍 Upper Kachura Lake</span>
-                    <span class="highlight-tag">📍 Deosai Plains</span>
-                    <span class="highlight-tag">📍 Shigar Fort</span>
-                    <span class="highlight-tag">📍 Mantokha Waterfall</span>
-                    <span class="highlight-tag">📍 Katpana Desert</span>
+                    <span class="highlight-tag">✨ Shangrila Resort</span>
+                    <span class="highlight-tag">🌊 Upper Kachura Lake</span>
+                    <span class="highlight-tag">🏕️ Deosai Plains</span>
+                    <span class="highlight-tag">🏰 Shigar Fort</span>
+                    <span class="highlight-tag">🌊 Mantokha Waterfall</span>
+                    <span class="highlight-tag">🏜️ Katpana Desert</span>
                 </div>
-                <span class="details-title">Day By Day Itinerary</span>
                 <div class="timeline">
                     <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Midway Stopover</h4><ul><li>Departure for Skardu via Karakoram Highway</li><li>Night stay at Chilas/Jaglot</li></ul></div></div>
                     <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4>Arrival in Skardu & Lakes</h4><ul><li>Drive along the Indus River</li><li>Visit the iconic Shangrila Resort (Lower Kachura)</li><li>Boating at Upper Kachura Lake</li><li>Night stay in Skardu</li></ul></div></div>
@@ -283,180 +441,110 @@
                 </div>
             </div>
 
-            <!-- Tab Content: Mabali -->
+            <!-- Tab: Mabali -->
             <div id="mabali" class="location-content">
-                <span class="details-title">Highlights</span>
                 <div class="highlight-tags">
-                    <span class="highlight-tag">📍 Khanpur Dam</span>
-                    <span class="highlight-tag">📍 Mabali Island</span>
-                    <span class="highlight-tag">📍 Jet Skiing</span>
-                    <span class="highlight-tag">📍 Cliff Jumping</span>
-                    <span class="highlight-tag">📍 Archery</span>
-                    <span class="highlight-tag">📍 Lake-side Dining</span>
+                    <span class="highlight-tag">🌊 Khanpur Dam</span>
+                    <span class="highlight-tag">🏝️ Mabali Island</span>
+                    <span class="highlight-tag">🚤 Jet Skiing</span>
+                    <span class="highlight-tag">🧗 Cliff Jumping</span>
+                    <span class="highlight-tag">🏹 Archery</span>
+                    <span class="highlight-tag">🍽️ Lake-side Dining</span>
                 </div>
-                <span class="details-title">One Day Itinerary</span>
                 <div class="timeline">
                     <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Action-Packed Day Trip</h4><ul><li>Early morning departure to Khanpur Dam</li><li>Arrival at Mabali Island resort area</li><li>Engage in water sports (Boating, Jet Ski, Cliff Jumping)</li><li>Relax with Archery and Zip-lining</li><li>Enjoy a lakeside lunch</li><li>Evening departure back home</li></ul></div></div>
                 </div>
             </div>
 
-            <!-- Tab Content: Mushkpuri -->
+            <!-- Tab: Mushkpuri -->
             <div id="mushkpuri" class="location-content">
-                <span class="details-title">Highlights</span>
                 <div class="highlight-tags">
-                    <span class="highlight-tag">📍 Dunga Gali</span>
-                    <span class="highlight-tag">📍 Mushkpuri Peak</span>
-                    <span class="highlight-tag">📍 Pine Forests</span>
-                    <span class="highlight-tag">📍 Nathia Gali</span>
-                    <span class="highlight-tag">📍 Scenic Hiking Trail</span>
+                    <span class="highlight-tag">✨ Dunga Gali</span>
+                    <span class="highlight-tag">🏔️ Mushkpuri Peak</span>
+                    <span class="highlight-tag">🌲 Pine Forests</span>
+                    <span class="highlight-tag">✨ Nathia Gali</span>
+                    <span class="highlight-tag">🥾 Scenic Hiking Trail</span>
                 </div>
-                <span class="details-title">One Day Itinerary</span>
                 <div class="timeline">
                     <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Hiking Adventure</h4><ul><li>Morning departure towards Dunga Gali</li><li>Start the 3-hour scenic hike through lush pine forests</li><li>Reach the breathtaking Mushkpuri Top (2800m)</li><li>Photography and relaxation at the peak</li><li>Hike down and enjoy local snacks in Nathia Gali</li><li>Evening departure for home</li></ul></div></div>
                 </div>
             </div>
 
-            <!-- Tab Content: Thandiani -->
+            <!-- Tab: Thandiani -->
             <div id="thandiani" class="location-content">
-                <span class="details-title">Highlights</span>
                 <div class="highlight-tags">
-                    <span class="highlight-tag">📍 Abbottabad</span>
-                    <span class="highlight-tag">📍 Thandiani Top</span>
-                    <span class="highlight-tag">📍 Harno River</span>
-                    <span class="highlight-tag">📍 Ilyasi Mosque</span>
-                    <span class="highlight-tag">📍 Scenic Mountain Drive</span>
+                    <span class="highlight-tag">✨ Abbottabad</span>
+                    <span class="highlight-tag">🏔️ Thandiani Top</span>
+                    <span class="highlight-tag">🌊 Harno River</span>
+                    <span class="highlight-tag">🕌 Ilyasi Mosque</span>
+                    <span class="highlight-tag">🚗 Scenic Mountain Drive</span>
                 </div>
-                <span class="details-title">One Day Itinerary</span>
                 <div class="timeline">
                     <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>The Coolest Peak</h4><ul><li>Morning departure via Hazara Motorway</li><li>Drive through Abbottabad city</li><li>Scenic uphill drive to Thandiani (The Cold Place)</li><li>Sightseeing, photography, and tea at the top</li><li>Optional stop at Harno River or Ilyasi Mosque for famous Pakoras on the way back</li><li>Safe travel back home in the evening</li></ul></div></div>
                 </div>
             </div>
         </div>
 
-        <!-- Static Details: Package Details -->
-        <div class="details-wrapper">
-            <span class="details-title">What's Covered</span>
-            <h2 class="details-heading">Package Details</h2>
-            
-            <div class="grid-2">
-                <!-- Included -->
-                <div style="background: #f0fdf4; padding: 2rem; border-radius: 8px; border-top: 4px solid #22c55e;">
-                    <h3 style="color: #166534; font-size: 1.15rem; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 8px;">✓ Package Includes</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #2563eb;">🔵</span> Travelling in Private Air Conditioned Vehicle</li>
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #2563eb;">🔵</span> All Tolls & Taxes</li>
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #2563eb;">🔵</span> Hotel Stay as per itinerary</li>
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #2563eb;">🔵</span> Daily Breakfasts & Dinners (For multi-day tours)</li>
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #2563eb;">🔵</span> Professional Driver & Tour Guide</li>
-                        <li style="display: flex; gap: 10px; color: #333;"><span style="color: #2563eb;">🔵</span> 1x Bonfire & Musical Night (Where applicable)</li>
-                    </ul>
-                </div>
-                
-                <!-- Not Included -->
-                <div style="background: #fef2f2; padding: 2rem; border-radius: 8px; border-top: 4px solid #ef4444;">
-                    <h3 style="color: #991b1b; font-size: 1.15rem; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 8px;">✕ Not Included</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #dc2626;">🔴</span> Entry / Boating / Chairlift / Air Tickets</li>
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #dc2626;">🔴</span> Jeep Charges (Unless stated otherwise)</li>
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #dc2626;">🔴</span> Porter & Horse Charges</li>
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #dc2626;">🔴</span> Personal Clothing</li>
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #dc2626;">🔴</span> Extras at hotels (drinks, lunch, laundry)</li>
-                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px; color: #333;"><span style="color: #dc2626;">🔴</span> Insurance, medical aid & helicopter rescue</li>
-                        <li style="display: flex; gap: 10px; color: #333;"><span style="color: #dc2626;">🔴</span> Anything not listed under Package Includes</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Static Details: Payment Methods -->
-        <div class="details-wrapper">
-            <span class="details-title">How To Pay</span>
-            <h2 class="details-heading">Payment Methods</h2>
-            
-            <div class="grid-2">
-                <!-- Bank Transfer -->
-                <div class="info-card">
-                    <div class="card-header">🏦 Bank Transfer</div>
-                    <div class="payment-row">
-                        <span class="payment-label">Account Title</span>
-                        <span class="payment-value">Shahzaib Shahid</span>
+        <!-- ================= PACKAGE & POLICY BLOCKS ================= -->
+        <div class="grid-layout" style="margin-top: 4rem;">
+            <!-- Included / Excluded -->
+            <div class="info-panel" style="flex: 1 1 100%;">
+                <h3 style="text-align: center;">Package Details</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
+                    <div style="flex: 1; min-width: 280px; background: #f0fdf4; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #22c55e;">
+                        <h4 style="color: #166534; margin-bottom: 1rem;">✅ What's Included</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 8px;">✦ Air Conditioned Vehicle</li>
+                            <li style="margin-bottom: 8px;">✦ All Tolls & Taxes</li>
+                            <li style="margin-bottom: 8px;">✦ Hotel Stay (As per itinerary)</li>
+                            <li style="margin-bottom: 8px;">✦ Daily Breakfasts & Dinners</li>
+                            <li style="margin-bottom: 8px;">✦ Professional Tour Guide</li>
+                            <li>✦ 1x Bonfire (Where applicable)</li>
+                        </ul>
                     </div>
-                    <div class="payment-row">
-                        <span class="payment-label">Bank</span>
-                        <span class="payment-value">United Bank Limited</span>
-                    </div>
-                    <div class="payment-row">
-                        <span class="payment-label">Account No</span>
-                        <span class="payment-value">1302333094279</span>
-                    </div>
-                    <div class="payment-row">
-                        <span class="payment-label">IBAN</span>
-                        <span class="payment-value" style="font-size: 0.85rem;">PK35UNIL0109000333094279</span>
-                    </div>
-                </div>
-
-                <!-- JazzCash -->
-                <div class="info-card">
-                    <div class="card-header">💳 JazzCash</div>
-                    <div class="payment-row">
-                        <span class="payment-label">Title</span>
-                        <span class="payment-value">Shahzaib Shahid</span>
-                    </div>
-                    <div class="payment-row">
-                        <span class="payment-label">Account No</span>
-                        <span class="payment-value">03227134860</span>
+                    <div style="flex: 1; min-width: 280px; background: #fef2f2; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ef4444;">
+                        <h4 style="color: #991b1b; margin-bottom: 1rem;">❌ Not Included</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 8px;">✦ Entry / Boating / Air Tickets</li>
+                            <li style="margin-bottom: 8px;">✦ Jeep Charges (Unless stated)</li>
+                            <li style="margin-bottom: 8px;">✦ Porter & Horse Charges</li>
+                            <li style="margin-bottom: 8px;">✦ Extras at hotels (laundry, lunch)</li>
+                            <li>✦ Medical aid & Rescue</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Static Details: Policies -->
-        <div class="details-wrapper">
-            <span class="details-title">Booking Policy</span>
-            <h2 class="details-heading">Cancellation Policy</h2>
-            
-            <div class="grid-4" style="margin-bottom: 1.5rem;">
-                <div class="cancel-card">
-                    <div class="cancel-time">5+ Days Before</div>
-                    <div class="cancel-percent">0%</div>
-                    <div class="cancel-label">cancellation fee</div>
+            <!-- Payment Methods -->
+            <div class="info-panel green-edge">
+                <h3>Payment Methods</h3>
+                <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border);">
+                    <h4 style="font-size: 1.1rem; margin-bottom: 10px;">🏦 Meezan Bank Limited</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Title: <strong>Tri Ventures Official</strong></p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">A/C: <strong>02140105806119</strong></p>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">IBAN: PK89UNIL0109000241339455</p>
                 </div>
-                <div class="cancel-card">
-                    <div class="cancel-time">3-4 Days Before</div>
-                    <div class="cancel-percent">20%</div>
-                    <div class="cancel-label">cancellation fee</div>
-                </div>
-                <div class="cancel-card">
-                    <div class="cancel-time">1-2 Days Before</div>
-                    <div class="cancel-percent">50%</div>
-                    <div class="cancel-label">cancellation fee</div>
-                </div>
-                <div class="cancel-card">
-                    <div class="cancel-time">Less than 24 Hrs</div>
-                    <div class="cancel-percent">60%</div>
-                    <div class="cancel-label">cancellation fee</div>
+                <div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 10px;">💳 JazzCash / EasyPaisa</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Title: <strong>Aqib Javed</strong></p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">No: <strong>0304 3040871</strong></p>
                 </div>
             </div>
-            <p style="font-size: 0.95rem; color: #444;"><strong>Please note:</strong> Bookings are non-transferable. Refunds are processed within <strong>3 business days</strong>.</p>
-        </div>
 
-        <!-- Static Details: T&C -->
-        <div class="details-wrapper" style="margin-bottom: 0;">
-            <span class="details-title">Important</span>
-            <h2 class="details-heading">Terms & Conditions</h2>
-            
-            <ul class="tc-list">
-                <li>Tri Ventures Official is not responsible for loss of personal items (cameras, jewelry, phones, etc.)</li>
-                <li>Team Tri Ventures Official reserves the right to assign/shuffle seats in the vehicle.</li>
-                <li>Any participant found misbehaving may be removed from the tour.</li>
-                <li>Snacks or beverages beyond Breakfasts & Dinners are not included.</li>
-                <li>Smoking in the vehicle is strictly prohibited.</li>
-                <li>Extra costs due to landslides or forced stays elsewhere will be charged at runtime.</li>
-                <li>Tri Ventures Official is not liable for accidents or loss of life during the tour.</li>
-                <li>Itinerary may change due to natural disasters or weather conditions.</li>
-            </ul>
+            <!-- T&C / Cancellation -->
+            <div class="info-panel">
+                <h3>Terms & Cancellation</h3>
+                <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-muted);">
+                    <li style="margin-bottom: 10px;">✦ <strong>5+ Days Before:</strong> 0% Cancellation Fee</li>
+                    <li style="margin-bottom: 10px;">✦ <strong>3-4 Days Before:</strong> 20% Cancellation Fee</li>
+                    <li style="margin-bottom: 10px;">✦ <strong>1-2 Days Before:</strong> 50% Cancellation Fee</li>
+                    <li style="margin-bottom: 15px;">✦ <strong>Less than 24 Hrs:</strong> 60% Cancellation Fee</li>
+                </ul>
+                <p style="font-size: 0.85rem; color: var(--text-muted); background: var(--bg-page); padding: 10px; border-radius: 8px;">
+                    <em>Note: Tri Ventures Official is not responsible for loss of personal items or unforeseen weather changes. Refunds take 3 business days.</em>
+                </p>
+            </div>
         </div>
-
     </section>
 
     <!-- Form Section -->
@@ -465,47 +553,46 @@
             <h2>Plan Your Custom Trip</h2>
             <p>Tell us what you're dreaming of, and our travel specialists will build the perfect itinerary for you.</p>
             
-            <form action="https://api.web3forms.com/submit" method="POST" id="inquiryForm">
+            <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="inquiryForm">
                 <input type="hidden" name="access_key" value="8b32457c-5301-4fb5-9708-59787b063b1a">
                 <input type="hidden" name="subject" value="New Custom Trip Plan Request - Tri Ventures">
 
                 <div class="form-grid">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                    <div>
+                        <label class="form-label" for="name">Full Name</label>
+                        <input class="form-input" type="text" id="name" name="name" required placeholder="Your Name">
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="...@example.com">
+                    <div>
+                        <label class="form-label" for="email">Email Address</label>
+                        <input class="form-input" type="email" id="email" name="email" required placeholder="...@example.com">
                     </div>
-                    <div class="form-group">
-                        <label for="destination">Where do you want to go?</label>
-                        <input type="text" id="destination" name="destination" required placeholder="e.g. Naran Kaghan, Swat Valley, Bali, Hunza">
+                    <div>
+                        <label class="form-label" for="destination">Where do you want to go?</label>
+                        <input class="form-input" type="text" id="destination" name="destination" required placeholder="e.g. Naran Kaghan">
                     </div>
-                    <div class="form-group">
-                        <label for="duration">Duration (Days)</label>
-                        <input type="number" id="duration" name="duration" min="1" required placeholder="5">
+                    <div>
+                        <label class="form-label" for="duration">Duration (Days)</label>
+                        <input class="form-input" type="number" id="duration" name="duration" min="1" required placeholder="5">
                     </div>
-                    <div class="form-group">
-                        <label for="budget">Estimated Budget per Person</label>
-                        <select id="budget" name="budget">
+                    <div>
+                        <label class="form-label" for="budget">Estimated Budget</label>
+                        <select class="form-input" id="budget" name="budget">
                             <option value="economy">Economy / Budget-Friendly</option>
                             <option value="standard" selected>Standard / Comfort</option>
                             <option value="luxury">Luxury / Premium</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="travelers">Number of Travelers</label>
-                        <input type="number" id="travelers" name="travelers" min="1" value="2" required>
+                    <div>
+                        <label class="form-label" for="travelers">Number of Travelers</label>
+                        <input class="form-input" type="number" id="travelers" name="travelers" min="1" value="2" required>
+                    </div>
+                    <div class="msg-group">
+                        <label class="form-label" for="notes">Special Requirements / Notes</label>
+                        <textarea class="form-input" id="notes" name="notes" rows="4" placeholder="Tell us about your ideal stay..."></textarea>
                     </div>
                 </div>
-                <div class="form-group msg-group">
-                    <label for="notes">Special Requirements / Notes</label>
-                    <textarea id="notes" name="notes" rows="4" placeholder="Tell us about your ideal stay, activities you love, or specific places you want to hit..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary submit-btn">Request Custom Itinerary</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Request Custom Itinerary</button>
             </form>
-            <div id="formResponse" class="form-response hidden"></div>
         </div>
     </section>
 
@@ -520,7 +607,7 @@
                 </div>
                 <h3>Rana Shahzaib Rajput</h3>
                 <p>Lead Tour Organizer</p>
-                <div class="team-bio">Leading the vision for personalized travel experiences.</div>
+                <div style="color: var(--text-muted); font-size: 0.95rem;">Leading the vision for personalized travel experiences.</div>
             </div>
             <div class="team-card">
                 <div class="team-img-wrapper">
@@ -528,7 +615,7 @@
                 </div>
                 <h3>Malik Umar Awan</h3>
                 <p>Lead Travel Specialist</p>
-                <div class="team-bio">Specialist in customized Northern Pakistan itineraries.</div>
+                <div style="color: var(--text-muted); font-size: 0.95rem;">Specialist in customized Northern Pakistan itineraries.</div>
             </div>
             <div class="team-card">
                 <div class="team-img-wrapper">
@@ -536,14 +623,14 @@
                 </div>
                 <h3>Malik Arslan Bari</h3>
                 <p>Operations Manager</p>
-                <div class="team-bio">Ensures smooth logistics and happy clients.</div>
+                <div style="color: var(--text-muted); font-size: 0.95rem;">Ensures smooth logistics and happy clients.</div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container footer-content">
+        <div class="container">
             <div style="margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.6;">
                 <p><strong>Contact Our Travel Specialists:</strong></p>
                 <p>Rana Shahzaib Rajput: +92 322 7134860</p>
@@ -553,7 +640,6 @@
             </div>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem;">
             <p>&copy; 2026 Tri Ventures Official. All rights reserved.</p>
-            <p>Your Premier Partner for Customized Tours & Trips.</p>
         </div>
     </footer>
 
@@ -561,22 +647,17 @@
 
     <script>
         // Tab functionality for locations
-        function openLocation(locationId) {
-            // Hide all tab contents
+        function openLocation(locationId, event) {
             const contents = document.querySelectorAll('.location-content');
-            contents.forEach(content => {
-                content.classList.remove('active');
-            });
+            contents.forEach(content => content.classList.remove('active'));
 
-            // Remove active class from all buttons
             const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(button => {
-                button.classList.remove('active');
-            });
+            buttons.forEach(button => button.classList.remove('active'));
 
-            // Show selected content and set button as active
             document.getElementById(locationId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            if(event) {
+                event.currentTarget.classList.add('active');
+            }
         }
 
         // Calculator functionality
@@ -587,9 +668,7 @@
             const days = parseInt(document.getElementById('calc-days').value);
             
             const totalCost = ratePerDay * travelers * days;
-            const formattedCost = totalCost.toLocaleString();
-            
-            document.getElementById('total-cost').innerText = formattedCost;
+            document.getElementById('total-cost').innerText = totalCost.toLocaleString();
             document.getElementById('calc-result').style.display = 'block';
         }
     </script>
