@@ -54,7 +54,6 @@
         .container { width: 92%; max-width: 1200px; margin: 0 auto; }
         
         /* --- GLOBAL SECTION SPACING --- */
-        /* This ensures equal spacing between all sections */
         .why-us-section, .tours-section, .rates-section, .form-section, .team-section {
             padding: 6rem 0;
         }
@@ -69,8 +68,8 @@
         .nav-links li a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: 0.3s; }
         .nav-links li a:hover { color: var(--accent); }
         
-        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .bar { width: 25px; height: 3px; background-color: var(--primary); transition: 0.3s; }
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 1001; }
+        .bar { width: 25px; height: 3px; background-color: var(--primary); transition: 0.3s ease-in-out; }
 
         /* Buttons */
         .btn { display: inline-block; padding: 0.8rem 2.5rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; cursor: pointer; border: none; transition: 0.3s; }
@@ -92,7 +91,7 @@
         }
         .hero-content {
             background: rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(1px);
+            backdrop-filter: blur(0.5px);
             padding: 3rem 2rem;
             border-radius: var(--radius-xl);
             border: 1px solid rgba(255,255,255,0.15);
@@ -229,11 +228,33 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* --- MOBILE RESPONSIVENESS (FIXED) --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .menu-toggle { display: flex; }
             .hero h1 { font-size: 2.8rem; }
+            
+            /* Mobile Nav specific styling */
+            .menu-toggle { display: flex; }
+            
+            .nav-links { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                width: 100%; 
+                background: #ffffff; 
+                padding: 2rem 0; 
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1); 
+                border-top: 1px solid var(--border);
+                gap: 1.5rem;
+                text-align: center;
+            }
+            .nav-links.active { display: flex; animation: slideUp 0.3s ease; }
+            
+            /* Hamburger 'X' animation */
+            .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
             
             .location-tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 15px; -webkit-overflow-scrolling: touch; }
             .tab-btn { flex: 0 0 auto; }
@@ -254,6 +275,11 @@
     <header>
         <div class="container nav-container">
            <div class="logo">Tri Ventures<span>Official</span></div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
@@ -262,11 +288,6 @@
                     <li><a href="#rates-calculator">Trip Details</a></li>
                     <li><a href="#plan-trip">Plan Trip</a></li>
                 </ul>
-                <div class="menu-toggle" id="mobile-menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </nav>
         </div>
     </header>
@@ -335,8 +356,6 @@
         </div>
     </section>
 
-    <!-- FIXED: Added missing tags above to properly close the Featured Tours section before starting Cost Estimator -->
-
     <section id="rates-calculator" class="rates-section container">
         <h2 class="section-title">Cost Estimator</h2>
         <p class="section-subtitle">Calculate your base costs for private couple or family trips.</p>
@@ -352,8 +371,8 @@
                     <li><strong>Hunza / Gilgit:</strong> <span>PKR 9,000</span></li>
                     <li><strong>Skardu:</strong> <span>PKR 10,000</span></li>
                     <li><strong>Mabali Island (1 Day):</strong> <span>PKR 7,000</span></li>
-                    <li><strong>Mushkpuri Top (1 Day):</strong> <span>PKR 7,000</span></li>
-                    <li><strong>Thandiani (1 Day):</strong> <span>PKR 7,000</span></li>
+                    <li><strong>Mushkpuri Top (1 Day):</strong> <span>PKR 3,000</span></li>
+                    <li><strong>Thandiani (1 Day):</strong> <span>PKR 2,000</span></li>
                 </ul>
             </div>
 
@@ -368,8 +387,8 @@
                         <option value="9000">Hunza / Gilgit</option>
                         <option value="10000">Skardu</option>
                         <option value="7000">Mabali Island (1 Day)</option>
-                        <option value="7000">Mushkpuri Top (1 Day)</option>
-                        <option value="7000">Thandiani (1 Day)</option>
+                        <option value="3000">Mushkpuri Top (1 Day)</option>
+                        <option value="2000">Thandiani (1 Day)</option>
                     </select>
 
                     <label class="form-label" for="calc-vehicle">Select Vehicle</label>
@@ -693,9 +712,31 @@
         </div>
     </footer>
 
+    <!-- EXTERNAL SCRIPT -->
     <script src="script.js"></script>
 
+    <!-- INLINE SCRIPT LOGIC -->
     <script>
+        // MOBILE MENU TOGGLE FUNCTIONALITY
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            // Open/Close menu on hamburger click
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('is-active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when any link is clicked
+            document.querySelectorAll('.nav-links li a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('is-active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+
         // Tab functionality for locations
         function openLocation(locationId, event) {
             const contents = document.querySelectorAll('.location-content');
