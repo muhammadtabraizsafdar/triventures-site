@@ -324,7 +324,7 @@
             </div>
 
             <!-- Calculator -->
-            <div class="info-panel">
+            <div class="info-panel" style="border-left: 4px solid var(--accent);">
                 <h3>Calculate Your Trip</h3>
                 <form id="costCalculator" onsubmit="calculateCost(event)">
                     <label class="form-label" for="calc-destination">Destination</label>
@@ -342,59 +342,27 @@
                     <label class="form-label" for="calc-days">Duration (Days)</label>
                     <input class="form-input" type="number" id="calc-days" min="1" value="3">
 
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate Estimate</button>
+                    <!-- NEW: Vehicle Dropdown -->
+                    <label class="form-label" for="calc-vehicle">Select Vehicle</label>
+                    <select class="form-input" id="calc-vehicle" onchange="updateGuidePolicy()">
+                        <option value="" disabled selected>Select a vehicle...</option>
+                        <option value="brv">🚙 Honda BRV (Couples/Families)</option>
+                        <option value="grande">🚘 Toyota Grande (Premium Comfort)</option>
+                        <option value="c4">🚌 C4 Coaster (Group Trips)</option>
+                        <option value="c5">🚌 C5 Coaster (Large Group Trips)</option>
+                    </select>
+
+                    <!-- Dynamic Guide Policy Display -->
+                    <div id="guide-policy-display" style="display: none; background: #fdfaf0; padding: 1rem; border-radius: 8px; border: 1px solid #f2e3b6; margin-bottom: 1.2rem; font-size: 0.9rem; color: var(--text-dark);">
+                        <strong style="color: var(--accent);">✦ Guide Policy:</strong> <span id="guide-policy-text"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate Base Estimate</button>
                 </form>
                 
                 <div id="calc-result" style="margin-top: 1.5rem; text-align: center; display: none; background: #f0fdf4; padding: 1rem; border-radius: 8px; border: 1px solid #bbf7d0;">
-                    Estimated Cost: <br><strong style="color: #166534; font-size: 1.8rem;"><span id="total-cost"></span> PKR</strong>
-                </div>
-            </div>
-            
-            <!-- Vehicle Fleet & Guide Policy -->
-            <div class="info-panel" style="flex: 1 1 100%; border-left: 4px solid var(--accent);">
-                <h3 style="text-align: center; margin-bottom: 0.5rem;">Vehicle Fleet & Guide Policy</h3>
-                <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">Select the perfect ride for your couple, family, or group customized trip.</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                    <!-- BRV -->
-                    <div style="background: #fafafa; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
-                        <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif;">🚙 Honda BRV</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Ideal for Couples & Families</p>
-                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; margin-bottom: 1rem;">
-                            <li>✦ <strong>Guide Policy:</strong> 1 Tour Guide (Mandatory)</li>
-                        </ul>
-                        <div style="font-weight: 600; color: var(--accent);">Rate: PKR _____ / day</div>
-                    </div>
-
-                    <!-- Grande -->
-                    <div style="background: #fafafa; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
-                        <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif;">🚘 Toyota Grande</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Premium Comfort for Couples/Families</p>
-                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; margin-bottom: 1rem;">
-                            <li>✦ <strong>Guide Policy:</strong> Tour Guide (Optional)</li>
-                        </ul>
-                        <div style="font-weight: 600; color: var(--accent);">Rate: PKR _____ / day</div>
-                    </div>
-
-                    <!-- C4 Coaster -->
-                    <div style="background: #fafafa; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
-                        <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif;">🚌 C4 Coaster</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">For Fully Customized Group Trips</p>
-                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; margin-bottom: 1rem;">
-                            <li>✦ <strong>Guide Policy:</strong> 2 Tour Guides (Mandatory)</li>
-                        </ul>
-                        <div style="font-weight: 600; color: var(--accent);">Rate: PKR _____ / day</div>
-                    </div>
-
-                    <!-- C5 Coaster -->
-                    <div style="background: #fafafa; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
-                        <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif;">🚌 C5 Coaster</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">For Fully Customized Group Trips</p>
-                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; margin-bottom: 1rem;">
-                            <li>✦ <strong>Guide Policy:</strong> 2 Tour Guides (Mandatory)</li>
-                        </ul>
-                        <div style="font-weight: 600; color: var(--accent);">Rate: PKR _____ / day</div>
-                    </div>
+                    Estimated Base Cost: <br><strong style="color: #166534; font-size: 1.8rem;"><span id="total-cost"></span> PKR</strong>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">*Vehicle charges apply separately based on selection.</p>
                 </div>
             </div>
         </div>
@@ -703,6 +671,26 @@
             document.getElementById(locationId).classList.add('active');
             if(event) {
                 event.currentTarget.classList.add('active');
+            }
+        }
+
+        // Dynamic Guide Policy Update
+        function updateGuidePolicy() {
+            const vehicle = document.getElementById('calc-vehicle').value;
+            const displayDiv = document.getElementById('guide-policy-display');
+            const textSpan = document.getElementById('guide-policy-text');
+
+            if (vehicle === 'brv') {
+                textSpan.innerHTML = "1 Tour Guide (Mandatory)";
+                displayDiv.style.display = 'block';
+            } else if (vehicle === 'grande') {
+                textSpan.innerHTML = "Tour Guide (Optional)";
+                displayDiv.style.display = 'block';
+            } else if (vehicle === 'c4' || vehicle === 'c5') {
+                textSpan.innerHTML = "2 Tour Guides (Mandatory)";
+                displayDiv.style.display = 'block';
+            } else {
+                displayDiv.style.display = 'none';
             }
         }
 
