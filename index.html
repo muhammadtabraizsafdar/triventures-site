@@ -48,10 +48,18 @@
             font-style: italic; 
             font-weight: 700; 
             margin-left: 6px; 
-            color: var(--accent);
+            color: var(--primary);
+            text-shadow: 0px 0px 10px rgba(35, 92, 90, 0.6), 0px 0px 20px rgba(35, 92, 90, 0.3);
         }
 
         .container { width: 92%; max-width: 1200px; margin: 0 auto; }
+        
+        /* --- GLOBAL SECTION SPACING --- */
+        /* This ensures equal spacing between all sections */
+        .why-us-section, .tours-section, .rates-section, .form-section, .team-section {
+            padding: 6rem 0;
+        }
+
         .section-title { font-size: 2.8rem; text-align: center; margin-bottom: 0.5rem; font-weight: 700; }
         .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 3.5rem; font-size: 1.1rem; }
 
@@ -84,8 +92,8 @@
             padding: 0 20px;
         }
         .hero-content {
-            background: rgba(255, 255, 255, 0.05); /* Increased transparency */
-            backdrop-filter: blur(2px);
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(1px);
             padding: 3rem 2rem;
             border-radius: var(--radius-xl);
             border: 1px solid rgba(255,255,255,0.15);
@@ -96,11 +104,10 @@
         .hero p { font-size: 1.2rem; margin-bottom: 2.5rem; color: #f0f0f0; font-weight: 300; }
 
         /* --- WHY US SECTION --- */
-        #why-us .info-panel { padding: 2rem; }
-        #why-us h3 { font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .why-us-section .info-panel { padding: 2rem; }
+        .why-us-section h3 { font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
 
         /* --- FEATURED TOURS --- */
-        .tours-section { padding: 7rem 0; }
         .tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
         .tour-card { background: var(--bg-card); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-md); transition: 0.4s; position: relative; }
         .tour-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
@@ -198,7 +205,7 @@
         .payment-card p strong { color: var(--primary); font-weight: 700; }
 
         /* --- FORM SECTION --- */
-        .form-section { background: var(--primary); color: #fff; padding: 6rem 0; }
+        .form-section { background: var(--primary); color: #fff; }
         .form-container h2 { color: #fff; margin-bottom: 1rem; text-align: center; }
         .form-container p { text-align: center; margin-bottom: 3rem; opacity: 0.8; }
         .contact-form { background: #fff; padding: 3rem; border-radius: var(--radius-xl); box-shadow: 0 20px 50px rgba(0,0,0,0.2); color: var(--text-dark); max-width: 900px; margin: 0 auto; }
@@ -206,7 +213,7 @@
         .msg-group { grid-column: 1 / -1; }
 
         /* --- TEAM SECTION --- */
-        .team-section { padding: 6rem 0; background: #fff; }
+        .team-section { background: #fff; }
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; text-align: center; }
         .team-card { padding: 2rem; transition: 0.3s; }
         .team-card:hover { transform: translateY(-8px); }
@@ -274,31 +281,31 @@
     </section>
 
     <!-- Why Choose Us -->
-    <section id="why-us" class="container" style="padding: 5rem 0;">
+    <section id="why-us" class="why-us-section container">
         <h2 class="section-title">Why Choose Tri Ventures</h2>
         <p class="section-subtitle">We don't just plan trips; we craft unforgettable experiences grounded in trust and excellence.</p>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-            <div class="info-panel green-edge" style="padding: 2rem;">
-                <h3 style="font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">🎯 Tailored Itineraries</h3>
+            <div class="info-panel green-edge">
+                <h3>🎯 Tailored Itineraries</h3>
                 <p style="color: var(--text-muted); font-size: 0.95rem;">Your journey, your rules. We meticulously customize every detail to match your budget, pace, and personal preferences perfectly.</p>
             </div>
-            <div class="info-panel" style="padding: 2rem; border-left: 4px solid var(--accent);">
-                <h3 style="font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">🚙 Premium Fleet</h3>
+            <div class="info-panel" style="border-left: 4px solid var(--accent);">
+                <h3>🚙 Premium Fleet</h3>
                 <p style="color: var(--text-muted); font-size: 0.95rem;">Travel safely and in style. We provide well-maintained, comfortable, and fully air-conditioned vehicles suited for mountainous terrains.</p>
             </div>
-            <div class="info-panel green-edge" style="padding: 2rem;">
-                <h3 style="font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">👨‍🦯 Expert Local Guides</h3>
+            <div class="info-panel green-edge">
+                <h3>👨‍🦯 Expert Local Guides</h3>
                 <p style="color: var(--text-muted); font-size: 0.95rem;">Experience destinations like a local. Our professional guides possess deep knowledge of hidden gems, history, and valley cultures.</p>
             </div>
-            <div class="info-panel" style="padding: 2rem; border-left: 4px solid var(--accent);">
-                <h3 style="font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">💎 Transparent Pricing</h3>
+            <div class="info-panel" style="border-left: 4px solid var(--accent);">
+                <h3>💎 Transparent Pricing</h3>
                 <p style="color: var(--text-muted); font-size: 0.95rem;">No hidden costs or last-minute surprises. What you see in our explicit inclusions is exactly what you get, fostering 100% trust.</p>
             </div>
         </div>
     </section>
 
-    <section id="tours" class="tours-section container" style="padding-top: 2rem;">
+    <section id="tours" class="tours-section container">
         <h2 class="section-title">Popular Experiences</h2>
         <p class="section-subtitle">Discover our most requested premium getaways.</p>
         <div class="tours-grid">
@@ -324,8 +331,14 @@
                     <h3>Cultural & Heritage Journey</h3>
                     <p>Immerse yourself in history, local cuisines, and deeply personalized historic city tours.</p>
                     <a href="#plan-trip" class="btn btn-secondary">Inquire Now</a>
+                </div>
+            </div>
         </div>
-   <section id="rates-calculator" class="container" style="padding: 2rem 0;">
+    </section>
+
+    <!-- FIXED: Added missing tags above to properly close the Featured Tours section before starting Cost Estimator -->
+
+    <section id="rates-calculator" class="rates-section container">
         <h2 class="section-title">Cost Estimator</h2>
         <p class="section-subtitle">Calculate your base costs for private couple or family trips.</p>
 
