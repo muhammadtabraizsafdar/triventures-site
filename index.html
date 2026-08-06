@@ -23,7 +23,7 @@
             --bg-page: #f4f6f5;      /* Off-white */
             --bg-card: #ffffff;
             --text-dark: #1a1a1a;
-            --text-muted: #222222;
+            --text-muted: #666666;
             --border: #eaeaea;
             --shadow-sm: 0 4px 10px rgba(0,0,0,0.03);
             --shadow-md: 0 10px 30px rgba(17, 50, 49, 0.08);
@@ -40,9 +40,17 @@
         /* Typography */
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); }
         
-        /* Updated Logo to match perfectly */
+        /* Updated Logo to match perfectly with Alpine Green Glow */
         .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-style: italic; font-weight: 700; color: var(--primary); }
-        .logo span { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-style: italic; font-weight: 700; margin-left: 6px; color: var(--primary); }
+        .logo span { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8rem; 
+            font-style: italic; 
+            font-weight: 700; 
+            margin-left: 6px; 
+            color: var(--primary);
+            text-shadow: 0px 0px 10px rgba(35, 92, 90, 0.6), 0px 0px 20px rgba(35, 92, 90, 0.3); /* Alpine Green Glow */
+        }
 
         .container { width: 92%; max-width: 1200px; margin: 0 auto; }
         .section-title { font-size: 2.8rem; text-align: center; margin-bottom: 0.5rem; font-weight: 700; }
@@ -69,7 +77,6 @@
         .hero {
             height: 100vh;
             min-height: 700px;
-            /* Updated to a stunning portrait-friendly mountain peak */
             background: linear-gradient(to bottom, rgba(17, 50, 49, 0.4), rgba(17, 50, 49, 0.85)), url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             align-items: center;
@@ -196,7 +203,7 @@
 
         /* --- FORM SECTION --- */
         .form-section { background: var(--primary); color: #fff; padding: 6rem 0; }
-        .form-container h2 { color: #fff; font-size: 2.8rem; margin-bottom: 1rem; text-align: center; }
+        .form-container h2 { color: #fff; margin-bottom: 1rem; text-align: center; }
         .form-container p { text-align: center; margin-bottom: 3rem; opacity: 0.8; }
         .contact-form { background: #fff; padding: 3rem; border-radius: var(--radius-xl); box-shadow: 0 20px 50px rgba(0,0,0,0.2); color: var(--text-dark); max-width: 900px; margin: 0 auto; }
         .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
@@ -225,7 +232,6 @@
             .nav-links { display: none; }
             .menu-toggle { display: flex; }
             .hero h1 { font-size: 2.8rem; }
-            .section-title { font-size: 2.2rem; }
             
             .location-tabs {
                 flex-wrap: nowrap;
@@ -255,10 +261,10 @@
             <nav>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
                     <li><a href="#tours">Featured Tours</a></li>
                     <li><a href="#rates-calculator">Trip Details</a></li>
-                    <li><a href="#plan-trip">Plan Custom Trip</a></li>
-                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#plan-trip">Plan Trip</a></li>
                 </ul>
                 <div class="menu-toggle" id="mobile-menu">
                     <span class="bar"></span>
@@ -277,7 +283,36 @@
         </div>
     </section>
 
-    <section id="tours" class="tours-section container">
+    <!-- NEW SECTION: Why Choose Us -->
+    <section id="why-us" class="container" style="padding: 5rem 0;">
+        <h2 class="section-title">Why Choose Tri Ventures</h2>
+        <p class="section-subtitle">We don't just plan trips; we craft unforgettable experiences grounded in trust and excellence.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+            <!-- Point 1 -->
+            <div class="info-panel green-edge" style="padding: 2rem;">
+                <h3 style="font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">🎯 Tailored Itineraries</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Your journey, your rules. We meticulously customize every detail to match your budget, pace, and personal preferences perfectly.</p>
+            </div>
+            <!-- Point 2 -->
+            <div class="info-panel" style="padding: 2rem; border-left: 4px solid var(--accent);">
+                <h3 style="font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">🚙 Premium Fleet</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Travel safely and in style. We provide well-maintained, comfortable, and fully air-conditioned vehicles suited for mountainous terrains.</p>
+            </div>
+            <!-- Point 3 -->
+            <div class="info-panel green-edge" style="padding: 2rem;">
+                <h3 style="font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">👨‍🦯 Expert Local Guides</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Experience destinations like a local. Our professional guides possess deep knowledge of hidden gems, history, and valley cultures.</p>
+            </div>
+            <!-- Point 4 -->
+            <div class="info-panel" style="padding: 2rem; border-left: 4px solid var(--accent);">
+                <h3 style="font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">💎 Transparent Pricing</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">No hidden costs or last-minute surprises. What you see in our explicit inclusions is exactly what you get, fostering 100% trust.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tours" class="tours-section container" style="padding-top: 2rem;">
         <h2 class="section-title">Popular Experiences</h2>
         <p class="section-subtitle">Discover our most requested premium getaways.</p>
         <div class="tours-grid">
@@ -326,7 +361,7 @@
                 </ul>
             </div>
 
-            <!-- Calculator -->
+            <!-- Calculator with Vehicle Restrictions -->
             <div class="info-panel" style="border-left: 4px solid var(--accent);">
                 <h3>Calculate Your Trip</h3>
                 <form id="costCalculator" onsubmit="calculateCost(event)">
@@ -339,12 +374,6 @@
                         <option value="5000">Mabali Island</option>
                     </select>
 
-                    <label class="form-label" for="calc-travelers">Number of Travelers</label>
-                    <input class="form-input" type="number" id="calc-travelers" min="2" value="2">
-
-                    <label class="form-label" for="calc-days">Duration (Days)</label>
-                    <input class="form-input" type="number" id="calc-days" min="1" value="3">
-
                     <label class="form-label" for="calc-vehicle">Select Vehicle</label>
                     <select class="form-input" id="calc-vehicle" onchange="updateGuidePolicy()">
                         <option value="" disabled selected>Select a vehicle...</option>
@@ -354,6 +383,13 @@
                         <option value="c5">🚌 C5 Coaster (Large Group Trips)</option>
                     </select>
 
+                    <label class="form-label" for="calc-travelers">Number of Travelers</label>
+                    <input class="form-input" type="number" id="calc-travelers" min="1" value="2" placeholder="Select a vehicle first">
+
+                    <label class="form-label" for="calc-days">Duration (Days)</label>
+                    <input class="form-input" type="number" id="calc-days" min="1" value="3">
+
+                    <!-- Dynamic Guide Policy Display -->
                     <div id="guide-policy-display" style="display: none; background: #fdfaf0; padding: 1rem; border-radius: 8px; border: 1px solid #f2e3b6; margin-bottom: 1.2rem; font-size: 0.9rem; color: var(--text-dark);">
                         <strong style="color: var(--accent);">✦ Guide Policy:</strong> <span id="guide-policy-text"></span>
                     </div>
@@ -565,7 +601,7 @@
     <!-- Form Section -->
     <section id="plan-trip" class="form-section">
         <div class="container form-container">
-            <h2>Plan Your Custom Trip</h2>
+            <h2 style="font-size: 2.8rem; font-family: 'Playfair Display', serif;">Plan Your Custom Trip</h2>
             <p>Tell us what you're dreaming of, and our travel specialists will build the perfect itinerary for you.</p>
             
             <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="inquiryForm">
@@ -675,25 +711,57 @@
             }
         }
 
-        // Dynamic Guide Policy Update
+        // Dynamic Guide Policy & Capacity Restrictions Update
         function updateGuidePolicy() {
             const vehicle = document.getElementById('calc-vehicle').value;
             const displayDiv = document.getElementById('guide-policy-display');
             const textSpan = document.getElementById('guide-policy-text');
+            const travelersInput = document.getElementById('calc-travelers');
+
+            let maxCap = null;
 
             if (vehicle === 'brv') {
-                textSpan.innerHTML = "1 Tour Guide (Mandatory)";
+                textSpan.innerHTML = "1 Tour Guide (Mandatory) <br><small style='color: var(--text-muted); font-weight: normal;'>*Max capacity: 6 Travelers</small>";
                 displayDiv.style.display = 'block';
+                maxCap = 6;
             } else if (vehicle === 'grande') {
-                textSpan.innerHTML = "Tour Guide (Optional)";
+                textSpan.innerHTML = "Tour Guide (Optional) <br><small style='color: var(--text-muted); font-weight: normal;'>*Max capacity: 3 Travelers</small>";
                 displayDiv.style.display = 'block';
-            } else if (vehicle === 'c4' || vehicle === 'c5') {
-                textSpan.innerHTML = "2 Tour Guides (Mandatory)";
+                maxCap = 3;
+            } else if (vehicle === 'c4') {
+                textSpan.innerHTML = "2 Tour Guides (Mandatory) <br><small style='color: var(--text-muted); font-weight: normal;'>*Max capacity: 22 Travelers</small>";
                 displayDiv.style.display = 'block';
+                maxCap = 22;
+            } else if (vehicle === 'c5') {
+                textSpan.innerHTML = "2 Tour Guides (Mandatory) <br><small style='color: var(--text-muted); font-weight: normal;'>*Max capacity: 29 Travelers</small>";
+                displayDiv.style.display = 'block';
+                maxCap = 29;
             } else {
                 displayDiv.style.display = 'none';
             }
+
+            // Apply the capacity constraint immediately upon vehicle selection
+            if (maxCap) {
+                travelersInput.setAttribute('max', maxCap);
+                travelersInput.placeholder = `Max ${maxCap} allowed`;
+                if (parseInt(travelersInput.value) > maxCap) {
+                    travelersInput.value = maxCap;
+                    alert(`Notice: The selected vehicle has a maximum capacity of ${maxCap} travelers. We've adjusted your count automatically.`);
+                }
+            } else {
+                travelersInput.removeAttribute('max');
+                travelersInput.placeholder = "";
+            }
         }
+
+        // Prevent users from manually typing a number higher than the vehicle allows
+        document.getElementById('calc-travelers').addEventListener('input', function() {
+            const max = parseInt(this.getAttribute('max'));
+            if(max && parseInt(this.value) > max) {
+                this.value = max;
+                alert(`Notice: The selected vehicle can only accommodate up to ${max} travelers.`);
+            }
+        });
 
         // Calculator functionality
         function calculateCost(event) {
@@ -702,6 +770,11 @@
             const travelers = parseInt(document.getElementById('calc-travelers').value);
             const days = parseInt(document.getElementById('calc-days').value);
             
+            if(!travelers || isNaN(travelers)) {
+                alert("Please select a vehicle and enter the number of travelers.");
+                return;
+            }
+
             const totalCost = ratePerDay * travelers * days;
             document.getElementById('total-cost').innerText = totalCost.toLocaleString();
             document.getElementById('calc-result').style.display = 'block';
