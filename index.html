@@ -159,10 +159,10 @@
                     <label class="form-label" for="calc-vehicle">Select Vehicle</label>
                     <select class="form-input" id="calc-vehicle" onchange="updateGuidePolicy()" required>
                         <option value="" disabled selected>Select a vehicle...</option>
-                        <option value="brv" data-extra="4000">🚙 Honda BRV (Couples / Families)</option>
-                        <option value="grande" data-extra="5000">🚘 Toyota Grande (Premium Comfort)</option>
-                        <option value="c4" data-extra="12000">🚌 C4 Coaster (Group Trips)</option>
-                        <option value="c5" data-extra="15000">🚌 C5 Coaster (Large Group Trips)</option>
+                        <option value="brv">🚙 Honda BRV (Couples / Families)</option>
+                        <option value="grande">🚘 Toyota Grande (Premium Comfort)</option>
+                        <option value="c4">🚌 C4 Coaster (Group Trips)</option>
+                        <option value="c5">🚌 C5 Coaster (Large Group Trips)</option>
                     </select>
 
                     <label class="form-label" for="calc-travelers">Number of Travelers</label>
@@ -176,11 +176,11 @@
                         <strong style="color: var(--accent);">✦ Vehicle & Guide Policy:</strong> <span id="guide-policy-text"></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate Total Estimate</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate Base Estimate</button>
                 </form>
                 
                 <div id="calc-result" style="margin-top: 1.5rem; text-align: center; display: none; background: #f0fdf4; padding: 1.4rem; border-radius: 12px; border: 1.5px solid #bbf7d0;">
-                    <span style="font-size: 0.9rem; color: #15803d; font-weight: 500;">Estimated Complete Cost:</span><br>
+                    <span style="font-size: 0.9rem; color: #15803d; font-weight: 500;">Estimated Base Cost:</span><br>
                     <strong style="color: #15803d; font-size: 2rem;"><span id="total-cost"></span> PKR</strong>
                     <p style="font-size: 0.78rem; color: var(--text-muted); margin: 6px 0 12px;">*Includes accommodation, transport, fuel, tolls & driver allowances.</p>
                     <button type="button" class="btn btn-secondary" style="padding: 0.6rem 1.4rem; font-size: 0.75rem;" onclick="applyEstimateToForm()">Book with this Estimate ➜</button>
@@ -617,28 +617,22 @@
             }
         });
 
-        // ENHANCED COST CALCULATOR
+        // BASE COST CALCULATOR (Vehicle Cost Surcharge Removed)
         function calculateCost(event) {
             event.preventDefault();
             const destSelect = document.getElementById('calc-destination');
-            const vehicleSelect = document.getElementById('calc-vehicle');
             
             const ratePerPersonPerDay = parseInt(destSelect.value);
             const travelers = parseInt(document.getElementById('calc-travelers').value);
             const days = parseInt(document.getElementById('calc-days').value);
-            
-            const selectedVehicleOption = vehicleSelect.options[vehicleSelect.selectedIndex];
-            const vehicleDailyExtra = selectedVehicleOption ? parseInt(selectedVehicleOption.getAttribute('data-extra') || '0') : 0;
 
             if (!travelers || isNaN(travelers) || travelers < 1) {
                 alert("Please select a vehicle and enter a valid number of travelers.");
                 return;
             }
 
-            // Total Calculation = (Per Person Base * Travelers * Days) + (Vehicle Surcharge * Days)
-            const personCost = ratePerPersonPerDay * travelers * days;
-            const vehicleCost = vehicleDailyExtra * days;
-            const totalCost = personCost + vehicleCost;
+            // Total Base Calculation = Per Person Base * Travelers * Days
+            const totalCost = ratePerPersonPerDay * travelers * days;
 
             document.getElementById('total-cost').innerText = totalCost.toLocaleString();
             document.getElementById('calc-result').style.display = 'block';
@@ -657,7 +651,7 @@
             document.getElementById('destination').value = destName;
             document.getElementById('duration').value = days;
             document.getElementById('travelers').value = travelers;
-            document.getElementById('notes').value = `Calculated Estimate: ${estimatedCost} PKR\nSelected Vehicle: ${vehicleName}\nTrip: ${days} Days for ${travelers} Travelers to ${destName}.`;
+            document.getElementById('notes').value = `Calculated Base Estimate: ${estimatedCost} PKR\nSelected Vehicle: ${vehicleName}\nTrip: ${days} Days for ${travelers} Travelers to ${destName}.`;
 
             // Smooth scroll down to form
             document.getElementById('plan-trip').scrollIntoView({ behavior: 'smooth' });
