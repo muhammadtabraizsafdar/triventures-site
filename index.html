@@ -381,6 +381,48 @@
         </div>
     </section>
 
+    <!-- Live Seat Availability Section -->
+    <section id="live-seats" class="container" style="margin-top: 5rem; margin-bottom: 2rem;">
+        <h2 class="section-title reveal">Live Seat Availability</h2>
+        <p class="section-subtitle reveal">Check real-time seating for our premium fleet before submitting your inquiry.</p>
+
+        <div class="info-panel reveal" style="max-width: 600px; margin: 0 auto; padding: 2rem;">
+            
+            <!-- Internal Styles matching your theme -->
+            <style>
+                .seat-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+                .seat { width: 45px; height: 45px; border: 2px solid #d1d5db; border-radius: 8px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; color: var(--text-dark, #333); flex-shrink: 0; font-family: 'Poppins', sans-serif; transition: all 0.3s ease; }
+                .seat.jump { background: #e5e7eb; height: 35px; align-self: center; border-color: #d1d5db; }
+                .seat.driver { background: #f3f4f6; color: #9ca3af; border: 2px dashed #9ca3af; }
+                .seat.empty { background: transparent; border: none; }
+                .seat.booked { background: #ef4444; border-color: #ef4444; color: #fff; box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2); }
+                .seat-legend-box { width: 20px; height: 20px; border-radius: 4px; border: 2px solid #d1d5db; }
+            </style>
+
+            <div class="controls" style="margin-bottom: 1.5rem;">
+                <label class="form-label" for="vehicleSelectSeats" style="text-align: center; display: block;">Select Vehicle to View</label>
+                <select id="vehicleSelectSeats" class="form-input" style="width: 100%; max-width: 300px; margin: 0 auto; display: block; cursor: pointer;">
+                    <option value="coaster">C4/C5 Coaster (29 Seater)</option>
+                    <option value="cabin">Grand Cabin (10 Seater)</option>
+                </select>
+            </div>
+
+            <div class="legend" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-dark, #333); font-family: 'Poppins', sans-serif;">
+                <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #ffffff;"></div> Available</div>
+                <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #e5e7eb;"></div> Jump Seat</div>
+                <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #ef4444; border-color: #ef4444;"></div> Booked</div>
+            </div>
+
+            <div id="vehicleMapSeats" style="border: 3px solid #e5e7eb; border-radius: 20px 20px 8px 8px; padding: 25px 20px; background: #fdfaf0; display: flex; flex-direction: column; max-width: 380px; margin: 0 auto; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
+                <!-- Generated via JavaScript -->
+            </div>
+            
+            <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1.5rem;">
+                *Seat availability is updated live. Mention your preferred seat numbers in the inquiry form below.
+            </p>
+        </div>
+    </section>
+
     <!-- Custom Trip Planning Form -->
     <section id="plan-trip" class="form-section">
         <div class="container form-container">
@@ -427,7 +469,7 @@
                     </div>
                     <div class="msg-group">
                         <label class="form-label" for="notes">Special Requirements / Notes</label>
-                        <textarea class="form-input" id="notes" name="notes" rows="3" placeholder="Specify preferred dates, vehicle choices, or hotel requirements..."></textarea>
+                        <textarea class="form-input" id="notes" name="notes" rows="3" placeholder="Specify preferred dates, vehicle choices, preferred seat numbers, or hotel requirements..."></textarea>
                     </div>
                 </div>
                 
@@ -617,7 +659,7 @@
             }
         });
 
-        // BASE COST CALCULATOR (Vehicle Cost Surcharge Removed)
+        // BASE COST CALCULATOR
         function calculateCost(event) {
             event.preventDefault();
             const destSelect = document.getElementById('calc-destination');
@@ -631,7 +673,6 @@
                 return;
             }
 
-            // Total Base Calculation = Per Person Base * Travelers * Days
             const totalCost = ratePerPersonPerDay * travelers * days;
 
             document.getElementById('total-cost').innerText = totalCost.toLocaleString();
@@ -698,6 +739,76 @@
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `<span>Submit Inquiry</span>`;
+            }
+        });
+
+        // -----------------------------------------
+        // LIVE SEAT AVAILABILITY LOGIC
+        // -----------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            const seatLayouts = {
+                coaster: { map: [['S', '_', '_', 'D'], ['_', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'S', 'S', 'S', 'S']] },
+                cabin: { map: [['S', '_', '_', 'D'], ['_', '_', 'S', 'S'], ['S', '_', 'S', 'S'], ['S', '_', 'S', 'S']] }
+            };
+
+            const vehicleSelectSeats = document.getElementById('vehicleSelectSeats');
+            const vehicleMapSeats = document.getElementById('vehicleMapSeats');
+            
+            async function loadAndRenderSeats(type) {
+                try {
+                    // Fetch from the API created on Hostinger
+                    const response = await fetch('api.php');
+                    let allBookings = { coaster: [], cabin: [] };
+                    
+                    if (response.ok) {
+                        const contentType = response.headers.get("content-type");
+                        if (contentType && contentType.indexOf("application/json") !== -1) {
+                            allBookings = await response.json();
+                        }
+                    }
+                    
+                    const bookedSeats = allBookings[type] || [];
+                    const config = seatLayouts[type];
+                    
+                    vehicleMapSeats.innerHTML = ''; 
+                    let seatNumber = 1;
+
+                    config.map.forEach(rowData => {
+                        const rowDiv = document.createElement('div');
+                        rowDiv.className = 'seat-row';
+
+                        rowData.forEach(cell => {
+                            const seatDiv = document.createElement('div');
+                            
+                            if (cell === '_') {
+                                seatDiv.className = 'seat empty';
+                            } else if (cell === 'D') {
+                                seatDiv.className = 'seat driver'; 
+                                seatDiv.textContent = 'D';
+                            } else {
+                                seatDiv.className = `seat ${cell === 'J' ? 'jump' : ''}`;
+                                seatDiv.textContent = seatNumber;
+                                
+                                if (bookedSeats.includes(seatNumber.toString())) {
+                                    seatDiv.classList.add('booked');
+                                }
+                                seatNumber++;
+                            }
+                            rowDiv.appendChild(seatDiv);
+                        });
+                        vehicleMapSeats.appendChild(rowDiv);
+                    });
+                } catch (error) {
+                    console.error("Error loading seats:", error);
+                    // Render empty map if API fails so layout doesn't break entirely
+                    vehicleMapSeats.innerHTML = '<p style="text-align:center; color: #ef4444; font-size: 0.9rem;">Unable to load live data.<br>Please contact us directly for availability.</p>';
+                }
+            }
+
+            if(vehicleSelectSeats && vehicleMapSeats) {
+                vehicleSelectSeats.addEventListener('change', (e) => loadAndRenderSeats(e.target.value));
+                // Initial load
+                loadAndRenderSeats('coaster');
             }
         });
     </script>
