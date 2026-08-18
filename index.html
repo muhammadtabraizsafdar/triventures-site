@@ -397,6 +397,7 @@
                 .seat.empty { background: transparent; border: none; }
                 .seat.booked { background: #ef4444; border-color: #ef4444; color: #fff; box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2); }
                 .seat-legend-box { width: 20px; height: 20px; border-radius: 4px; border: 2px solid #d1d5db; }
+                #tripNameDisplay { transition: opacity 0.3s ease; }
             </style>
 
             <div class="controls" style="margin-bottom: 1.5rem;">
@@ -405,6 +406,11 @@
                     <option value="coaster">C4/C5 Coaster (29 Seater)</option>
                     <option value="cabin">Grand Cabin (10 Seater)</option>
                 </select>
+            </div>
+
+            <!-- TRIP NAME DISPLAY BANNER -->
+            <div id="tripNameDisplay" style="text-align: center; font-size: 1.1rem; font-weight: 600; color: #166534; margin: 0 auto 1.5rem auto; background: #f0fdf4; padding: 12px; border-radius: 8px; border: 1.5px dashed #22c55e; max-width: 380px; display: none;">
+                <!-- Filled via JS -->
             </div>
 
             <div class="legend" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-dark, #333); font-family: 'Poppins', sans-serif;">
@@ -743,7 +749,7 @@
         });
 
         // -----------------------------------------
-        // LIVE SEAT AVAILABILITY LOGIC
+        // LIVE SEAT AVAILABILITY LOGIC (Updated with Trip Name)
         // -----------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
             const seatLayouts = {
@@ -753,23 +759,40 @@
 
             const vehicleSelectSeats = document.getElementById('vehicleSelectSeats');
             const vehicleMapSeats = document.getElementById('vehicleMapSeats');
+            const tripNameDisplay = document.getElementById('tripNameDisplay');
             
             async function loadAndRenderSeats(type) {
                 try {
-                    // Fetch from the API created on Hostinger
                     const response = await fetch('api.php');
-                    let allBookings = { coaster: [], cabin: [] };
+                    let rawData = { coaster: {}, cabin: {} };
                     
                     if (response.ok) {
                         const contentType = response.headers.get("content-type");
                         if (contentType && contentType.indexOf("application/json") !== -1) {
-                            allBookings = await response.json();
+                            rawData = await response.json();
                         }
                     }
                     
-                    const bookedSeats = allBookings[type] || [];
+                    let bookedSeats = [];
+                    let tripNameText = "";
+
+                    // Backward compatibility logic to handle old JSON files without a trip name
+                    if (Array.isArray(rawData[type])) {
+                        bookedSeats = rawData[type];
+                    } else if (rawData[type]) {
+                        bookedSeats = rawData[type].seats || [];
+                        tripNameText = rawData[type].tripName || "";
+                    }
+
+                    // Display trip name logic
+                    if (tripNameText.trim() !== "") {
+                        tripNameDisplay.innerHTML = `📍 Current Trip:<br><span style="font-size:1.25rem; font-weight:700;">${tripNameText}</span>`;
+                        tripNameDisplay.style.display = 'block';
+                    } else {
+                        tripNameDisplay.style.display = 'none';
+                    }
+
                     const config = seatLayouts[type];
-                    
                     vehicleMapSeats.innerHTML = ''; 
                     let seatNumber = 1;
 
@@ -800,14 +823,12 @@
                     });
                 } catch (error) {
                     console.error("Error loading seats:", error);
-                    // Render empty map if API fails so layout doesn't break entirely
                     vehicleMapSeats.innerHTML = '<p style="text-align:center; color: #ef4444; font-size: 0.9rem;">Unable to load live data.<br>Please contact us directly for availability.</p>';
                 }
             }
 
             if(vehicleSelectSeats && vehicleMapSeats) {
                 vehicleSelectSeats.addEventListener('change', (e) => loadAndRenderSeats(e.target.value));
-                // Initial load
                 loadAndRenderSeats('coaster');
             }
         });
