@@ -40,6 +40,7 @@
         .seat-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
         .seat { width: 45px; height: 45px; border: 2px solid #d1d5db; border-radius: 8px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; color: var(--text-dark, #333); flex-shrink: 0; font-family: 'Poppins', sans-serif; transition: all 0.3s ease; }
         .seat.jump { background: #e5e7eb; height: 35px; align-self: center; border-color: #d1d5db; }
+        .seat.fixed { background: #f3f4f6; color: #6b7280; border-color: #d1d5db; }
         .seat.driver { background: #f3f4f6; color: #9ca3af; border: 2px dashed #9ca3af; }
         .seat.empty { background: transparent; border: none; }
         .seat.booked { background: #ef4444; border-color: #ef4444; color: #fff; box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2); }
@@ -424,7 +425,7 @@
 
             <div class="legend" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-dark, #333); font-family: 'Poppins', sans-serif;">
                 <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #ffffff;"></div> Available</div>
-                <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #e5e7eb;"></div> Jump Seat</div>
+                <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #e5e7eb;"></div> Jump / Fixed Seat</div>
                 <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #ef4444; border-color: #ef4444;"></div> Booked</div>
             </div>
 
@@ -763,8 +764,27 @@
         // -----------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
             const seatLayouts = {
-                coaster: { map: [['S', '_', '_', 'D'], ['_', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'S', 'S', 'S', 'S']] },
-                cabin: { map: [['S', '_', '_', 'D'], ['_', '_', 'S', 'S'], ['S', '_', 'S', 'S'], ['S', '_', 'S', 'S']] }
+                coaster: { 
+                    map: [
+                        ['S', '_', '_', 'D'],
+                        ['F', 'J', 'S', 'S'],
+                        ['_', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['F', 'F', 'F', 'F']
+                    ] 
+                },
+                cabin: { 
+                    map: [
+                        ['S', '_', '_', 'D'],
+                        ['S', 'S', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['S', 'S', 'S', 'S']
+                    ] 
+                }
             };
 
             const vehicleSelectSeats = document.getElementById('vehicleSelectSeats');
@@ -834,7 +854,11 @@
                             seatDiv.className = 'seat driver'; 
                             seatDiv.textContent = 'D';
                         } else {
-                            seatDiv.className = `seat ${cell === 'J' ? 'jump' : ''}`;
+                            let seatClass = 'seat';
+                            if (cell === 'J') seatClass += ' jump';
+                            if (cell === 'F') seatClass += ' fixed';
+                            
+                            seatDiv.className = seatClass;
                             seatDiv.textContent = seatNumber;
                             
                             if (bookedSeats.includes(seatNumber.toString())) {
