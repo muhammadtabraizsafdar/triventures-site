@@ -26,124 +26,64 @@
     <!-- External Luxury Design CSS -->
     <link rel="stylesheet" href="styles.css?v=2.0">
 
-    <!-- Global Layout Fixes, Strict Center Alignment & Varied Scroll Animations -->
+    <!-- Global Layout Fixes -->
     <style>
-        /* Standardize exact spacing and responsive padding */
-        section:not(.hero) {
-            padding: 3.5rem 1rem !important;
-            margin: 0 !important;
+        /* Standardize spacing between sections */
+        section {
+            padding: 5rem 1rem;
         }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* Seat availability widget internal styles */
+        .seat-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+        .seat { width: 45px; height: 45px; border: 2px solid #d1d5db; border-radius: 8px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; color: var(--text-dark, #333); flex-shrink: 0; font-family: 'Poppins', sans-serif; transition: all 0.3s ease; }
+        .seat.jump { background: #e5e7eb; height: 35px; align-self: center; border-color: #d1d5db; }
+        .seat.driver { background: #f3f4f6; color: #9ca3af; border: 2px dashed #9ca3af; }
+        .seat.empty { background: transparent; border: none; }
+        .seat.booked { background: #ef4444; border-color: #ef4444; color: #fff; box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2); }
+        .seat-legend-box { width: 20px; height: 20px; border-radius: 4px; border: 2px solid #d1d5db; }
+        #tripNameDisplay { transition: opacity 0.3s ease; }
 
-        @media (min-width: 768px) {
-            section:not(.hero) {
-                padding: 5rem 2rem !important;
+        /* Perfect Center Alignment for Desktop View */
+        @media (min-width: 1024px) {
+            .container, .form-container, .rates-section, .why-us-section, .tours-section, .team-section, .grid-layout, .feature-grid, .tours-grid, .team-grid {
+                margin-left: auto !important;
+                margin-right: auto !important;
+                justify-content: center !important;
+            }
+            .info-panel, .tour-card, .team-card, .contact-form {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .section-title, .section-subtitle {
+                text-align: center !important;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
-        
-        /* Perfect Central Alignment across all containers, grids, and panels */
-        .container, .form-container, .rates-section, .why-us-section, .tours-section, .team-section, .grid-layout, .feature-grid, .tours-grid, .team-grid {
-            width: 100%;
-            max-width: 1200px;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            box-sizing: border-box;
-            justify-content: center !important;
-            text-align: center;
+
+        /* Animated Glowing Red Heart Styles */
+        @keyframes glowingHeart {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 2px rgba(239, 68, 68, 0.4), 0 0 5px rgba(239, 68, 68, 0.2);
+            }
+            50% {
+                transform: scale(1.2);
+                text-shadow: 0 0 8px rgba(239, 68, 68, 0.8), 0 0 15px rgba(239, 68, 68, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 2px rgba(239, 68, 68, 0.4), 0 0 5px rgba(239, 68, 68, 0.2);
+            }
         }
 
-        /* Ensure text-heavy panels retain clean internal left/center balance while the block itself is centered */
-        .info-panel, .tour-card, .team-card, .contact-form {
-            margin-left: auto !important;
-            margin-right: auto !important;
-            text-align: left; /* Keeps readable card contents neat, while container centers the blocks */
+        .glowing-heart {
+            display: inline-block;
+            animation: glowingHeart 1.5s infinite ease-in-out;
         }
-
-        .section-title, .section-subtitle {
-            text-align: center !important;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* --- ROTATING SCROLL ANIMATIONS VARIATIONS --- */
-        .anim-fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .anim-fade-up.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .anim-scale-in {
-            opacity: 0;
-            transform: scale(0.92);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .anim-scale-in.is-visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .anim-slide-right {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .anim-slide-right.is-visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .anim-slide-left {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .anim-slide-left.is-visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .anim-rotate-in {
-            opacity: 0;
-            transform: rotate(3deg) scale(0.95);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .anim-rotate-in.is-visible {
-            opacity: 1;
-            transform: rotate(0deg) scale(1);
-        }
-
-        /* --- FRONT-FACING EXECUTIVE SEAT STYLES --- */
-        .seat-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
-        
-        .seat-wrapper { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.2s ease; }
-        .seat-wrapper:hover:not(.empty):not(.driver) { transform: translateY(-2px); }
-        .seat-wrapper.jump { height: 38px; align-self: center; }
-        .seat-wrapper.empty { visibility: hidden; }
-
-        .seat-svg { width: 100%; height: 100%; overflow: visible; }
-        .seat-bg { fill: #ffffff; stroke: #a1a1aa; stroke-width: 2.5; transition: all 0.3s ease; }
-        .seat-trim { fill: #e5e7eb; stroke: #a1a1aa; stroke-width: 2.5; transition: all 0.3s ease; }
-        .seat-text { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; fill: #374151; pointer-events: none; }
-
-        /* Booked Seat */
-        .seat-wrapper.booked .seat-bg { fill: #ef4444; stroke: #b91c1c; }
-        .seat-wrapper.booked .seat-trim { fill: #fca5a5; stroke: #b91c1c; }
-        .seat-wrapper.booked .seat-text { fill: #ffffff; }
-
-        /* Jump & Fixed Seats */
-        .seat-wrapper.fixed .seat-bg, .seat-wrapper.jump .seat-bg { fill: #f3f4f6; stroke: #d1d5db; }
-        .seat-wrapper.fixed .seat-trim, .seat-wrapper.jump .seat-trim { fill: #e5e7eb; stroke: #d1d5db; }
-        .seat-wrapper.fixed .seat-text, .seat-wrapper.jump .seat-text { fill: #9ca3af; }
-
-        /* Driver Seat */
-        .seat-wrapper.driver .seat-bg { fill: #f3f4f6; stroke: #9ca3af; stroke-dasharray: 4; }
-        .seat-wrapper.driver .seat-trim { fill: #e5e7eb; stroke: #9ca3af; }
-        .seat-wrapper.driver .seat-text { fill: #9ca3af; }
-
-        #tripNameDisplay { transition: opacity 0.3s ease; }
     </style>
 </head>
 <body>
@@ -309,7 +249,7 @@
         </div>
 
         <!-- Dynamic Destination Tabs -->
-        <div class="tab-container" style="margin-top: 3.5rem;">
+        <div class="tab-container" style="margin-top: 5rem;">
             <h2 class="section-title">Explore Itineraries</h2>
             <p class="section-subtitle">Select a destination to view highlights and detailed day-by-day plans.</p>
             
@@ -512,38 +452,26 @@
                 <label class="form-label" for="vehicleSelectSeats" style="text-align: center; display: block;">Select Vehicle to View</label>
                 <select id="vehicleSelectSeats" class="form-input" style="width: 100%; max-width: 300px; margin: 0 auto; display: block; cursor: pointer;">
                     <option value="coaster">C4/C5 Coaster (29 Seater)</option>
-                    <option value="cabin">Grand Cabin (17 Seater)</option>
+                    <option value="cabin">Grand Cabin (10 Seater)</option>
                 </select>
             </div>
 
-            <!-- TRIP NAME DISPLAY BANNER / NO-TRIP STATUS -->
-            <div id="tripNameDisplay" style="text-align: center; margin: 0 auto 1.5rem auto; background: #f0fdf4; padding: 14px; border-radius: 8px; border: 1.5px dashed #22c55e; max-width: 420px; display: none;">
+            <!-- TRIP NAME DISPLAY BANNER -->
+            <div id="tripNameDisplay" style="text-align: center; font-size: 1.1rem; font-weight: 600; color: #166534; margin: 0 auto 1.5rem auto; background: #f0fdf4; padding: 12px; border-radius: 8px; border: 1.5px dashed #22c55e; max-width: 380px; display: none;">
                 <!-- Filled via JS -->
             </div>
 
-            <div id="legendContainer" class="legend" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-dark, #333); font-family: 'Poppins', sans-serif;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 24px; height: 24px;">
-                        <svg viewBox="0 0 60 60"><rect x="2" y="10" width="8" height="35" rx="4" fill="#e5e7eb" stroke="#a1a1aa" stroke-width="2.5"/><rect x="50" y="10" width="8" height="35" rx="4" fill="#e5e7eb" stroke="#a1a1aa" stroke-width="2.5"/><path d="M 12 45 C 12 55, 48 55, 48 45 L 48 40 L 12 40 Z" fill="#e5e7eb" stroke="#a1a1aa" stroke-width="2.5"/><rect x="12" y="6" width="36" height="32" rx="6" fill="#ffffff" stroke="#a1a1aa" stroke-width="2.5"/></svg>
-                    </div> Available
-                </div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 24px; height: 24px;">
-                        <svg viewBox="0 0 60 60"><rect x="2" y="10" width="8" height="35" rx="4" fill="#e5e7eb" stroke="#d1d5db" stroke-width="2.5"/><rect x="50" y="10" width="8" height="35" rx="4" fill="#e5e7eb" stroke="#d1d5db" stroke-width="2.5"/><path d="M 12 45 C 12 55, 48 55, 48 45 L 48 40 L 12 40 Z" fill="#e5e7eb" stroke="#d1d5db" stroke-width="2.5"/><rect x="12" y="6" width="36" height="32" rx="6" fill="#f3f4f6" stroke="#d1d5db" stroke-width="2.5"/></svg>
-                    </div> Jump / Fixed
-                </div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 24px; height: 24px;">
-                        <svg viewBox="0 0 60 60"><rect x="2" y="10" width="8" height="35" rx="4" fill="#fca5a5" stroke="#b91c1c" stroke-width="2.5"/><rect x="50" y="10" width="8" height="35" rx="4" fill="#fca5a5" stroke="#b91c1c" stroke-width="2.5"/><path d="M 12 45 C 12 55, 48 55, 48 45 L 48 40 L 12 40 Z" fill="#fca5a5" stroke="#b91c1c" stroke-width="2.5"/><rect x="12" y="6" width="36" height="32" rx="6" fill="#ef4444" stroke="#b91c1c" stroke-width="2.5"/></svg>
-                    </div> Booked
-                </div>
+            <div class="legend" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-dark, #333); font-family: 'Poppins', sans-serif;">
+                <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #ffffff;"></div> Available</div>
+                <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #e5e7eb;"></div> Jump Seat</div>
+                <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #ef4444; border-color: #ef4444;"></div> Booked</div>
             </div>
 
             <div id="vehicleMapSeats" style="border: 3px solid #e5e7eb; border-radius: 20px 20px 8px 8px; padding: 25px 20px; background: #fdfaf0; display: flex; flex-direction: column; max-width: 380px; margin: 0 auto; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
                 <!-- Generated via JavaScript -->
             </div>
             
-            <p id="seatFooterNote" style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1.5rem;">
+            <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1.5rem;">
                 *Seat availability is updated live. Mention your preferred seat numbers in the inquiry form below.
             </p>
         </div>
@@ -615,6 +543,7 @@
         <div class="team-grid">
             <div class="team-card">
                 <div class="team-img-wrapper">
+                    <!-- Filenames are properly URL encoded -->
                     <img src="Team%20Member%201.jpeg?v=1.2" alt="Rana Shahzaib Rajput" class="team-img" id="member1-img" style="object-fit: cover; object-position: center 23%;">
                 </div>
                 <h3>Rana Shahzaib Rajput</h3>
@@ -647,7 +576,7 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container" style="text-align: center;">
+        <div class="container">
             <div style="margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
                 <p><strong>Contact Our Travel Specialists:</strong></p>
                 <p>Rana Shahzaib Rajput: <a href="tel:+923227134860" style="color: inherit; text-decoration: underline;">+92 322 7134860</a></p>
@@ -657,7 +586,7 @@
             </div>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem;">
             <p>&copy; 2026 Tri Ventures Official. All rights reserved.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Developed by BAEZY ❤️</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.9;">Developed by BAEZY <span class="glowing-heart">❤️</span></p>
         </div>
     </footer>
 
@@ -698,7 +627,7 @@
             onScroll();
         });
 
-        // ROTATING SCROLL ANIMATIONS (Assigns different animations sequentially)
+        // REVEAL ON SCROLL
         document.addEventListener('DOMContentLoaded', () => {
             const targets = document.querySelectorAll(
                 '.section-title, .section-subtitle, .tour-card, .info-panel, .team-card, .timeline-item, .highlight-tags, .contact-form'
@@ -707,12 +636,7 @@
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (reduceMotion || !('IntersectionObserver' in window)) return;
 
-            const animClasses = ['anim-fade-up', 'anim-scale-in', 'anim-slide-right', 'anim-slide-left', 'anim-rotate-in'];
-
-            targets.forEach((el, index) => {
-                const chosenAnim = animClasses[index % animClasses.length];
-                el.classList.add(chosenAnim);
-            });
+            targets.forEach(el => el.classList.add('reveal'));
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -726,7 +650,9 @@
 
             document.querySelectorAll('.tours-grid, .team-grid, .timeline').forEach(group => {
                 Array.from(group.children).forEach((child, i) => {
-                    child.dataset.revealDelay = Math.min(i * 70, 280) + 'ms';
+                    if (child.classList.contains('reveal')) {
+                        child.dataset.revealDelay = Math.min(i * 80, 320) + 'ms';
+                    }
                 });
             });
 
@@ -743,12 +669,13 @@
             if (event && event.currentTarget) event.currentTarget.classList.add('active');
         }
 
-        // DYNAMIC GUIDE POLICY
+        // DYNAMIC GUIDE POLICY & VEHICLE RESTRICTIONS
         function updateGuidePolicy() {
             const vehicle = document.getElementById('calc-vehicle').value;
             const displayDiv = document.getElementById('guide-policy-display');
             const textSpan = document.getElementById('guide-policy-text');
             const travelersInput = document.getElementById('calc-travelers');
+
             let maxCap = null;
 
             if (vehicle === 'brv') {
@@ -779,7 +706,7 @@
             }
         }
 
-        // TRAVELER ENFORCEMENT
+        // TRAVELER NUMBER ENFORCEMENT
         document.getElementById('calc-travelers').addEventListener('input', function() {
             const max = parseInt(this.getAttribute('max'));
             if (max && parseInt(this.value) > max) {
@@ -792,6 +719,7 @@
         function calculateCost(event) {
             event.preventDefault();
             const destSelect = document.getElementById('calc-destination');
+            
             const ratePerPersonPerDay = parseInt(destSelect.value);
             const travelers = parseInt(document.getElementById('calc-travelers').value);
             const days = parseInt(document.getElementById('calc-days').value);
@@ -802,10 +730,12 @@
             }
 
             const totalCost = ratePerPersonPerDay * travelers * days;
+
             document.getElementById('total-cost').innerText = totalCost.toLocaleString();
             document.getElementById('calc-result').style.display = 'block';
         }
 
+        // BRIDGE CALCULATOR DATA DIRECTLY INTO INQUIRY FORM
         function applyEstimateToForm() {
             const destSelect = document.getElementById('calc-destination');
             const destName = destSelect.options[destSelect.selectedIndex].getAttribute('data-name');
@@ -820,10 +750,11 @@
             document.getElementById('travelers').value = travelers;
             document.getElementById('notes').value = `Calculated Base Estimate: ${estimatedCost} PKR\nSelected Vehicle: ${vehicleName}\nTrip: ${days} Days for ${travelers} Travelers to ${destName}.`;
 
+            // Smooth scroll down to form
             document.getElementById('plan-trip').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // AJAX FORM SUBMISSION
+        // ASYNC BACKGROUND FORM SUBMISSION (AJAX)
         document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const form = this;
@@ -868,64 +799,24 @@
         });
 
         // -----------------------------------------
-        // LIVE SEAT LOGIC: 17-SEATER CABIN & DYNAMIC HIDING
+        // LIVE SEAT AVAILABILITY LOGIC (Fixed for CORS/Errors)
         // -----------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
             const seatLayouts = {
-                coaster: { 
-                    map: [
-                        ['S', '_', '_', 'D'],
-                        ['F', 'J', 'S', 'S'],
-                        ['_', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['F', 'F', 'F', 'F']
-                    ] 
-                },
-                cabin: { 
-                    map: [
-                        ['S', '_', '_', 'D'],
-                        ['S', 'S', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'S', 'S', 'S']
-                    ] 
-                }
+                coaster: { map: [['S', '_', '_', 'D'], ['_', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'S', 'S', 'S', 'S']] },
+                cabin: { map: [['S', '_', '_', 'D'], ['_', '_', 'S', 'S'], ['S', '_', 'S', 'S'], ['S', '_', 'S', 'S']] }
             };
 
             const vehicleSelectSeats = document.getElementById('vehicleSelectSeats');
             const vehicleMapSeats = document.getElementById('vehicleMapSeats');
             const tripNameDisplay = document.getElementById('tripNameDisplay');
-            const legendContainer = document.getElementById('legendContainer');
-            const seatFooterNote = document.getElementById('seatFooterNote');
             
-            // Front-facing Executive Seat SVG Template
-            function getSeatSVG(text, cssClass) {
-                if (cssClass.includes('empty')) {
-                    return `<div class="seat-wrapper empty"></div>`;
-                }
-
-                return `
-                <div class="seat-wrapper ${cssClass}">
-                    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" class="seat-svg">
-                        <rect x="2" y="10" width="8" height="35" rx="4" class="seat-trim"/>
-                        <rect x="50" y="10" width="8" height="35" rx="4" class="seat-trim"/>
-                        <path d="M 12 45 C 12 55, 48 55, 48 45 L 48 40 L 12 40 Z" class="seat-trim"/>
-                        <rect x="12" y="6" width="36" height="32" rx="6" class="seat-bg"/>
-                        <text x="30" y="28" class="seat-text" text-anchor="middle">${text}</text>
-                    </svg>
-                </div>`;
-            }
-
             async function loadAndRenderSeats(type) {
                 let bookedSeats = [];
                 let tripNameText = "";
 
                 try {
-                    const response = await fetch('https://booking.triventuresofficial.com/api.php?t=' + new Date().getTime());
+                    const response = await fetch('https://triventuresofficial.com/seats/api.php?t=' + new Date().getTime());
                     
                     if (response.ok) {
                         const contentType = response.headers.get("content-type");
@@ -943,10 +834,11 @@
                         throw new Error("Network response was not OK");
                     }
                 } catch (error) {
-                    console.warn("Live API unavailable. Using fallback preview data.", error);
+                    console.warn("Live API unavailable (CORS or server error). Using fallback preview data.", error);
+                    // Safe visual fallback so widget functionality isn't broken during development or API issues
                     const fallbackData = {
-                        coaster: { tripName: "Naran Kaghan Expedition", seats: ["3", "4", "7", "8"] },
-                        cabin: { tripName: "", seats: [] } // Triggers "No trip scheduled" state
+                        coaster: { tripName: "Naran Kaghan (Preview)", seats: ["3", "4", "7", "8"] },
+                        cabin: { tripName: "Swat VIP Tour (Preview)", seats: ["1", "2"] }
                     };
                     if (fallbackData[type]) {
                         bookedSeats = fallbackData[type].seats;
@@ -954,60 +846,46 @@
                     }
                 }
 
+                // Force all array items to be strings to ensure `.includes()` works
                 bookedSeats = bookedSeats.map(String);
 
-                // PROFESSIONAL NO-TRIP STATUS & CONDITIONAL HIDING LOGIC
+                // Display trip name logic
                 if (tripNameText.trim() !== "") {
-                    tripNameDisplay.innerHTML = `📍 Active Itinerary:<br><span style="font-size:1.2rem; font-weight:700; color:#166534;">${tripNameText}</span>`;
-                    tripNameDisplay.style.borderColor = '#22c55e';
-                    tripNameDisplay.style.backgroundColor = '#f0fdf4';
+                    tripNameDisplay.innerHTML = `📍 Current Trip:<br><span style="font-size:1.25rem; font-weight:700;">${tripNameText}</span>`;
                     tripNameDisplay.style.display = 'block';
-                    
-                    legendContainer.style.display = 'flex';
-                    vehicleMapSeats.style.display = 'flex';
-                    seatFooterNote.style.display = 'block';
-
-                    const config = seatLayouts[type];
-                    let seatHTML = ''; 
-                    let seatNumber = 1;
-
-                    config.map.forEach(rowData => {
-                        seatHTML += `<div class="seat-row">`;
-                        
-                        rowData.forEach(cell => {
-                            if (cell === '_') {
-                                seatHTML += getSeatSVG('', 'empty');
-                            } else if (cell === 'D') {
-                                seatHTML += getSeatSVG('D', 'driver');
-                            } else {
-                                let seatClass = '';
-                                if (cell === 'J') seatClass += 'jump ';
-                                if (cell === 'F') seatClass += 'fixed ';
-                                
-                                if (bookedSeats.includes(seatNumber.toString())) {
-                                    seatClass += 'booked';
-                                }
-                                
-                                seatHTML += getSeatSVG(seatNumber, seatClass.trim());
-                                seatNumber++;
-                            }
-                        });
-                        
-                        seatHTML += `</div>`;
-                    });
-                    
-                    vehicleMapSeats.innerHTML = seatHTML;
-
                 } else {
-                    tripNameDisplay.innerHTML = `📍 Status:<br><span style="font-size:1.05rem; font-weight:600; color: #4b5563;">No trip currently scheduled for this vehicle.</span>`;
-                    tripNameDisplay.style.borderColor = '#d1d5db';
-                    tripNameDisplay.style.backgroundColor = '#f9fafb';
-                    tripNameDisplay.style.display = 'block';
-
-                    legendContainer.style.display = 'none';
-                    vehicleMapSeats.style.display = 'none';
-                    seatFooterNote.style.display = 'none';
+                    tripNameDisplay.style.display = 'none';
                 }
+
+                const config = seatLayouts[type];
+                vehicleMapSeats.innerHTML = ''; 
+                let seatNumber = 1;
+
+                config.map.forEach(rowData => {
+                    const rowDiv = document.createElement('div');
+                    rowDiv.className = 'seat-row';
+
+                    rowData.forEach(cell => {
+                        const seatDiv = document.createElement('div');
+                        
+                        if (cell === '_') {
+                            seatDiv.className = 'seat empty';
+                        } else if (cell === 'D') {
+                            seatDiv.className = 'seat driver'; 
+                            seatDiv.textContent = 'D';
+                        } else {
+                            seatDiv.className = `seat ${cell === 'J' ? 'jump' : ''}`;
+                            seatDiv.textContent = seatNumber;
+                            
+                            if (bookedSeats.includes(seatNumber.toString())) {
+                                seatDiv.classList.add('booked');
+                            }
+                            seatNumber++;
+                        }
+                        rowDiv.appendChild(seatDiv);
+                    });
+                    vehicleMapSeats.appendChild(rowDiv);
+                });
             }
 
             if(vehicleSelectSeats && vehicleMapSeats) {
