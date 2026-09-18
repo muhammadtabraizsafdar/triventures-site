@@ -25,112 +25,6 @@
     
     <!-- External Luxury Design CSS -->
     <link rel="stylesheet" href="styles.css?v=2.0">
-
-    <!-- Injected CSS for Layout Spacing & Dark Mode -->
-    <style>
-        /* --- 1. Ideal Section Spacing --- */
-        section {
-            padding: 5rem 1rem !important; /* Uniform vertical padding for all sections */
-            margin: 0 auto !important; /* Remove excessive irregular margins */
-        }
-        #home { 
-            padding-top: 8.5rem !important; /* Accommodate fixed header */
-            padding-bottom: 6rem !important;
-        }
-        .section-title { margin-bottom: 0.5rem !important; }
-        .section-subtitle { margin-bottom: 3rem !important; }
-        .grid-layout, .tab-container { margin-top: 2rem !important; }
-
-        /* --- 2. Dark Mode Core Variables & Overrides --- */
-        body.dark-mode {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode strong {
-            color: #ffffff !important;
-        }
-        body.dark-mode p, body.dark-mode li, body.dark-mode label, body.dark-mode .section-subtitle, body.dark-mode span:not(.highlight-tag) {
-            color: #b3b3b3 !important;
-        }
-        
-        /* Overriding hardcoded HTML colors for readability in Dark Mode */
-        body.dark-mode [style*="color: #166534"], 
-        body.dark-mode [style*="color: #15803d"] { color: #4ade80 !important; } /* Light Green */
-        body.dark-mode [style*="color: #991b1b"] { color: #f87171 !important; } /* Light Red */
-        body.dark-mode [style*="color: var(--accent)"] { color: #4ade80 !important; }
-        
-        body.dark-mode [style*="background: #f0fdf4"] { background: rgba(34, 197, 94, 0.1) !important; border-color: rgba(34, 197, 94, 0.2) !important; }
-        body.dark-mode [style*="background: #fef2f2"] { background: rgba(239, 68, 68, 0.1) !important; border-color: rgba(239, 68, 68, 0.2) !important; }
-        body.dark-mode [style*="background: #fdfaf0"] { background: #1e1e1e !important; border-color: #333 !important; }
-        
-        body.dark-mode #guide-policy-display { border-color: #444 !important; }
-        
-        /* Header & Nav */
-        body.dark-mode header, body.dark-mode header.scrolled {
-            background: rgba(18, 18, 18, 0.95) !important;
-            border-bottom: 1px solid #333;
-        }
-        body.dark-mode .nav-links a { color: #e0e0e0 !important; }
-        
-        /* Panels & Cards */
-        body.dark-mode .info-panel, 
-        body.dark-mode .tour-card, 
-        body.dark-mode .team-card,
-        body.dark-mode .payment-card,
-        body.dark-mode .form-input,
-        body.dark-mode select.form-input option {
-            background-color: #1e1e1e !important;
-            border-color: #333333 !important;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
-        }
-        
-        body.dark-mode .form-input { color: #ffffff !important; }
-        body.dark-mode .form-input::placeholder { color: #777777 !important; }
-        
-        /* Live Seat Map adjustments for Dark Mode */
-        body.dark-mode .seat { background: #2a2a2a !important; color: #e0e0e0 !important; border-color: #444 !important; }
-        body.dark-mode .seat.empty { background: transparent !important; border: none !important; }
-        body.dark-mode .seat.jump { background: #333 !important; }
-        body.dark-mode .seat.booked { background: #991b1b !important; border-color: #991b1b !important; color: white !important; }
-        body.dark-mode .seat-legend-box[style*="background: #ffffff;"] { background: #2a2a2a !important; border-color: #444 !important; }
-        body.dark-mode .seat-legend-box[style*="background: #e5e7eb;"] { background: #333 !important; border-color: #444 !important; }
-        
-        /* --- 3. Compact Header Theme Toggle Button --- */
-        .theme-toggle-wrapper {
-            position: absolute;
-            right: 70px; /* Safely placed beside the mobile menu hamburger */
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1001;
-        }
-        @media(min-width: 769px) {
-            .theme-toggle-wrapper {
-                right: 20px; /* Positioned on the far right for desktop */
-            }
-            nav { padding-right: 50px; } /* Prevent nav overlap on desktop */
-        }
-        .theme-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #ffffff;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-        body.dark-mode .theme-toggle { 
-            background: rgba(40, 40, 40, 0.6); 
-            border-color: #555;
-            color: #e0e0e0;
-        }
-        .theme-toggle:hover { transform: translateY(-50%) scale(1.1); }
-    </style>
 </head>
 <body>
 
@@ -139,14 +33,8 @@
 
     <!-- Header Navigation -->
     <header>
-        <div class="container nav-container" style="position: relative;">
+        <div class="container nav-container">
             <a href="#home" class="logo">Tri Ventures<span>Official</span></a>
-            
-            <!-- Compact Theme Toggle -->
-            <div class="theme-toggle-wrapper">
-                <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-            </div>
-
             <div class="menu-toggle" id="mobile-menu" aria-label="Toggle Navigation Menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -241,7 +129,7 @@
             <!-- Base Rates -->
             <div class="info-panel green-edge">
                 <h3>Standard Base Rates</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 1rem;">Per person, per day (includes transport & standard stay):</p>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Per person, per day (includes transport & standard stay):</p>
                 <ul class="rate-list">
                     <li><strong>Swat Valley:</strong> <span>PKR 6,000</span></li>
                     <li><strong>Naran Kaghan:</strong> <span>PKR 7,000</span></li>
@@ -284,7 +172,7 @@
                     <input class="form-input" type="number" id="calc-days" min="1" value="3" required>
 
                     <!-- Dynamic Guide Policy Display -->
-                    <div id="guide-policy-display" style="display: none; background: #fdfaf0; padding: 1rem; border-radius: 8px; border: 1px solid #f2e3b6; margin-bottom: 1.2rem; font-size: 0.9rem;">
+                    <div id="guide-policy-display" style="display: none; background: #fdfaf0; padding: 1rem; border-radius: 8px; border: 1px solid #f2e3b6; margin-bottom: 1.2rem; font-size: 0.9rem; color: var(--text-dark);">
                         <strong style="color: var(--accent);">✦ Vehicle & Guide Policy:</strong> <span id="guide-policy-text"></span>
                     </div>
 
@@ -294,7 +182,7 @@
                 <div id="calc-result" style="margin-top: 1.5rem; text-align: center; display: none; background: #f0fdf4; padding: 1.4rem; border-radius: 12px; border: 1.5px solid #bbf7d0;">
                     <span style="font-size: 0.9rem; color: #15803d; font-weight: 500;">Estimated Base Cost:</span><br>
                     <strong style="color: #15803d; font-size: 2rem;"><span id="total-cost"></span> PKR</strong>
-                    <p style="font-size: 0.78rem; margin: 6px 0 12px; color: #166534;">*Includes accommodation, transport, fuel, tolls & driver allowances.</p>
+                    <p style="font-size: 0.78rem; color: var(--text-muted); margin: 6px 0 12px;">*Includes accommodation, transport, fuel, tolls & driver allowances.</p>
                     <button type="button" class="btn btn-secondary" style="padding: 0.6rem 1.4rem; font-size: 0.75rem;" onclick="applyEstimateToForm()">Book with this Estimate ➜</button>
                 </div>
             </div>
@@ -432,7 +320,7 @@
         </div>
 
         <!-- Package Inclusions & Terms -->
-        <div class="grid-layout">
+        <div class="grid-layout" style="margin-top: 4rem;">
             <!-- Included / Excluded -->
             <div class="info-panel" style="flex: 1 1 100%;">
                 <h3 style="text-align: center;">Package Details</h3>
@@ -480,13 +368,13 @@
             <!-- Cancellation Policy -->
             <div class="info-panel">
                 <h3>Cancellation Policy</h3>
-                <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
+                <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-muted);">
                     <li style="margin-bottom: 10px;">✦ <strong>5+ Days Before:</strong> 0% Cancellation Fee</li>
                     <li style="margin-bottom: 10px;">✦ <strong>3-4 Days Before:</strong> 20% Cancellation Fee</li>
                     <li style="margin-bottom: 10px;">✦ <strong>1-2 Days Before:</strong> 50% Cancellation Fee</li>
                     <li style="margin-bottom: 15px;">✦ <strong>Less than 24 Hrs:</strong> 60% Cancellation Fee</li>
                 </ul>
-                <p style="font-size: 0.85rem; padding: 10px; border-radius: 8px; opacity: 0.8;">
+                <p style="font-size: 0.85rem; color: var(--text-muted); background: var(--bg-page); padding: 10px; border-radius: 8px;">
                     <em>Note: Tri Ventures Official is not responsible for loss of personal luggage or unforeseen roadblocks. Refunds are processed within 3 business days.</em>
                 </p>
             </div>
@@ -494,15 +382,16 @@
     </section>
 
     <!-- Live Seat Availability Section -->
-    <section id="live-seats" class="container">
+    <section id="live-seats" class="container" style="margin-top: 5rem; margin-bottom: 2rem;">
         <h2 class="section-title reveal">Live Seat Availability</h2>
         <p class="section-subtitle reveal">Check real-time seating for our premium fleet before submitting your inquiry.</p>
 
         <div class="info-panel reveal" style="max-width: 600px; margin: 0 auto; padding: 2rem;">
             
+            <!-- Internal Styles matching your theme -->
             <style>
                 .seat-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
-                .seat { width: 45px; height: 45px; border: 2px solid #d1d5db; border-radius: 8px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; flex-shrink: 0; font-family: 'Poppins', sans-serif; transition: all 0.3s ease; }
+                .seat { width: 45px; height: 45px; border: 2px solid #d1d5db; border-radius: 8px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; color: var(--text-dark, #333); flex-shrink: 0; font-family: 'Poppins', sans-serif; transition: all 0.3s ease; }
                 .seat.jump { background: #e5e7eb; height: 35px; align-self: center; border-color: #d1d5db; }
                 .seat.driver { background: #f3f4f6; color: #9ca3af; border: 2px dashed #9ca3af; }
                 .seat.empty { background: transparent; border: none; }
@@ -524,7 +413,7 @@
                 <!-- Filled via JS -->
             </div>
 
-            <div class="legend" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 2rem; font-size: 0.9rem; font-family: 'Poppins', sans-serif;">
+            <div class="legend" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-dark, #333); font-family: 'Poppins', sans-serif;">
                 <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #ffffff;"></div> Available</div>
                 <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #e5e7eb;"></div> Jump Seat</div>
                 <div style="display: flex; align-items: center; gap: 8px;"><div class="seat-legend-box" style="background: #ef4444; border-color: #ef4444;"></div> Booked</div>
@@ -534,7 +423,7 @@
                 <!-- Generated via JavaScript -->
             </div>
             
-            <p style="text-align: center; font-size: 0.8rem; margin-top: 1.5rem; opacity: 0.7;">
+            <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1.5rem;">
                 *Seat availability is updated live. Mention your preferred seat numbers in the inquiry form below.
             </p>
         </div>
@@ -610,7 +499,7 @@
                 </div>
                 <h3>Rana Shahzaib Rajput</h3>
                 <p>Lead Tour Organizer</p>
-                <div style="font-size: 0.95rem; opacity: 0.8;">Spearheading bespoke tourism and luxury expeditions across Pakistan.</div>
+                <div style="color: var(--text-muted); font-size: 0.95rem;">Spearheading bespoke tourism and luxury expeditions across Pakistan.</div>
             </div>
             <div class="team-card">
                 <div class="team-img-wrapper">
@@ -618,7 +507,7 @@
                 </div>
                 <h3>Malik Umar Awan</h3>
                 <p>Lead Travel Specialist</p>
-                <div style="font-size: 0.95rem; opacity: 0.8;">Specialist in high-altitude itinerary curation and logistics.</div>
+                <div style="color: var(--text-muted); font-size: 0.95rem;">Specialist in high-altitude itinerary curation and logistics.</div>
             </div>
             <div class="team-card">
                 <div class="team-img-wrapper">
@@ -626,7 +515,7 @@
                 </div>
                 <h3>Malik Arslan Bari</h3>
                 <p>Operations Manager</p>
-                <div style="font-size: 0.95rem; opacity: 0.8;">Ensures flawless ground execution, hotel management, and client safety.</div>
+                <div style="color: var(--text-muted); font-size: 0.95rem;">Ensures flawless ground execution, hotel management, and client safety.</div>
             </div>
         </div>
     </section>
@@ -653,30 +542,6 @@
 
     <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
-        // DARK MODE PREFERENCES & TOGGLE LOGIC
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggleBtn = document.getElementById('themeToggle');
-            const body = document.body;
-            
-            // Check local storage or system preference
-            const currentTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-                body.classList.add('dark-mode');
-                themeToggleBtn.innerText = '☀️';
-            } else {
-                themeToggleBtn.innerText = '🌙';
-            }
-
-            themeToggleBtn.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                const isDark = body.classList.contains('dark-mode');
-                themeToggleBtn.innerText = isDark ? '☀️' : '🌙';
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            });
-        });
-
         // MOBILE MENU NAVIGATION
         document.addEventListener('DOMContentLoaded', () => {
             const mobileMenu = document.getElementById('mobile-menu');
@@ -764,15 +629,15 @@
             let maxCap = null;
 
             if (vehicle === 'brv') {
-                textSpan.innerHTML = "1 Tour Guide Included. <br><small>*Max capacity: 6 Travelers (Ideal for small families)</small>";
+                textSpan.innerHTML = "1 Tour Guide Included. <br><small style='color: var(--text-muted);'>*Max capacity: 6 Travelers (Ideal for small families)</small>";
                 displayDiv.style.display = 'block';
                 maxCap = 6;
             } else if (vehicle === 'grande') {
-                textSpan.innerHTML = "Tour Guide Optional. <br><small>*Max capacity: 3 Travelers (Ideal for couples/executives)</small>";
+                textSpan.innerHTML = "Tour Guide Optional. <br><small style='color: var(--text-muted);'>*Max capacity: 3 Travelers (Ideal for couples/executives)</small>";
                 displayDiv.style.display = 'block';
                 maxCap = 3;
             } else if (vehicle === 'c4' || vehicle === 'c5') {
-                textSpan.innerHTML = "2 Tour Guides Mandatory. <br><small>*Max capacity: 25 Travelers (Saloon Coaster)</small>";
+                textSpan.innerHTML = "2 Tour Guides Mandatory. <br><small style='color: var(--text-muted);'>*Max capacity: 25 Travelers (Saloon Coaster)</small>";
                 displayDiv.style.display = 'block';
                 maxCap = 25;
             } else {
@@ -883,7 +748,9 @@
             }
         });
 
-        // LIVE SEAT AVAILABILITY LOGIC
+        // -----------------------------------------
+        // LIVE SEAT AVAILABILITY LOGIC (Updated with Trip Name)
+        // -----------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
             const seatLayouts = {
                 coaster: { map: [['S', '_', '_', 'D'], ['_', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'J', '_', 'S', 'S'], ['S', 'S', 'S', 'S', 'S']] },
@@ -909,6 +776,7 @@
                     let bookedSeats = [];
                     let tripNameText = "";
 
+                    // Backward compatibility logic to handle old JSON files without a trip name
                     if (Array.isArray(rawData[type])) {
                         bookedSeats = rawData[type];
                     } else if (rawData[type]) {
@@ -916,6 +784,7 @@
                         tripNameText = rawData[type].tripName || "";
                     }
 
+                    // Display trip name logic
                     if (tripNameText.trim() !== "") {
                         tripNameDisplay.innerHTML = `📍 Current Trip:<br><span style="font-size:1.25rem; font-weight:700;">${tripNameText}</span>`;
                         tripNameDisplay.style.display = 'block';
