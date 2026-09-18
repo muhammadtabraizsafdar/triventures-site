@@ -26,9 +26,9 @@
     <!-- External Luxury Design CSS -->
     <link rel="stylesheet" href="styles.css?v=2.0">
 
-    <!-- Global Layout Fixes & Professional Responsive Spacing -->
+    <!-- Global Layout Fixes, Perfectly Centered Containers & Varied Scroll Animations -->
     <style>
-        /* Standardize exact spacing with responsive breakpoints for Mobile vs Desktop */
+        /* Standardize exact spacing and responsive padding */
         section:not(.hero) {
             padding: 3.5rem 1rem !important;
             margin: 0 !important;
@@ -40,9 +40,71 @@
             }
         }
         
-        .container {
+        /* Ensure all core wrappers and containers are strictly centered */
+        .container, .form-container, .rates-section, .why-us-section, .tours-section, .team-section {
+            width: 100%;
             max-width: 1200px;
-            margin: 0 auto;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            box-sizing: border-box;
+        }
+
+        /* Centering specific grid alignments that might pull left */
+        .feature-grid, .tours-grid, .team-grid, .grid-layout {
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+        }
+
+        /* --- ROTATING SCROLL ANIMATIONS VARIATIONS --- */
+        .anim-fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .anim-scale-in {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-scale-in.is-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .anim-slide-right {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-slide-right.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .anim-slide-left {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-slide-left.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .anim-rotate-in {
+            opacity: 0;
+            transform: rotate(3deg) scale(0.95);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-rotate-in.is-visible {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
         }
 
         /* --- FRONT-FACING EXECUTIVE SEAT STYLES --- */
@@ -442,7 +504,7 @@
                 <label class="form-label" for="vehicleSelectSeats" style="text-align: center; display: block;">Select Vehicle to View</label>
                 <select id="vehicleSelectSeats" class="form-input" style="width: 100%; max-width: 300px; margin: 0 auto; display: block; cursor: pointer;">
                     <option value="coaster">C4/C5 Coaster (29 Seater)</option>
-                    <option value="cabin">Grand Cabin (10 Seater)</option>
+                    <option value="cabin">Grand Cabin (17 Seater)</option>
                 </select>
             </div>
 
@@ -627,7 +689,7 @@
             onScroll();
         });
 
-        // REVEAL ON SCROLL
+        // ROTATING SCROLL ANIMATIONS (Assigns different animations sequentially)
         document.addEventListener('DOMContentLoaded', () => {
             const targets = document.querySelectorAll(
                 '.section-title, .section-subtitle, .tour-card, .info-panel, .team-card, .timeline-item, .highlight-tags, .contact-form'
@@ -636,7 +698,12 @@
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (reduceMotion || !('IntersectionObserver' in window)) return;
 
-            targets.forEach(el => el.classList.add('reveal'));
+            const animClasses = ['anim-fade-up', 'anim-scale-in', 'anim-slide-right', 'anim-slide-left', 'anim-rotate-in'];
+
+            targets.forEach((el, index) => {
+                const chosenAnim = animClasses[index % animClasses.length];
+                el.classList.add(chosenAnim);
+            });
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -650,9 +717,7 @@
 
             document.querySelectorAll('.tours-grid, .team-grid, .timeline').forEach(group => {
                 Array.from(group.children).forEach((child, i) => {
-                    if (child.classList.contains('reveal')) {
-                        child.dataset.revealDelay = Math.min(i * 80, 320) + 'ms';
-                    }
+                    child.dataset.revealDelay = Math.min(i * 70, 280) + 'ms';
                 });
             });
 
@@ -794,7 +859,7 @@
         });
 
         // -----------------------------------------
-        // LIVE SEAT LOGIC: FRONT-FACING EXECUTIVE SEATS & CONDITIONAL HIDING
+        // LIVE SEAT LOGIC: 17-SEATER CABIN & DYNAMIC HIDING
         // -----------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
             const seatLayouts = {
@@ -816,6 +881,7 @@
                         ['S', 'S', 'S', 'S'],
                         ['S', 'J', 'S', 'S'],
                         ['S', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
                         ['S', 'S', 'S', 'S']
                     ] 
                 }
@@ -827,7 +893,7 @@
             const legendContainer = document.getElementById('legendContainer');
             const seatFooterNote = document.getElementById('seatFooterNote');
             
-            // Front-facing Executive Seat SVG Template (Headrest at top, base/cushion at bottom)
+            // Front-facing Executive Seat SVG Template
             function getSeatSVG(text, cssClass) {
                 if (cssClass.includes('empty')) {
                     return `<div class="seat-wrapper empty"></div>`;
@@ -869,10 +935,9 @@
                     }
                 } catch (error) {
                     console.warn("Live API unavailable. Using fallback preview data.", error);
-                    // Fallback configuration demonstrating both active and "No Trip Scheduled" states
                     const fallbackData = {
                         coaster: { tripName: "Naran Kaghan Expedition", seats: ["3", "4", "7", "8"] },
-                        cabin: { tripName: "", seats: [] } // Empty data triggers "No Trip Scheduled" state
+                        cabin: { tripName: "", seats: [] } // Triggers "No trip scheduled" state
                     };
                     if (fallbackData[type]) {
                         bookedSeats = fallbackData[type].seats;
@@ -884,7 +949,6 @@
 
                 // PROFESSIONAL NO-TRIP STATUS & CONDITIONAL HIDING LOGIC
                 if (tripNameText.trim() !== "") {
-                    // Active trip: Show trip name, legend, seat map grid, and footer note
                     tripNameDisplay.innerHTML = `📍 Active Itinerary:<br><span style="font-size:1.2rem; font-weight:700; color:#166534;">${tripNameText}</span>`;
                     tripNameDisplay.style.borderColor = '#22c55e';
                     tripNameDisplay.style.backgroundColor = '#f0fdf4';
@@ -926,7 +990,6 @@
                     vehicleMapSeats.innerHTML = seatHTML;
 
                 } else {
-                    // No trip scheduled: Display professional notice and hide the seat grid and legend entirely
                     tripNameDisplay.innerHTML = `📍 Status:<br><span style="font-size:1.05rem; font-weight:600; color: #4b5563;">No trip currently scheduled for this vehicle.</span>`;
                     tripNameDisplay.style.borderColor = '#d1d5db';
                     tripNameDisplay.style.backgroundColor = '#f9fafb';
@@ -946,3 +1009,4 @@
     </script>
 </body>
 </html>
+```[cite: 1]
