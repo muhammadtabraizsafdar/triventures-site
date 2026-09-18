@@ -26,7 +26,7 @@
     <!-- External Luxury Design CSS -->
     <link rel="stylesheet" href="styles.css?v=2.0">
 
-    <!-- Global Layout Fixes, Perfectly Centered Containers & Varied Scroll Animations -->
+    <!-- Global Layout Fixes, Strict Center Alignment & Varied Scroll Animations -->
     <style>
         /* Standardize exact spacing and responsive padding */
         section:not(.hero) {
@@ -40,20 +40,28 @@
             }
         }
         
-        /* Ensure all core wrappers and containers are strictly centered */
-        .container, .form-container, .rates-section, .why-us-section, .tours-section, .team-section {
+        /* Perfect Central Alignment across all containers, grids, and panels */
+        .container, .form-container, .rates-section, .why-us-section, .tours-section, .team-section, .grid-layout, .feature-grid, .tours-grid, .team-grid {
             width: 100%;
             max-width: 1200px;
             margin-left: auto !important;
             margin-right: auto !important;
             box-sizing: border-box;
+            justify-content: center !important;
+            text-align: center;
         }
 
-        /* Centering specific grid alignments that might pull left */
-        .feature-grid, .tours-grid, .team-grid, .grid-layout {
+        /* Ensure text-heavy panels retain clean internal left/center balance while the block itself is centered */
+        .info-panel, .tour-card, .team-card, .contact-form {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            text-align: left; /* Keeps readable card contents neat, while container centers the blocks */
+        }
+
+        .section-title, .section-subtitle {
+            text-align: center !important;
             margin-left: auto;
             margin-right: auto;
-            justify-content: center;
         }
 
         /* --- ROTATING SCROLL ANIMATIONS VARIATIONS --- */
@@ -639,7 +647,7 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container">
+        <div class="container" style="text-align: center;">
             <div style="margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
                 <p><strong>Contact Our Travel Specialists:</strong></p>
                 <p>Rana Shahzaib Rajput: <a href="tel:+923227134860" style="color: inherit; text-decoration: underline;">+92 322 7134860</a></p>
@@ -649,6 +657,7 @@
             </div>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem;">
             <p>&copy; 2026 Tri Ventures Official. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Developed by BAEZY ❤️</p>
         </div>
     </footer>
 
