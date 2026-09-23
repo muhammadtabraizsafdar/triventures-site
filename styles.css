@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Tri Ventures Official - Comprehensive Luxury & Responsive Stylesheet
+   Tri Ventures Official - Perfectly Adjusted Responsive Stylesheet
    ========================================================================== */
 
 :root {
@@ -217,7 +217,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Cards, Panels & Grids (Responsive Sizing & Box Containment)
+   Cards, Panels & Grids (Fixed Desktop & Mobile Stretch Issues)
    ========================================================================== */
 .container {
     width: 100%;
@@ -226,12 +226,18 @@ header.scrolled {
     padding: 0 1.5rem;
 }
 
-.feature-grid, .tours-grid, .team-grid, .grid-layout {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
+.feature-grid, .tours-grid, .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    justify-content: center;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    align-items: start;
 }
 
 .info-panel, .tour-card, .team-card {
@@ -245,6 +251,7 @@ header.scrolled {
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .info-panel:hover, .tour-card:hover, .team-card:hover {
@@ -311,25 +318,17 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Cost Estimator & Rate Lists (Mobile-Optimized)
+   Cost Estimator & Rate Lists (Perfect Text Alignment)
    ========================================================================== */
 .rates-section {
-    padding-bottom: 3rem !important; /* Reduced bottom spacing before live seats */
-}
-
-.grid-layout {
-    width: 100%;
-}
-
-.grid-layout > .info-panel {
-    flex: 1 1 340px;
-    max-width: 500px;
+    padding-bottom: 2rem !important;
 }
 
 .rate-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 .rate-list li {
@@ -503,7 +502,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Payment Methods & Spacing Corrections
+   Payment Methods & Spacing Adjustments
    ========================================================================== */
 .payment-card {
     background: #f9fafb;
@@ -511,7 +510,7 @@ header.scrolled {
     border-radius: 10px;
     padding: 1.2rem;
     margin-bottom: 1rem;
-    word-break: break-word; /* Prevents long IBAN numbers from overflowing on small mobiles */
+    word-break: break-word;
 }
 
 .payment-card h4 {
@@ -526,9 +525,8 @@ header.scrolled {
     color: var(--text-muted);
 }
 
-/* Tighten gap between sections to avoid excessive whitespace */
 #rates-calculator {
-    padding-bottom: 2rem !important;
+    padding-bottom: 1.5rem !important;
 }
 
 #live-seats {
@@ -685,12 +683,12 @@ footer a {
     }
 
     .feature-grid, .tours-grid, .team-grid, .grid-layout {
+        grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
     .info-panel, .tour-card, .team-card {
         max-width: 100%;
-        flex: 1 1 100%;
         padding: 1.5rem;
     }
 
