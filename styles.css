@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   Navigation Header
+   Navigation Header & Stylish Logo
    ========================================================================== */
 header {
     position: fixed;
@@ -73,14 +73,33 @@ header.scrolled {
 
 .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #ffffff;
     text-decoration: none;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+}
+
+.logo .logo-tri {
+    font-style: italic;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.logo .logo-ventures {
+    font-weight: 600;
+    color: #f3f4f6;
 }
 
 .logo span {
     color: var(--accent);
+    font-weight: 700;
+    margin-left: 0.2rem;
+    letter-spacing: 1.5px;
 }
 
 .nav-links {
@@ -217,7 +236,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Cards, Panels & Grids
+   Cards, Panels & Centered Feature Grid Layout
    ========================================================================== */
 .container {
     width: 100%;
@@ -226,7 +245,26 @@ header.scrolled {
     padding: 0 1.5rem;
 }
 
-.feature-grid, .tours-grid, .team-grid {
+.feature-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.feature-grid .info-panel {
+    flex: 1 1 calc(33.333% - 1.4rem);
+    min-width: 280px;
+    max-width: 380px;
+}
+
+/* Automatically centers the 4th/wrapped box nicely on desktop screens */
+.feature-grid .info-panel:nth-last-child(1):nth-child(odd) {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tours-grid, .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
@@ -318,7 +356,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Cost Estimator & Rate Lists (Optimized Layout & Text Alignment)
+   Cost Estimator & Rate Lists
    ========================================================================== */
 .rates-section {
     padding-bottom: 1.5rem !important;
@@ -707,7 +745,19 @@ footer a {
         transform: translateY(-9px) rotate(-45deg);
     }
 
-    .feature-grid, .tours-grid, .team-grid, .grid-layout {
+    .feature-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-grid .info-panel {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .tours-grid, .team-grid, .grid-layout {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
