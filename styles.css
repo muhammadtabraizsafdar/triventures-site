@@ -7,54 +7,45 @@
 
 /* --- 1. CSS VARIABLES & DESIGN TOKENS --- */
 :root {
-    /* Brand Palette */
     --primary: #0f2d2c;
     --primary-deep: #081a19;
     --primary-light: #1f5451;
     --primary-surface: #143d3b;
     --primary-mist: rgba(15, 45, 44, 0.05);
 
-    /* Luxury Accent Tones */
     --accent: #d4af37;
     --accent-soft: #f3e5ab;
     --accent-bright: #e5c158;
     --accent-hover: #b89326;
     --accent-glow: rgba(212, 175, 55, 0.28);
 
-    /* Backgrounds & Canvas */
     --bg-page: #f8faf9;
     --bg-card: #ffffff;
     --bg-tint: #edf2f0;
     --bg-elevated: #ffffff;
 
-    /* Text & Typography */
     --text-dark: #121c1b;
     --text-muted: #647573;
     --text-light: #f3f6f5;
 
-    /* Borders & Accents */
     --border: #e2e8e5;
     --border-light: rgba(255, 255, 255, 0.2);
     --border-focus: var(--accent);
 
-    /* Shadows */
     --shadow-sm: 0 4px 12px rgba(15, 45, 44, 0.04);
     --shadow-md: 0 12px 32px rgba(15, 45, 44, 0.08);
     --shadow-lg: 0 24px 60px rgba(15, 45, 44, 0.14);
     --shadow-gold: 0 10px 25px rgba(212, 175, 55, 0.25);
 
-    /* Curves & Radii */
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 20px;
     --radius-xl: 28px;
     --radius-pill: 9999px;
 
-    /* Fluid Timing & Easing */
     --ease: cubic-bezier(0.25, 1, 0.5, 1);
     --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
     
-    /* Reusable Gradients */
     --gold-gradient: linear-gradient(135deg, #f5e3b5 0%, #d4af37 50%, #aa851e 100%);
     --gold-line: linear-gradient(90deg, transparent, var(--accent), transparent);
     --alpine-gradient: linear-gradient(160deg, #1b4946 0%, #0f2d2c 55%, #081a19 100%);
@@ -178,7 +169,6 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.7;
 }
 
-/* Global Section Vertical Spacing */
 .why-us-section, 
 .tours-section, 
 .rates-section, 
@@ -586,13 +576,13 @@ header.scrolled .logo {
 .grid-layout {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 2.2rem;
     margin-bottom: 3.5rem;
 }
 
 .grid-layout > .info-panel {
-    flex: 1;
-    min-width: 320px;
+    flex: 1 1 350px;
     max-width: none;
 }
 
@@ -1128,17 +1118,6 @@ footer strong {
 }
 
 /* --- 17. ANIMATIONS & REVEALS --- */
-.reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
-}
-
-.reveal.is-visible {
-    opacity: 1;
-    transform: none;
-}
-
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(22px); }
     to { opacity: 1; transform: translateY(0); }
@@ -1209,7 +1188,6 @@ footer strong {
         transform: translateX(-50%);
     }
 
-    /* Hamburger Animation */
     .menu-toggle.is-active .bar:nth-child(1) {
         transform: translateY(7.5px) rotate(45deg);
     }
@@ -1277,7 +1255,6 @@ footer strong {
     }
 }
 
-/* Reduced Motion Accessibility */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -1286,9 +1263,5 @@ footer strong {
         animation-duration: 0.001ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
-    }
-    .reveal {
-        opacity: 1;
-        transform: none;
     }
 }
