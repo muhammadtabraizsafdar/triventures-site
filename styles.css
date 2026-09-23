@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
 
-/* Standard Section Spacing (Added distinct margins between sections) */
+/* Standard Section Spacing */
 section:not(.hero) {
     padding: 6rem 1.5rem !important;
     margin: 5rem 0 !important;
@@ -159,7 +159,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Hero Section (Optimized for Mobile Viewports)
+   Hero Section
    ========================================================================== */
 .hero {
     position: relative;
@@ -250,7 +250,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Cards, Panels & Centered Feature Grid Layout
+   Cards, Panels & Grid Layouts
    ========================================================================== */
 .container {
     width: 100%;
@@ -272,11 +272,6 @@ header.scrolled {
     max-width: 380px;
 }
 
-.feature-grid .info-panel:nth-last-child(1):nth-child(odd) {
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .tours-grid, .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -289,12 +284,20 @@ header.scrolled {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     align-items: start;
+    width: 100%;
 }
 
-/* Centered Grid modifier for Payment & Cancellation boxes */
+/* Restored Centered Grid Fix */
 .grid-layout.centered-grid {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    justify-items: center;
+    align-items: stretch;
+}
+
+.grid-layout.centered-grid .info-panel {
+    flex: 1 1 450px;
+    max-width: 500px;
 }
 
 .info-panel, .tour-card, .team-card {
@@ -308,7 +311,6 @@ header.scrolled {
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    max-width: 480px;
     box-sizing: border-box;
 }
 
@@ -341,7 +343,6 @@ header.scrolled {
 .tour-card {
     padding: 0;
     overflow: hidden;
-    max-width: 100%;
 }
 
 .tour-img {
@@ -362,7 +363,6 @@ header.scrolled {
 .team-card {
     text-align: center;
     align-items: center;
-    max-width: 100%;
 }
 
 .team-img-wrapper {
@@ -386,23 +386,6 @@ header.scrolled {
    ========================================================================== */
 .rates-section {
     padding-bottom: 2rem !important;
-}
-
-.rates-section .grid-layout {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    align-items: stretch;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.rates-section .info-panel {
-    width: 100%;
-    max-width: 100%;
-    padding: 1.5rem;
-    box-sizing: border-box;
-    overflow: hidden;
 }
 
 .rate-list {
@@ -429,11 +412,6 @@ header.scrolled {
     white-space: nowrap;
 }
 
-.rates-section form {
-    width: 100%;
-    box-sizing: border-box;
-}
-
 .form-label {
     display: block;
     font-weight: 600;
@@ -454,12 +432,6 @@ header.scrolled {
     margin-bottom: 1rem;
     transition: var(--transition);
     box-sizing: border-box;
-}
-
-.rates-section select.form-input {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
 }
 
 .form-input:focus {
@@ -595,7 +567,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Payment Methods & Spacing Adjustments
+   Payment Cards & Form Section
    ========================================================================== */
 .payment-card {
     background: #f9fafb;
@@ -635,6 +607,7 @@ header.scrolled {
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: clamp(1.5rem, 4vw, 3rem);
+    margin: 0 auto;
 }
 
 .form-container h2, .form-container p {
