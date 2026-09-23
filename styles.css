@@ -42,15 +42,16 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
 
-/* Standard Section Spacing (Added more breathing room) */
+/* Standard Section Spacing (Added distinct margins between sections) */
 section:not(.hero) {
-    padding: 7rem 1.5rem !important;
-    margin: 0 !important;
+    padding: 6rem 1.5rem !important;
+    margin: 5rem 0 !important;
 }
 
 @media (min-width: 768px) {
     section:not(.hero) {
-        padding: 9rem 2.5rem !important;
+        padding: 8rem 2.5rem !important;
+        margin: 6rem 0 !important;
     }
 }
 
