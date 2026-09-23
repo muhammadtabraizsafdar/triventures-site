@@ -9,7 +9,7 @@
     <meta name="description" content="Experience customized luxury & standard tours across Swat, Naran Kaghan, Hunza, and Skardu tailored to your budget and pace with Tri Ventures Official.">
     <meta name="keywords" content="Tri Ventures, Pakistan tours, Hunza trip, Skardu tour, Naran Kaghan packages, customized trip Pakistan">
     
-    <!-- Open Graph (WhatsApp, Facebook, LinkedIn Previews) -->
+    <!-- Open Graph Previews -->
     <meta property="og:title" content="Tri Ventures Official | Customized Tours & Expeditions">
     <meta property="og:description" content="Craft your bespoke trip across Northern Pakistan with premium fleet vehicles and expert local guides.">
     <meta property="og:type" content="website">
@@ -26,21 +26,19 @@
     <!-- External Luxury Design CSS -->
     <link rel="stylesheet" href="styles.css?v=2.0">
 
-    <!-- Global Layout Fixes, Perfectly Centered Containers & Varied Scroll Animations -->
+    <!-- Modern Layout Enhancements & Alternating Top-to-Bottom / Bottom-to-Top Animations -->
     <style>
-        /* Standardize exact spacing and responsive padding */
         section:not(.hero) {
-            padding: 3.5rem 1rem !important;
+            padding: 5rem 1rem !important;
             margin: 0 !important;
         }
 
         @media (min-width: 768px) {
             section:not(.hero) {
-                padding: 5rem 2rem !important;
+                padding: 7rem 2rem !important;
             }
         }
         
-        /* Ensure all core wrappers and containers are strictly centered */
         .container, .form-container, .rates-section, .why-us-section, .tours-section, .team-section {
             width: 100%;
             max-width: 1200px;
@@ -49,67 +47,59 @@
             box-sizing: border-box;
         }
 
-        /* Centering specific grid alignments that might pull left */
+        /* Perfectly Centered Flex Grids */
         .feature-grid, .tours-grid, .team-grid, .grid-layout {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 2.5rem;
             margin-left: auto;
             margin-right: auto;
-            justify-content: center;
         }
 
-        /* --- ROTATING SCROLL ANIMATIONS VARIATIONS --- */
-        .anim-fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        .info-panel { flex: 1 1 300px; max-width: 370px; }
+        .tour-card { flex: 1 1 320px; max-width: 380px; }
+        .team-card { flex: 1 1 280px; max-width: 360px; }
+
+        .grid-layout > .info-panel {
+            flex: 1 1 350px;
+            max-width: none;
         }
-        .anim-fade-up.is-visible {
+
+        /* --- REFINED SCROLL ANIMATIONS (Top-Down & Bottom-Up) --- */
+        .scroll-down-anim {
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .scroll-down-anim.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .anim-scale-in {
+        .scroll-up-anim {
             opacity: 0;
-            transform: scale(0.92);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(60px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .anim-scale-in.is-visible {
+        .scroll-up-anim.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-scale-anim {
+            opacity: 0;
+            transform: scale(0.94);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .scroll-scale-anim.is-visible {
             opacity: 1;
             transform: scale(1);
         }
 
-        .anim-slide-right {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .anim-slide-right.is-visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .anim-slide-left {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .anim-slide-left.is-visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .anim-rotate-in {
-            opacity: 0;
-            transform: rotate(3deg) scale(0.95);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .anim-rotate-in.is-visible {
-            opacity: 1;
-            transform: rotate(0deg) scale(1);
-        }
-
-        /* --- FRONT-FACING EXECUTIVE SEAT STYLES --- */
+        /* --- EXECUTIVE SEAT STYLES --- */
         .seat-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
-        
         .seat-wrapper { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.2s ease; }
         .seat-wrapper:hover:not(.empty):not(.driver) { transform: translateY(-2px); }
         .seat-wrapper.jump { height: 38px; align-self: center; }
@@ -120,44 +110,19 @@
         .seat-trim { fill: #e5e7eb; stroke: #a1a1aa; stroke-width: 2.5; transition: all 0.3s ease; }
         .seat-text { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; fill: #374151; pointer-events: none; }
 
-        /* Booked Seat */
         .seat-wrapper.booked .seat-bg { fill: #ef4444; stroke: #b91c1c; }
         .seat-wrapper.booked .seat-trim { fill: #fca5a5; stroke: #b91c1c; }
         .seat-wrapper.booked .seat-text { fill: #ffffff; }
 
-        /* Jump & Fixed Seats */
         .seat-wrapper.fixed .seat-bg, .seat-wrapper.jump .seat-bg { fill: #f3f4f6; stroke: #d1d5db; }
         .seat-wrapper.fixed .seat-trim, .seat-wrapper.jump .seat-trim { fill: #e5e7eb; stroke: #d1d5db; }
         .seat-wrapper.fixed .seat-text, .seat-wrapper.jump .seat-text { fill: #9ca3af; }
 
-        /* Driver Seat */
         .seat-wrapper.driver .seat-bg { fill: #f3f4f6; stroke: #9ca3af; stroke-dasharray: 4; }
         .seat-wrapper.driver .seat-trim { fill: #e5e7eb; stroke: #9ca3af; }
         .seat-wrapper.driver .seat-text { fill: #9ca3af; }
 
         #tripNameDisplay { transition: opacity 0.3s ease; }
-
-        /* --- DESKTOP CENTERING ENFORCEMENT --- */
-        @media (min-width: 992px) {
-            .grid-layout, .feature-grid, .tours-grid, .team-grid {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: stretch;
-            }
-            .info-panel, .tour-card, .team-card {
-                flex: 0 1 calc(33.333% - 2rem);
-                margin: 1rem;
-            }
-            .rates-section .grid-layout {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                justify-content: center;
-                max-width: 1100px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
     </style>
 </head>
 <body>
@@ -456,7 +421,7 @@
         <!-- Package Inclusions & Terms -->
         <div class="grid-layout" style="margin-top: 3rem;">
             <!-- Included / Excluded -->
-            <div class="info-panel" style="flex: 1 1 100%;">
+            <div class="info-panel" style="flex: 1 1 100%; max-width: none;">
                 <h3 style="text-align: center;">Package Details</h3>
                 <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
                     <div style="flex: 1; min-width: 280px; background: #f0fdf4; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #22c55e;">
@@ -530,10 +495,7 @@
                 </select>
             </div>
 
-            <!-- TRIP NAME DISPLAY BANNER / NO-TRIP STATUS -->
-            <div id="tripNameDisplay" style="text-align: center; margin: 0 auto 1.5rem auto; background: #f0fdf4; padding: 14px; border-radius: 8px; border: 1.5px dashed #22c55e; max-width: 420px; display: none;">
-                <!-- Filled via JS -->
-            </div>
+            <div id="tripNameDisplay" style="text-align: center; margin: 0 auto 1.5rem auto; background: #f0fdf4; padding: 14px; border-radius: 8px; border: 1.5px dashed #22c55e; max-width: 420px; display: none;"></div>
 
             <div id="legendContainer" class="legend" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-dark, #333); font-family: 'Poppins', sans-serif;">
                 <div style="display: flex; align-items: center; gap: 8px;">
@@ -553,9 +515,7 @@
                 </div>
             </div>
 
-            <div id="vehicleMapSeats" style="border: 3px solid #e5e7eb; border-radius: 20px 20px 8px 8px; padding: 25px 20px; background: #fdfaf0; display: flex; flex-direction: column; max-width: 380px; margin: 0 auto; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
-                <!-- Generated via JavaScript -->
-            </div>
+            <div id="vehicleMapSeats" style="border: 3px solid #e5e7eb; border-radius: 20px 20px 8px 8px; padding: 25px 20px; background: #fdfaf0; display: flex; flex-direction: column; max-width: 380px; margin: 0 auto; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);"></div>
             
             <p id="seatFooterNote" style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1.5rem;">
                 *Seat availability is updated live. Mention your preferred seat numbers in the inquiry form below.
@@ -674,7 +634,7 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <!-- INTERACTIVE JAVASCRIPT LOGIC & ANIMATIONS -->
     <script>
         // MOBILE MENU NAVIGATION
         document.addEventListener('DOMContentLoaded', () => {
@@ -711,7 +671,7 @@
             onScroll();
         });
 
-        // ROTATING SCROLL ANIMATIONS (Assigns different animations sequentially)
+        // ALTERNATING TOP-TO-BOTTOM & BOTTOM-TO-TOP SCROLL ANIMATIONS
         document.addEventListener('DOMContentLoaded', () => {
             const targets = document.querySelectorAll(
                 '.section-title, .section-subtitle, .tour-card, .info-panel, .team-card, .timeline-item, .highlight-tags, .contact-form'
@@ -720,7 +680,7 @@
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (reduceMotion || !('IntersectionObserver' in window)) return;
 
-            const animClasses = ['anim-fade-up', 'anim-scale-in', 'anim-slide-right', 'anim-slide-left', 'anim-rotate-in'];
+            const animClasses = ['scroll-down-anim', 'scroll-up-anim', 'scroll-scale-anim'];
 
             targets.forEach((el, index) => {
                 const chosenAnim = animClasses[index % animClasses.length];
@@ -739,7 +699,7 @@
 
             document.querySelectorAll('.tours-grid, .team-grid, .timeline').forEach(group => {
                 Array.from(group.children).forEach((child, i) => {
-                    child.dataset.revealDelay = Math.min(i * 70, 280) + 'ms';
+                    child.dataset.revealDelay = Math.min(i * 80, 320) + 'ms';
                 });
             });
 
@@ -888,13 +848,13 @@
                 coaster: { 
                     map: [
                         ['S', '_', '_', 'D'],
-                        ['S', 'J', 'S', 'S'],
+                        ['F', 'J', 'S', 'S'],
                         ['_', 'J', 'S', 'S'],
                         ['S', 'J', 'S', 'S'],
                         ['S', 'J', 'S', 'S'],
                         ['S', 'J', 'S', 'S'],
                         ['S', 'J', 'S', 'S'],
-                        ['S', 'S', 'S', 'S']
+                        ['F', 'F', 'F', 'F']
                     ] 
                 },
                 cabin: { 
@@ -915,7 +875,6 @@
             const legendContainer = document.getElementById('legendContainer');
             const seatFooterNote = document.getElementById('seatFooterNote');
             
-            // Front-facing Executive Seat SVG Template
             function getSeatSVG(text, cssClass) {
                 if (cssClass.includes('empty')) {
                     return `<div class="seat-wrapper empty"></div>`;
@@ -959,7 +918,7 @@
                     console.warn("Live API unavailable. Using fallback preview data.", error);
                     const fallbackData = {
                         coaster: { tripName: "Naran Kaghan Expedition", seats: ["3", "4", "7", "8"] },
-                        cabin: { tripName: "", seats: [] } // Triggers "No trip scheduled" state
+                        cabin: { tripName: "", seats: [] }
                     };
                     if (fallbackData[type]) {
                         bookedSeats = fallbackData[type].seats;
@@ -969,7 +928,6 @@
 
                 bookedSeats = bookedSeats.map(String);
 
-                // PROFESSIONAL NO-TRIP STATUS & CONDITIONAL HIDING LOGIC
                 if (tripNameText.trim() !== "") {
                     tripNameDisplay.innerHTML = `📍 Active Itinerary:<br><span style="font-size:1.2rem; font-weight:700; color:#166534;">${tripNameText}</span>`;
                     tripNameDisplay.style.borderColor = '#22c55e';
