@@ -291,6 +291,12 @@ header.scrolled {
     align-items: start;
 }
 
+/* Centered Grid modifier for Payment & Cancellation boxes */
+.grid-layout.centered-grid {
+    justify-content: center;
+    justify-items: center;
+}
+
 .info-panel, .tour-card, .team-card {
     background: var(--bg-card);
     border-radius: 16px;
@@ -302,6 +308,7 @@ header.scrolled {
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
+    max-width: 480px;
     box-sizing: border-box;
 }
 
@@ -326,10 +333,15 @@ header.scrolled {
     border-top: 4px solid var(--accent);
 }
 
+.red-edge {
+    border-top: 4px solid #ef4444;
+}
+
 /* Tour Cards */
 .tour-card {
     padding: 0;
     overflow: hidden;
+    max-width: 100%;
 }
 
 .tour-img {
@@ -350,6 +362,7 @@ header.scrolled {
 .team-card {
     text-align: center;
     align-items: center;
+    max-width: 100%;
 }
 
 .team-img-wrapper {
