@@ -449,8 +449,9 @@ header.scrolled .logo {
 
 /* --- 8. FEATURE PANELS & WHY US --- */
 .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
 }
 
@@ -462,6 +463,8 @@ header.scrolled .logo {
     position: relative;
     overflow: hidden;
     border: 1px solid var(--border);
+    flex: 1 1 280px;
+    max-width: 360px;
     transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 
@@ -501,8 +504,9 @@ header.scrolled .logo {
 
 /* --- 9. FEATURED TOURS (CARDS) --- */
 .tours-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2.6rem;
 }
 
@@ -515,6 +519,8 @@ header.scrolled .logo {
     position: relative;
     display: flex;
     flex-direction: column;
+    flex: 1 1 320px;
+    max-width: 380px;
     transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
 }
 
@@ -587,6 +593,7 @@ header.scrolled .logo {
 .grid-layout > .info-panel {
     flex: 1;
     min-width: 320px;
+    max-width: none;
 }
 
 .rate-list {
@@ -1002,8 +1009,9 @@ textarea.form-input {
 }
 
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2.6rem;
     text-align: center;
 }
@@ -1013,6 +1021,8 @@ textarea.form-input {
     border-radius: var(--radius-xl);
     background: linear-gradient(180deg, #ffffff, #fafcfa);
     border: 1px solid var(--border);
+    flex: 1 1 280px;
+    max-width: 360px;
     transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 
