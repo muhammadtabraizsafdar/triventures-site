@@ -42,6 +42,18 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
 
+/* Standard Section Spacing (Added more breathing room) */
+section:not(.hero) {
+    padding: 7rem 1.5rem !important;
+    margin: 0 !important;
+}
+
+@media (min-width: 768px) {
+    section:not(.hero) {
+        padding: 9rem 2.5rem !important;
+    }
+}
+
 /* ==========================================================================
    Navigation Header & Stylish Logo
    ========================================================================== */
@@ -146,7 +158,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Hero Section
+   Hero Section (Optimized for Mobile Viewports)
    ========================================================================== */
 .hero {
     position: relative;
@@ -157,7 +169,7 @@ header.scrolled {
     text-align: center;
     background: linear-gradient(rgba(15, 45, 44, 0.6), rgba(15, 45, 44, 0.7)), 
                 url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-    padding: 0 1.5rem;
+    padding: 6rem 1.5rem 4rem 1.5rem;
     color: #ffffff;
 }
 
@@ -167,16 +179,17 @@ header.scrolled {
 }
 
 .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    font-size: clamp(1.8rem, 6vw, 4.2rem);
     color: #ffffff;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     line-height: 1.2;
 }
 
 .hero p {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(0.9rem, 2.5vw, 1.25rem);
     color: #e5e7eb;
-    margin-bottom: 2rem;
+    margin-bottom: 1.8rem;
+    padding: 0 0.5rem;
 }
 
 /* ==========================================================================
@@ -222,7 +235,7 @@ header.scrolled {
 
 /* Section Titles */
 .section-title {
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
     text-align: center;
     margin-bottom: 0.5rem;
 }
@@ -230,9 +243,9 @@ header.scrolled {
 .section-subtitle {
     text-align: center;
     color: var(--text-muted);
-    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
     max-width: 650px;
-    margin: 0 auto 2.5rem auto;
+    margin: 0 auto 3rem auto;
 }
 
 /* ==========================================================================
@@ -258,7 +271,6 @@ header.scrolled {
     max-width: 380px;
 }
 
-/* Automatically centers the 4th/wrapped box nicely on desktop screens */
 .feature-grid .info-panel:nth-last-child(1):nth-child(odd) {
     margin-left: auto;
     margin-right: auto;
@@ -359,7 +371,7 @@ header.scrolled {
    Cost Estimator & Rate Lists
    ========================================================================== */
 .rates-section {
-    padding-bottom: 1.5rem !important;
+    padding-bottom: 2rem !important;
 }
 
 .rates-section .grid-layout {
@@ -593,13 +605,13 @@ header.scrolled {
 }
 
 #live-seats {
-    padding-top: 1rem !important;
+    padding-top: 2rem !important;
 }
 
 .form-section {
     background: var(--primary);
     color: #ffffff;
-    padding: 5rem 1rem;
+    padding: 7rem 1.5rem;
 }
 
 .form-container {
@@ -699,7 +711,7 @@ header.scrolled {
 footer {
     background: var(--primary-dark);
     color: #9ca3af;
-    padding: 4rem 1rem 2rem 1rem;
+    padding: 5rem 1.5rem 3rem 1.5rem;
     text-align: center;
 }
 
