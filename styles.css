@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Tri Ventures Official - Perfectly Adjusted Responsive Stylesheet
+   Tri Ventures Official - Complete Responsive Stylesheet
    ========================================================================== */
 
 :root {
@@ -217,7 +217,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Cards, Panels & Grids (Fixed Desktop & Mobile Stretch Issues)
+   Cards, Panels & Grids
    ========================================================================== */
 .container {
     width: 100%;
@@ -318,10 +318,27 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Cost Estimator & Rate Lists (Perfect Text Alignment)
+   Cost Estimator & Rate Lists (Optimized Layout & Text Alignment)
    ========================================================================== */
 .rates-section {
-    padding-bottom: 2rem !important;
+    padding-bottom: 1.5rem !important;
+}
+
+.rates-section .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.rates-section .info-panel {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .rate-list {
@@ -335,16 +352,22 @@ header.scrolled {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0;
+    padding: 0.6rem 0;
     border-bottom: 1px solid var(--border-color);
-    font-size: 0.95rem;
-    gap: 1rem;
+    font-size: 0.9rem;
+    gap: 0.5rem;
+    word-break: break-word;
 }
 
 .rate-list li span {
     font-weight: 600;
     color: var(--accent);
     white-space: nowrap;
+}
+
+.rates-section form {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .form-label {
@@ -358,15 +381,21 @@ header.scrolled {
 .form-input {
     width: 100%;
     max-width: 100%;
-    padding: 0.85rem 1rem;
+    padding: 0.75rem 0.9rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     background-color: #f9fafb;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     transition: var(--transition);
     box-sizing: border-box;
+}
+
+.rates-section select.form-input {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .form-input:focus {
@@ -523,10 +552,6 @@ header.scrolled {
     margin: 0.2rem 0;
     font-size: 0.85rem;
     color: var(--text-muted);
-}
-
-#rates-calculator {
-    padding-bottom: 1.5rem !important;
 }
 
 #live-seats {
