@@ -104,7 +104,8 @@ header.scrolled {
 }
 
 .logo .logo-ventures {
-    font-weight: 600;
+    font-style: italic;
+    font-weight: 900;
     color: #f3f4f6;
 }
 
