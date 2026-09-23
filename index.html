@@ -28,6 +28,39 @@
 
     <!-- Modern Layout Enhancements & Alternating Top-to-Bottom / Bottom-to-Top Animations -->
     <style>
+        :root {
+            --primary: #0f2d2c;
+            --accent: #22c55e;
+            --text-dark: #1f2937;
+            --text-muted: #4b5563;
+            --bg-page: #fdfaf0;
+            --border-color: #e5e7eb;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--accent);
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease-out;
+        }
+
         section:not(.hero) {
             padding: 5rem 1rem !important;
             margin: 0 !important;
@@ -58,44 +91,40 @@
             margin-right: auto;
         }
 
-        .info-panel { flex: 1 1 300px; max-width: 370px; }
-        .tour-card { flex: 1 1 320px; max-width: 380px; }
-        .team-card { flex: 1 1 280px; max-width: 360px; }
+        .info-panel { flex: 1 1 300px; max-width: 370px; box-sizing: border-box; }
+        .tour-card { flex: 1 1 320px; max-width: 380px; box-sizing: border-box; }
+        .team-card { flex: 1 1 280px; max-width: 360px; box-sizing: border-box; }
 
         .grid-layout > .info-panel {
             flex: 1 1 350px;
             max-width: none;
         }
 
-        /* --- REFINED SCROLL ANIMATIONS (Top-Down & Bottom-Up) --- */
-        .scroll-down-anim {
+        /* --- BI-DIRECTIONAL SCROLL ANIMATIONS --- */
+        .scroll-down-anim, .scroll-up-anim, .scroll-scale-anim {
             opacity: 0;
-            transform: translateY(-50px);
+            will-change: opacity, transform;
             transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .scroll-down-anim.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        .scroll-down-anim {
+            transform: translateY(-50px);
         }
 
         .scroll-up-anim {
-            opacity: 0;
             transform: translateY(60px);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .scroll-up-anim.is-visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .scroll-scale-anim {
-            opacity: 0;
             transform: scale(0.94);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
+        /* Triggered states (works on scroll down and scroll up via IntersectionObserver) */
+        .scroll-down-anim.is-visible,
+        .scroll-up-anim.is-visible,
         .scroll-scale-anim.is-visible {
             opacity: 1;
-            transform: scale(1);
+            transform: translateY(0) scale(1);
         }
 
         /* --- EXECUTIVE SEAT STYLES --- */
@@ -482,10 +511,10 @@
 
     <!-- Live Seat Availability Section -->
     <section id="live-seats" class="container">
-        <h2 class="section-title reveal">Live Seat Availability</h2>
-        <p class="section-subtitle reveal">Check real-time seating for our premium fleet before submitting your inquiry.</p>
+        <h2 class="section-title">Live Seat Availability</h2>
+        <p class="section-subtitle">Check real-time seating for our premium fleet before submitting your inquiry.</p>
 
-        <div class="info-panel reveal" style="max-width: 600px; margin: 0 auto; padding: 2rem;">
+        <div class="info-panel" style="max-width: 600px; margin: 0 auto; padding: 2rem;">
             
             <div class="controls" style="margin-bottom: 1.5rem;">
                 <label class="form-label" for="vehicleSelectSeats" style="text-align: center; display: block;">Select Vehicle to View</label>
@@ -671,7 +700,7 @@
             onScroll();
         });
 
-        // ALTERNATING TOP-TO-BOTTOM & BOTTOM-TO-TOP SCROLL ANIMATIONS
+        // BI-DIRECTIONAL SCROLL ANIMATIONS (TOP-DOWN & BOTTOM-UP)
         document.addEventListener('DOMContentLoaded', () => {
             const targets = document.querySelectorAll(
                 '.section-title, .section-subtitle, .tour-card, .info-panel, .team-card, .timeline-item, .highlight-tags, .contact-form'
@@ -692,14 +721,16 @@
                     if (entry.isIntersecting) {
                         entry.target.style.transitionDelay = (entry.target.dataset.revealDelay || '0ms');
                         entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
+                    } else {
+                        // Allows re-triggering animation when scrolling back up or down
+                        entry.target.classList.remove('is-visible');
                     }
                 });
-            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
             document.querySelectorAll('.tours-grid, .team-grid, .timeline').forEach(group => {
                 Array.from(group.children).forEach((child, i) => {
-                    child.dataset.revealDelay = Math.min(i * 80, 320) + 'ms';
+                    child.dataset.revealDelay = Math.min(i * 60, 240) + 'ms';
                 });
             });
 
