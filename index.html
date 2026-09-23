@@ -24,7 +24,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- External Luxury Design CSS -->
-    <link rel="stylesheet" href="styles.css?v=2.5">
+    <link rel="stylesheet" href="styles.css?v=2.6">
 
     <!-- Modern Layout Enhancements & Bi-Directional Scroll Animations -->
     <style>
@@ -80,7 +80,7 @@
     <!-- Header Navigation -->
     <header>
         <div class="container nav-container">
-            <a href="#home" class="logo"><span class="logo-tri">Tri</span> <span class="logo-ventures">Ventures</span><span>Official</span></a>
+            <a href="#home" class="logo"><span class="logo-tri-ventures">Tri Ventures</span><span>Official</span></a>
             <div class="menu-toggle" id="mobile-menu" aria-label="Toggle Navigation Menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -473,7 +473,7 @@
         </div>
     </section>
 
-    <!-- Custom Trip Planning Form (With Oval Shaped Boxes) -->
+    <!-- Custom Trip Planning Form (With Aligned Oval Shaped Boxes) -->
     <section id="plan-trip" class="form-section">
         <div class="container form-container">
             <h2 style="font-size: 2.8rem;">Plan Your Custom Trip</h2>
@@ -485,27 +485,27 @@
                 <input type="hidden" name="from_name" value="Tri Ventures Website Lead">
 
                 <div class="form-grid">
-                    <div>
+                    <div class="form-group-item">
                         <label class="form-label" for="name">Full Name</label>
                         <input class="form-input" type="text" id="name" name="name" required placeholder="e.g. Ali Ahmed">
                     </div>
-                    <div>
+                    <div class="form-group-item">
                         <label class="form-label" for="email">Email Address</label>
                         <input class="form-input" type="email" id="email" name="email" required placeholder="ali@example.com">
                     </div>
-                    <div>
+                    <div class="form-group-item">
                         <label class="form-label" for="phone">Phone / WhatsApp Number</label>
                         <input class="form-input" type="tel" id="phone" name="phone" required placeholder="+92 300 1234567">
                     </div>
-                    <div>
+                    <div class="form-group-item">
                         <label class="form-label" for="destination">Destination</label>
                         <input class="form-input" type="text" id="destination" name="destination" required placeholder="e.g. Naran Kaghan or Hunza">
                     </div>
-                    <div>
+                    <div class="form-group-item">
                         <label class="form-label" for="duration">Duration (Days)</label>
                         <input class="form-input" type="number" id="duration" name="duration" min="1" required placeholder="3">
                     </div>
-                    <div>
+                    <div class="form-group-item">
                         <label class="form-label" for="budget">Package Category</label>
                         <select class="form-input" id="budget" name="budget">
                             <option value="economy" style="color: #333;">Economy / Budget-Friendly</option>
@@ -513,17 +513,17 @@
                             <option value="luxury" style="color: #333;">Luxury / Executive VIP</option>
                         </select>
                     </div>
-                    <div>
+                    <div class="form-group-item msg-group">
                         <label class="form-label" for="travelers">Number of Travelers</label>
                         <input class="form-input" type="number" id="travelers" name="travelers" min="1" value="2" required>
                     </div>
-                    <div class="msg-group">
+                    <div class="form-group-item msg-group">
                         <label class="form-label" for="notes">Special Requirements / Notes</label>
                         <textarea class="form-input" id="notes" name="notes" rows="3" placeholder="Specify preferred dates, vehicle choices, preferred seat numbers, or hotel requirements..."></textarea>
                     </div>
                 </div>
                 
-                <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">
                     <span>Submit Inquiry</span>
                 </button>
 
