@@ -10,16 +10,19 @@ const defaultData = {
   cabin: { tripName: "", seats: [] }
 };
 
+const ADMIN_USER = "triventuresofficial7";
+const ADMIN_PASS = "#TriVentures007";
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-admin-username, x-admin-password');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  // GET: Fetch current seat reservations
+  // GET: Publicly accessible to read seat availability
   if (req.method === 'GET') {
     try {
       const data = await redis.get('seat_database');
@@ -29,8 +32,15 @@ export default async function handler(req, res) {
     }
   }
 
-  // POST: Save updated seat reservations
+  // POST: Protected — checks username and password
   if (req.method === 'POST') {
+    const user = req.headers['x-admin-username'];
+    const pass = req.headers['x-admin-password'];
+
+    if (user !== ADMIN_USER || pass !== ADMIN_PASS) {
+      return res.status(401).json({ status: 'error', message: 'Unauthorized: Invalid username or password' });
+    }
+
     try {
       const payload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
       await redis.set('seat_database', payload);
