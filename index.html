@@ -23,8 +23,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- External Luxury Design CSS -->
-    <link rel="stylesheet" href="styles.css?v=2.7">
+    <!-- External Luxury Design CSS (Cache-busted to v2.8) -->
+    <link rel="stylesheet" href="styles.css?v=2.8">
 
     <!-- Modern Layout Enhancements & Bi-Directional Scroll Animations -->
     <style>
@@ -639,50 +639,33 @@
             onScroll();
         });
 
-        // SCROLL REVEAL ANIMATIONS (OPTIMIZED FOR MOBILE & DESKTOP)
+        // FAIL-SAFE MOBILE & DESKTOP SCROLL REVEAL
         document.addEventListener('DOMContentLoaded', () => {
             const targets = document.querySelectorAll(
                 '.section-title, .section-subtitle, .tour-card, .info-panel, .team-card, .timeline-item, .highlight-tags, .contact-form'
             );
+
+            const animClasses = ['scroll-down-anim', 'scroll-up-anim', 'scroll-scale-anim'];
+
+            targets.forEach((el, index) => {
+                el.classList.add(animClasses[index % animClasses.length]);
+            });
 
             if (!('IntersectionObserver' in window)) {
                 targets.forEach(el => el.classList.add('is-visible'));
                 return;
             }
 
-            const animClasses = ['scroll-down-anim', 'scroll-up-anim', 'scroll-scale-anim'];
-
-            targets.forEach((el, index) => {
-                const chosenAnim = animClasses[index % animClasses.length];
-                el.classList.add(chosenAnim);
-            });
-
-            const isMobile = window.innerWidth <= 768;
-
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.transitionDelay = (entry.target.dataset.revealDelay || '0ms');
                         entry.target.classList.add('is-visible');
-                        
-                        if (isMobile) {
-                            obs.unobserve(entry.target);
-                        }
-                    } else {
-                        if (!isMobile) {
-                            entry.target.classList.remove('is-visible');
-                        }
+                        obs.unobserve(entry.target);
                     }
                 });
             }, { 
-                threshold: isMobile ? 0.02 : 0.08, 
-                rootMargin: isMobile ? '0px 0px 40px 0px' : '0px 0px -30px 0px' 
-            });
-
-            document.querySelectorAll('.tours-grid, .team-grid, .timeline').forEach(group => {
-                Array.from(group.children).forEach((child, i) => {
-                    child.dataset.revealDelay = isMobile ? '0ms' : (Math.min(i * 60, 240) + 'ms');
-                });
+                threshold: 0.05,
+                rootMargin: '0px 0px -20px 0px'
             });
 
             targets.forEach(el => observer.observe(el));
