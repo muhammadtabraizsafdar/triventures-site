@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owner Dashboard</title>
+<style>
+  :root { --available: #ffffff; --booked: #fef2f2; --selected: #f0fdf4; --text-dark: #333; --text-light: #fff; --jump-seat: #f8fafc; }
+  body { font-family: system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px; background-color: #f4f4f9; }
+  .admin-header { background: #333; color: white; padding: 15px 30px; border-radius: 8px; width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+  .admin-header h1 { margin: 0; font-size: 1.2rem; }
+  .controls select, .controls input { padding: 8px; border-radius: 5px; border: 1px solid #ccc; font-family: inherit; }
+  .trip-name-group { width: 100%; margin-top: 10px; display: flex; flex-direction: column; gap: 5px; }
+  .booking-container { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 500px; width: 100%; }
+  .actions { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
+  button { padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: opacity 0.2s; }
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-save { background: #2196F3; color: white; }
+  .btn-clear { background: #ef4444; color: white; }
+  .legend { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; font-size: 14px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  
+  /* Legend Boxes matching seat shape */
+  .box { width: 22px; height: 26px; border-radius: 3px 3px 8px 8px; border: 1px solid #cbd5e1; border-top: 6px solid #94a3b8; }
+  .box.avail { background: #a3d9a5; border-color: #81c784; border-top-color: #66bb6a; }
+  .box.fixed { background: #e2e8f0; border-color: #cbd5e1; border-top-color: #94a3b8; }
+  .box.book { background: #fef2f2; border-color: #ef4444; border-top-color: #dc2626; }
+  .box.sel { background: #f0fdf4; border-color: #22c55e; border-top-color: #166534; }
+
+  .vehicle { border: 3px solid #e5e7eb; border-radius: 20px 20px 8px 8px; padding: 25px 20px; background: #fdfaf0; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); }
+  .row { display: flex; justify-content: space-between; gap: 10px; }
+  
+  /* Standard Seat (Green - Reclining) */
+  .seat { 
+      width: 45px; height: 52px; background: #a3d9a5; 
+      border: 2px solid #81c784; border-top: 12px solid #66bb6a; 
+      border-radius: 6px 6px 16px 16px; display: flex; align-items: center; 
+      justify-content: center; font-weight: bold; cursor: pointer; color: #145214;
+      box-shadow: 0 3px 5px rgba(0,0,0,0.06); transition: all 0.1s ease;
+  }
+  
+  /* Fixed / Grey Seats (Non-Reclining) */
+  .seat.fixed { background: #e2e8f0; border-color: #cbd5e1; border-top-color: #94a3b8; color: #475569; }
+  
+  /* Jump Seats (Grey and smaller) */
+  .seat.jump { background: #e2e8f0; border-color: #cbd5e1; border-top-color: #94a3b8; color: #475569; width: 35px; height: 42px; border-top-width: 8px; border-radius: 4px 4px 12px 12px; align-self: center; font-size: 13px; }
+  
+  .seat.driver { background: #f1f5f9; border-color: #cbd5e1; border-top-color: #64748b; color: #64748b; cursor: not-allowed; }
+  .seat.empty { background: transparent; border: none; box-shadow: none; pointer-events: none; }
+  
+  .seat:not(.driver):not(.empty):hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+  
+  /* Admin Marking Status */
+  .seat.selected { background: var(--selected); border-color: #22c55e; border-top-color: #166534; color: #166534; }
+  .seat.booked { background: var(--booked); border-color: #ef4444; border-top-color: #dc2626; color: #991b1b; }
+</style>
+</head>
+<body>
+
+<div class="admin-header">
+  <h1>Owner Dashboard</h1>
+  <div class="controls">
+    <select id="vehicleSelect">
+      <option value="coaster">Toyota Coaster</option>
+      <option value="cabin">Grand Cabin</option>
+    </select>
+  </div>
+  <div class="trip-name-group">
+      <label for="tripNameInput" style="font-size: 0.9rem;">Current Trip Name / Destination:</label>
+      <input type="text" id="tripNameInput" placeholder="e.g., Swat Valley Tour (25 Aug - 28 Aug)">
+  </div>
+</div>
+
+<div class="booking-container">
+  <div class="legend">
+    <div class="legend-item"><div class="box avail"></div> Available</div>
+    <div class="legend-item"><div class="box fixed"></div> Jump/Fixed</div>
+    <div class="legend-item"><div class="box book"></div> Booked</div>
+  </div>
+  <div class="vehicle" id="vehicleMap"></div>
+  <div class="actions">
+    <button class="btn-clear" id="clearBtn">Clear Trip</button>
+    <button class="btn-save" id="saveBtn">Save to Server</button>
+  </div>
+</div>
+
+<script>
+  const API_URL = '/api/booking';
+
+  const layouts = {
+    coaster: { 
+        map: [
+            ['S', '_', '_', 'D'],
+            ['F', 'J', 'S', 'S'],
+            ['_', 'J', 'S', 'S'],
+            ['S', 'J', 'S', 'S'],
+            ['S', 'J', 'S', 'S'],
+            ['S', 'J', 'S', 'S'],
+            ['S', 'J', 'S', 'S'],
+            ['F', 'F', 'F', 'F']
+        ] 
+    },
+    cabin: { 
+        map: [
+            ['S', '_', '_', 'D'],
+            ['S', 'S', 'S', 'S'],
+            ['S', 'J', 'S', 'S'],
+            ['S', 'J', 'S', 'S'],
+            ['S', 'S', 'S', 'S']
+        ] 
+    }
+  };
+
+  const vehicleSelect = document.getElementById('vehicleSelect');
+  const tripNameInput = document.getElementById('tripNameInput');
+  const vehicleMap = document.getElementById('vehicleMap');
+  const saveBtn = document.getElementById('saveBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  
+  let currentVehicle = 'coaster';
+  let serverData = { coaster: { tripName: "", seats: [] }, cabin: { tripName: "", seats: [] } };
+
+  async function loadAdminData(type) {
+    currentVehicle = type;
+    try {
+      const response = await fetch(API_URL);
+      if (!response.ok) throw new Error('Network response failed');
+      const rawData = await response.json();
+      
+      // Support legacy array format or object structure
+      if (Array.isArray(rawData[type])) {
+          serverData[type] = { tripName: "", seats: rawData[type] };
+      } else {
+          serverData[type] = rawData[type] || { tripName: "", seats: [] };
+      }
+      
+      tripNameInput.value = serverData[type].tripName || "";
+      renderVehicle(type, serverData[type].seats || []);
+
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      renderVehicle(type, []);
+    }
+  }
+
+  function renderVehicle(type, bookedSeats) {
+    const config = layouts[type];
+    vehicleMap.innerHTML = ''; 
+    let seatNumber = 1;
+
+    config.map.forEach(rowData => {
+      const rowDiv = document.createElement('div');
+      rowDiv.className = 'row';
+
+      rowData.forEach(cell => {
+        const seatDiv = document.createElement('div');
+        
+        if (cell === '_') {
+          seatDiv.className = 'seat empty';
+        } else if (cell === 'D') {
+          seatDiv.className = 'seat driver'; 
+          seatDiv.textContent = 'D';
+        } else {
+          let seatClass = 'seat';
+          if (cell === 'J') seatClass += ' jump';
+          if (cell === 'F') seatClass += ' fixed';
+          
+          seatDiv.className = seatClass;
+          seatDiv.textContent = seatNumber;
+          seatDiv.dataset.seatId = seatNumber;
+          
+          if (bookedSeats.includes(seatNumber.toString())) {
+            seatDiv.classList.add('booked');
+          }
+
+          seatDiv.addEventListener('click', function() {
+            if (this.classList.contains('booked')) {
+              this.classList.remove('booked');
+            } else if (this.classList.contains('selected')) {
+              this.classList.remove('selected');
+              this.classList.add('booked');
+            } else {
+              this.classList.add('selected');
+            }
+          });
+          seatNumber++;
+        }
+        rowDiv.appendChild(seatDiv);
+      });
+      vehicleMap.appendChild(rowDiv);
+    });
+  }
+
+  saveBtn.addEventListener('click', async () => {
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving...';
+
+    const seatsToSave = [];
+    document.querySelectorAll('.seat:not(.empty):not(.driver)').forEach(seat => {
+      if (seat.classList.contains('selected') || seat.classList.contains('booked')) {
+        seatsToSave.push(seat.dataset.seatId);
+        seat.classList.remove('selected');
+        seat.classList.add('booked');
+      }
+    });
+
+    serverData[currentVehicle] = {
+        tripName: tripNameInput.value.trim(),
+        seats: seatsToSave
+    };
+
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(serverData)
+      });
+      
+      if (!response.ok) throw new Error('Save failed');
+      alert(`Saved! The trip name and seats are now live.`);
+    } catch (error) {
+      console.error(error);
+      alert("Error saving data. Please check connection.");
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Save to Server';
+    }
+  });
+
+  clearBtn.addEventListener('click', () => {
+    if (confirm("Clear all bookings and trip name for this vehicle?")) {
+      tripNameInput.value = "";
+      
+      document.querySelectorAll('.seat').forEach(seat => {
+        seat.classList.remove('booked', 'selected');
+      });
+
+      saveBtn.click();
+    }
+  });
+
+  vehicleSelect.addEventListener('change', (e) => loadAdminData(e.target.value));
+  loadAdminData('coaster');
+</script>
+</body>
+</html>
