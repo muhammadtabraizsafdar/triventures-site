@@ -23,8 +23,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- External Luxury Design CSS (Cache-busted to v2.8) -->
-    <link rel="stylesheet" href="styles.css?v=2.8">
+    <!-- External Luxury Design CSS -->
+    <link rel="stylesheet" href="styles.css?v=2.9">
 
     <!-- Modern Layout Enhancements & Bi-Directional Scroll Animations -->
     <style>
@@ -57,13 +57,15 @@
         .seat-trim { fill: #e5e7eb; stroke: #a1a1aa; stroke-width: 2.5; transition: all 0.3s ease; }
         .seat-text { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; fill: #374151; pointer-events: none; }
 
-        .seat-wrapper.booked .seat-bg { fill: #ef4444; stroke: #b91c1c; }
-        .seat-wrapper.booked .seat-trim { fill: #fca5a5; stroke: #b91c1c; }
-        .seat-wrapper.booked .seat-text { fill: #ffffff; }
-
+        /* Base colors for Fixed & Jump Seats */
         .seat-wrapper.fixed .seat-bg, .seat-wrapper.jump .seat-bg { fill: #f3f4f6; stroke: #d1d5db; }
         .seat-wrapper.fixed .seat-trim, .seat-wrapper.jump .seat-trim { fill: #e5e7eb; stroke: #d1d5db; }
         .seat-wrapper.fixed .seat-text, .seat-wrapper.jump .seat-text { fill: #9ca3af; }
+
+        /* Booked colors MUST override standard, fixed, and jump seat base colors */
+        .seat-wrapper.booked .seat-bg { fill: #ef4444 !important; stroke: #b91c1c !important; }
+        .seat-wrapper.booked .seat-trim { fill: #fca5a5 !important; stroke: #b91c1c !important; }
+        .seat-wrapper.booked .seat-text { fill: #ffffff !important; }
 
         .seat-wrapper.driver .seat-bg { fill: #f3f4f6; stroke: #9ca3af; stroke-dasharray: 4; }
         .seat-wrapper.driver .seat-trim { fill: #e5e7eb; stroke: #9ca3af; }
@@ -813,22 +815,22 @@
                 coaster: { 
                     map: [
                         ['S', '_', '_', 'D'],
-                        ['S', 'F', 'S', 'S'],
-                        ['_', 'F', 'S', 'S'],
-                        ['S', 'F', 'S', 'S'],
-                        ['S', 'F', 'S', 'S'],
-                        ['S', 'F', 'S', 'S'],
-                        ['S', 'F', 'S', 'S'],
-                        ['S', 'S', 'S', 'S']
+                        ['F', 'J', 'S', 'S'],
+                        ['_', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['F', 'F', 'F', 'F']
                     ] 
                 },
                 cabin: { 
                     map: [
                         ['S', '_', '_', 'D'],
                         ['S', 'S', 'S', 'S'],
-                        ['S', 'F', 'S', 'S'],
-                        ['S', 'F', 'S', 'S'],
-                        ['S', 's', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['S', 'J', 'S', 'S'],
+                        ['S', 'S', 'S', 'S']
                     ] 
                 }
             };
