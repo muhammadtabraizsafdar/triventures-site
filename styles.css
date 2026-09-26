@@ -33,7 +33,7 @@ body {
     color: var(--text-dark);
     background-color: var(--bg-page);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
 
-/* Uniform Section Spacing (4rem top and bottom for desktop & mobile) */
+/* Uniform Section Spacing */
 section:not(.hero) {
     padding: 4rem 1.5rem !important;
     margin: 0 !important;
@@ -57,7 +57,7 @@ section:not(.hero) {
 }
 
 /* ==========================================================================
-   Navigation Header & Stylish Logo
+   Navigation Header & Logo
    ========================================================================== */
 header {
     position: fixed;
@@ -191,7 +191,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Buttons with 3D Glassmorphism & Glowing Click Animation
+   Buttons with 3D Glassmorphism
    ========================================================================== */
 .btn {
     position: relative;
@@ -592,7 +592,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   Payment Cards & Oval-Shaped Plan Trip Form Inputs (Perfectly Aligned Grid)
+   Payment Cards & Form Inputs
    ========================================================================== */
 .payment-card {
     background: #f9fafb;
@@ -661,7 +661,6 @@ header.scrolled {
     font-weight: 500;
 }
 
-/* Oval Shaped Boxes for Plan Your Trip Form Inputs */
 .form-section .form-input {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.2);

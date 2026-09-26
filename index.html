@@ -24,19 +24,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- External Luxury Design CSS -->
-    <link rel="stylesheet" href="styles.css?v=2.6">
+    <link rel="stylesheet" href="styles.css?v=2.7">
 
     <!-- Modern Layout Enhancements & Bi-Directional Scroll Animations -->
     <style>
         .scroll-down-anim, .scroll-up-anim, .scroll-scale-anim {
             opacity: 0;
             will-change: opacity, transform;
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .scroll-down-anim { transform: translateY(-50px); }
-        .scroll-up-anim { transform: translateY(60px); }
-        .scroll-scale-anim { transform: scale(0.94); }
+        .scroll-down-anim { transform: translateY(-30px); }
+        .scroll-up-anim { transform: translateY(35px); }
+        .scroll-scale-anim { transform: scale(0.96); }
 
         .scroll-down-anim.is-visible,
         .scroll-up-anim.is-visible,
@@ -367,7 +367,6 @@
 
         <!-- Package Inclusions & Terms -->
         <div class="grid-layout" style="margin-top: 3rem;">
-            <!-- Included / Excluded -->
             <div class="info-panel" style="grid-column: 1 / -1;">
                 <h3 style="text-align: center;">Package Details</h3>
                 <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
@@ -398,7 +397,6 @@
 
         <!-- Payment Methods & Cancellation Policy Grid -->
         <div class="grid-layout centered-grid" style="margin-top: 3rem;">
-            <!-- Payment Methods -->
             <div class="info-panel green-edge">
                 <h3>Payment Methods</h3>
                 <div class="payment-card">
@@ -414,7 +412,6 @@
                 </div>
             </div>
 
-            <!-- Cancellation Policy -->
             <div class="info-panel red-edge">
                 <h3>Cancellation Policy</h3>
                 <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: var(--text-muted);">
@@ -473,7 +470,7 @@
         </div>
     </section>
 
-    <!-- Custom Trip Planning Form (With Aligned Oval Shaped Boxes) -->
+    <!-- Custom Trip Planning Form -->
     <section id="plan-trip" class="form-section">
         <div class="container form-container">
             <h2 style="font-size: 2.8rem;">Plan Your Custom Trip</h2>
@@ -586,15 +583,15 @@
 
     <!-- INTERACTIVE JAVASCRIPT LOGIC, ANIMATIONS & DYNAMIC THEME ROTATOR -->
     <script>
-        // RANDOM COLOR THEME ROTATOR (Changes look on every reload/visit)
+        // RANDOM COLOR THEME ROTATOR
         document.addEventListener('DOMContentLoaded', () => {
             const themes = [
-                { primary: '#0f2d2c', primaryDark: '#091c1b', accent: '#22c55e', accentHover: '#16a34a', bgPage: '#fdfaf0' }, // Forest Teal (Default)
-                { primary: '#1e1b4b', primaryDark: '#0f172a', accent: '#6366f1', accentHover: '#4f46e5', bgPage: '#f8fafc' }, // Royal Indigo
-                { primary: '#14532d', primaryDark: '#052e16', accent: '#10b981', accentHover: '#059669', bgPage: '#f0fdf4' }, // Emerald Pine
-                { primary: '#701a75', primaryDark: '#4a044e', accent: '#ec4899', accentHover: '#db2777', bgPage: '#fdf4f8' }, // Luxury Berry
-                { primary: '#1e3a8a', primaryDark: '#1e1b4b', accent: '#3b82f6', accentHover: '#2563eb', bgPage: '#eff6ff' }, // Alpine Blue
-                { primary: '#78350f', primaryDark: '#451a03', accent: '#f59e0b', accentHover: '#d97706', bgPage: '#fffbeb' }  // Amber Bronze
+                { primary: '#0f2d2c', primaryDark: '#091c1b', accent: '#22c55e', accentHover: '#16a34a', bgPage: '#fdfaf0' },
+                { primary: '#1e1b4b', primaryDark: '#0f172a', accent: '#6366f1', accentHover: '#4f46e5', bgPage: '#f8fafc' },
+                { primary: '#14532d', primaryDark: '#052e16', accent: '#10b981', accentHover: '#059669', bgPage: '#f0fdf4' },
+                { primary: '#701a75', primaryDark: '#4a044e', accent: '#ec4899', accentHover: '#db2777', bgPage: '#fdf4f8' },
+                { primary: '#1e3a8a', primaryDark: '#1e1b4b', accent: '#3b82f6', accentHover: '#2563eb', bgPage: '#eff6ff' },
+                { primary: '#78350f', primaryDark: '#451a03', accent: '#f59e0b', accentHover: '#d97706', bgPage: '#fffbeb' }
             ];
 
             const randomTheme = themes[Math.floor(Math.random() * themes.length)];
@@ -642,14 +639,16 @@
             onScroll();
         });
 
-        // BI-DIRECTIONAL SCROLL ANIMATIONS
+        // SCROLL REVEAL ANIMATIONS (OPTIMIZED FOR MOBILE & DESKTOP)
         document.addEventListener('DOMContentLoaded', () => {
             const targets = document.querySelectorAll(
                 '.section-title, .section-subtitle, .tour-card, .info-panel, .team-card, .timeline-item, .highlight-tags, .contact-form'
             );
 
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (reduceMotion || !('IntersectionObserver' in window)) return;
+            if (!('IntersectionObserver' in window)) {
+                targets.forEach(el => el.classList.add('is-visible'));
+                return;
+            }
 
             const animClasses = ['scroll-down-anim', 'scroll-up-anim', 'scroll-scale-anim'];
 
@@ -658,20 +657,31 @@
                 el.classList.add(chosenAnim);
             });
 
-            const observer = new IntersectionObserver((entries) => {
+            const isMobile = window.innerWidth <= 768;
+
+            const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.style.transitionDelay = (entry.target.dataset.revealDelay || '0ms');
                         entry.target.classList.add('is-visible');
+                        
+                        if (isMobile) {
+                            obs.unobserve(entry.target);
+                        }
                     } else {
-                        entry.target.classList.remove('is-visible');
+                        if (!isMobile) {
+                            entry.target.classList.remove('is-visible');
+                        }
                     }
                 });
-            }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+            }, { 
+                threshold: isMobile ? 0.02 : 0.08, 
+                rootMargin: isMobile ? '0px 0px 40px 0px' : '0px 0px -30px 0px' 
+            });
 
             document.querySelectorAll('.tours-grid, .team-grid, .timeline').forEach(group => {
                 Array.from(group.children).forEach((child, i) => {
-                    child.dataset.revealDelay = Math.min(i * 60, 240) + 'ms';
+                    child.dataset.revealDelay = isMobile ? '0ms' : (Math.min(i * 60, 240) + 'ms');
                 });
             });
 
@@ -820,12 +830,12 @@
                 coaster: { 
                     map: [
                         ['S', '_', '_', 'D'],
-                        ['S', 'J', 'S', 'S'],
-                        ['_', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
+                        ['S', 'S', 'S', 'S'],
+                        ['_', 'S', 'S', 'S'],
+                        ['S', 'S', 'S', 'S'],
+                        ['S', 'S', 'S', 'S'],
+                        ['S', 'S', 'S', 'S'],
+                        ['S', 'S', 'S', 'S'],
                         ['S', 'S', 'S', 'S']
                     ] 
                 },
@@ -833,9 +843,9 @@
                     map: [
                         ['S', '_', '_', 'D'],
                         ['S', 'S', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
+                        ['S', 'S', 'S', 'S'],
+                        ['S', 'S', 'S', 'S'],
+                        ['S', 'S', 'S', 'S'],
                         ['S', 'S', 'S', 'S']
                     ] 
                 }
