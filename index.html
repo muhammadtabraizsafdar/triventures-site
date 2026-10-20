@@ -21,13 +21,31 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- External Luxury Design CSS -->
     <link rel="stylesheet" href="styles.css?v=2.9">
 
-    <!-- Modern Layout Enhancements & Bi-Directional Scroll Animations -->
+    <!-- Modern Layout Enhancements, Animations & Typography Rules -->
     <style>
+        body, h1, h2, h3, h4, h5, h6, .logo, .section-title {
+            font-family: 'Playfair Display', serif !important;
+        }
+
+        .logo-tri-ventures {
+            font-family: 'Playfair Display', italic, serif !important;
+            font-style: italic !important;
+            font-weight: 700;
+        }
+
+        h1, h2, h3, .section-title {
+            font-style: italic !important;
+            letter-spacing: -1px;
+        }
+
         .scroll-down-anim, .scroll-up-anim, .scroll-scale-anim {
             opacity: 0;
             will-change: opacity, transform;
@@ -57,12 +75,10 @@
         .seat-trim { fill: #e5e7eb; stroke: #a1a1aa; stroke-width: 2.5; transition: all 0.3s ease; }
         .seat-text { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; fill: #374151; pointer-events: none; }
 
-        /* Base colors for Fixed & Jump Seats */
         .seat-wrapper.fixed .seat-bg, .seat-wrapper.jump .seat-bg { fill: #f3f4f6; stroke: #d1d5db; }
         .seat-wrapper.fixed .seat-trim, .seat-wrapper.jump .seat-trim { fill: #e5e7eb; stroke: #d1d5db; }
         .seat-wrapper.fixed .seat-text, .seat-wrapper.jump .seat-text { fill: #9ca3af; }
 
-        /* Booked colors MUST override standard, fixed, and jump seat base colors */
         .seat-wrapper.booked .seat-bg { fill: #ef4444 !important; stroke: #b91c1c !important; }
         .seat-wrapper.booked .seat-trim { fill: #fca5a5 !important; stroke: #b91c1c !important; }
         .seat-wrapper.booked .seat-text { fill: #ffffff !important; }
@@ -72,6 +88,26 @@
         .seat-wrapper.driver .seat-text { fill: #9ca3af; }
 
         #tripNameDisplay { transition: opacity 0.3s ease; }
+
+        /* Cinematic Hero Video Wrapper Adjustments */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .hero-video-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
@@ -82,7 +118,7 @@
     <!-- Header Navigation -->
     <header>
         <div class="container nav-container">
-            <a href="#home" class="logo"><span class="logo-tri-ventures">Tri Ventures</span><span>Official</span></a>
+            <a href="#home" class="logo"><span class="logo-tri-ventures" style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Tri Ventures</span><span>Official</span></a>
             <div class="menu-toggle" id="mobile-menu" aria-label="Toggle Navigation Menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -101,11 +137,14 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Cinematic Background Video -->
     <section id="home" class="hero">
+        <video autoplay muted loop playsinline preload="auto" class="hero-video-bg">
+            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4" type="video/mp4">
+        </video>
         <div class="hero-content">
-            <h1>Craft Your Perfect Journey</h1>
-            <p>Don't just travel. Experience customized tours tailored uniquely to your style, budget, and pace across Northern Pakistan.</p>
+            <h1 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Craft Your Perfect Journey</h1>
+            <p style="font-family: 'Barlow', sans-serif !important;">Don't just travel. Experience customized tours tailored uniquely to your style, budget, and pace across Northern Pakistan.</p>
             <a href="#plan-trip" class="btn btn-primary">Start Planning</a>
         </div>
         <span class="hero-scroll-cue" aria-hidden="true"></span>
@@ -113,24 +152,24 @@
 
     <!-- Why Choose Us -->
     <section id="why-us" class="why-us-section container">
-        <h2 class="section-title">Why Choose Tri Ventures</h2>
+        <h2 class="section-title" style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Why Choose Tri Ventures</h2>
         <p class="section-subtitle">We don't just plan trips; we craft unforgettable experiences grounded in trust and excellence.</p>
         
         <div class="feature-grid">
             <div class="info-panel green-edge">
-                <h3>🎯 Tailored Itineraries</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">🎯 Tailored Itineraries</h3>
                 <p>Your journey, your rules. We meticulously customize every detail to match your budget, pace, and personal preferences perfectly.</p>
             </div>
             <div class="info-panel">
-                <h3>🚙 Premium Fleet</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">🚙 Premium Fleet</h3>
                 <p>Travel safely and in style. We provide well-maintained, comfortable, and fully air-conditioned vehicles suited for mountainous terrains.</p>
             </div>
             <div class="info-panel green-edge">
-                <h3>👨‍🦯 Expert Local Guides</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">👨‍🦯 Expert Local Guides</h3>
                 <p>Experience destinations like a local. Our professional guides possess deep knowledge of hidden gems, history, and valley cultures.</p>
             </div>
             <div class="info-panel">
-                <h3>💎 Transparent Pricing</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">💎 Transparent Pricing</h3>
                 <p>No hidden costs or last-minute surprises. What you see in our explicit inclusions is exactly what you get, fostering 100% trust.</p>
             </div>
         </div>
@@ -138,13 +177,13 @@
 
     <!-- Featured Tours -->
     <section id="tours" class="tours-section container">
-        <h2 class="section-title">Popular Experiences</h2>
+        <h2 class="section-title" style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Popular Experiences</h2>
         <p class="section-subtitle">Discover our most requested signature Northern Pakistan getaways.</p>
         <div class="tours-grid">
             <div class="tour-card">
                 <div class="tour-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="tour-info">
-                    <h3>Coastal Escape</h3>
+                    <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Coastal Escape</h3>
                     <p><strong>Coming Soon!</strong> We are crafting an exclusive, premium beach itinerary for our travelers. Stay tuned!</p>
                     <span class="btn btn-secondary" style="opacity: 0.5; cursor: not-allowed; border-color: #999; color: #999;">Coming Soon</span>
                 </div>
@@ -152,7 +191,7 @@
             <div class="tour-card">
                 <div class="tour-img" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="tour-info">
-                    <h3>Mountain Expedition</h3>
+                    <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Mountain Expedition</h3>
                     <p>For thrill-seekers. Custom trekking routes, guides, and premium mountain stays in Hunza & Skardu.</p>
                     <a href="#plan-trip" class="btn btn-secondary">Inquire Now</a>
                 </div>
@@ -160,7 +199,7 @@
             <div class="tour-card">
                 <div class="tour-img" style="background-image: url('https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="tour-info">
-                    <h3>Cultural & Heritage Journey</h3>
+                    <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Cultural & Heritage Journey</h3>
                     <p>Immerse yourself in history, local cuisines, and deeply personalized historic valley tours in Swat & Kaghan.</p>
                     <a href="#plan-trip" class="btn btn-secondary">Inquire Now</a>
                 </div>
@@ -170,13 +209,13 @@
 
     <!-- Trip Details & Cost Estimator -->
     <section id="rates-calculator" class="rates-section container">
-        <h2 class="section-title">Cost Estimator</h2>
+        <h2 class="section-title" style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Cost Estimator</h2>
         <p class="section-subtitle">Calculate real-time base costs for private couple, family, and group trips.</p>
 
         <div class="grid-layout">
             <!-- Base Rates -->
             <div class="info-panel green-edge">
-                <h3>Standard Base Rates</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Standard Base Rates</h3>
                 <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Per person, per day (includes transport & standard stay):</p>
                 <ul class="rate-list">
                     <li><strong>Swat Valley:</strong> <span>PKR 6,000</span></li>
@@ -191,7 +230,7 @@
 
             <!-- Interactive Smart Calculator -->
             <div class="info-panel">
-                <h3>Calculate Your Trip</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Calculate Your Trip</h3>
                 <form id="costCalculator" onsubmit="calculateCost(event)">
                     <label class="form-label" for="calc-destination">Destination</label>
                     <select class="form-input" id="calc-destination">
@@ -238,7 +277,7 @@
 
         <!-- Dynamic Destination Tabs -->
         <div class="tab-container" style="margin-top: 3.5rem;">
-            <h2 class="section-title">Explore Itineraries</h2>
+            <h2 class="section-title" style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Explore Itineraries</h2>
             <p class="section-subtitle">Select a destination to view highlights and detailed day-by-day plans.</p>
             
             <div class="location-tabs">
@@ -262,9 +301,9 @@
                     <span class="highlight-tag">✨ Balakot</span>
                 </div>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Travel to Naran</h4><ul><li>Departure & Breakfast at Balakot / Kiwai</li><li>Transfer to 4x4 Jeeps for Shogran & Siri Paya</li><li>Dinner & night stay in Naran</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4>Babusar Top Expedition</h4><ul><li>Off to Babusar Top with short stays at Lulusar Lake</li><li>Reach Babusar Top & spend leisure time</li><li>Back to Naran for Bonfire & Dinner</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">3</div><div class="timeline-content"><h4>Saif-ul-Mulook & Return</h4><ul><li>Jeep ride to Saif-ul-Mulook Lake</li><li>Departure for home with short stopovers</li><li>Safe arrival and end of services</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Travel to Naran</h4><ul><li>Departure & Breakfast at Balakot / Kiwai</li><li>Transfer to 4x4 Jeeps for Shogran & Siri Paya</li><li>Dinner & night stay in Naran</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Babusar Top Expedition</h4><ul><li>Off to Babusar Top with short stays at Lulusar Lake</li><li>Reach Babusar Top & spend leisure time</li><li>Back to Naran for Bonfire & Dinner</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">3</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Saif-ul-Mulook & Return</h4><ul><li>Jeep ride to Saif-ul-Mulook Lake</li><li>Departure for home with short stopovers</li><li>Safe arrival and end of services</li></ul></div></div>
                 </div>
             </div>
 
@@ -279,9 +318,9 @@
                     <span class="highlight-tag">🌲 Ushu Forest</span>
                 </div>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Journey to Swat Valley</h4><ul><li>Departure and scenic drive via Swat Motorway</li><li>Stopover at Fizagat & Mingora</li><li>Arrival in Bahrain/Kalam for Dinner & Stay</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4>Mahodand Lake & Ushu Forest</h4><ul><li>Breakfast and transfer to 4x4 Jeeps</li><li>Explore the majestic Ushu Forest</li><li>Sightseeing at Mahodand Lake (Boating optional)</li><li>Return to Kalam for Bonfire</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">3</div><div class="timeline-content"><h4>Malam Jabba Ski Resort & Return</h4><ul><li>Travel to Malam Jabba Ski Resort</li><li>Enjoy Chairlift & Zipline activities</li><li>Safe journey back home</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Journey to Swat Valley</h4><ul><li>Departure and scenic drive via Swat Motorway</li><li>Stopover at Fizagat & Mingora</li><li>Arrival in Bahrain/Kalam for Dinner & Stay</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Mahodand Lake & Ushu Forest</h4><ul><li>Breakfast and transfer to 4x4 Jeeps</li><li>Explore the majestic Ushu Forest</li><li>Sightseeing at Mahodand Lake (Boating optional)</li><li>Return to Kalam for Bonfire</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">3</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Malam Jabba Ski Resort & Return</h4><ul><li>Travel to Malam Jabba Ski Resort</li><li>Enjoy Chairlift & Zipline activities</li><li>Safe journey back home</li></ul></div></div>
                 </div>
             </div>
 
@@ -296,11 +335,11 @@
                     <span class="highlight-tag">🛣️ Khunjerab Pass</span>
                 </div>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Travel to Midway Stop</h4><ul><li>Departure towards North via Hazara Motorway & KKH</li><li>Overnight stay midway (Chilas or Naran)</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4>Enter Majestic Hunza</h4><ul><li>Drive along the scenic Karakoram Highway</li><li>Stop at Rakaposhi View Point for photography</li><li>Arrival in Karimabad, Hunza for overnight stay</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">3</div><div class="timeline-content"><h4>Forts & Local Culture</h4><ul><li>Visit historical Altit and Baltit Forts</li><li>Explore Karimabad local market</li><li>Sunset at Eagle's Nest (Duikar)</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">4</div><div class="timeline-content"><h4>Attabad Lake & Passu Cones</h4><ul><li>Drive through Pakistan-China Friendship Tunnels</li><li>Boating at the turquoise Attabad Lake</li><li>Sightseeing at Passu Cones & Hussaini Bridge</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">5</div><div class="timeline-content"><h4>Return Journey</h4><ul><li>Early morning breakfast and departure back home</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Travel to Midway Stop</h4><ul><li>Departure towards North via Hazara Motorway & KKH</li><li>Overnight stay midway (Chilas or Naran)</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Enter Majestic Hunza</h4><ul><li>Drive along the scenic Karakoram Highway</li><li>Stop at Rakaposhi View Point for photography</li><li>Arrival in Karimabad, Hunza for overnight stay</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">3</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Forts & Local Culture</h4><ul><li>Visit historical Altit and Baltit Forts</li><li>Explore Karimabad local market</li><li>Sunset at Eagle's Nest (Duikar)</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">4</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Attabad Lake & Passu Cones</h4><ul><li>Drive through Pakistan-China Friendship Tunnels</li><li>Boating at the turquoise Attabad Lake</li><li>Sightseeing at Passu Cones & Hussaini Bridge</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">5</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Return Journey</h4><ul><li>Early morning breakfast and departure back home</li></ul></div></div>
                 </div>
             </div>
 
@@ -315,11 +354,11 @@
                     <span class="highlight-tag">🏜️ Katpana Desert</span>
                 </div>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Midway Stopover</h4><ul><li>Departure for Skardu via Karakoram Highway</li><li>Night stay at Chilas / Jaglot</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4>Arrival in Skardu & Lakes</h4><ul><li>Scenic drive along the Indus River</li><li>Visit iconic Shangrila Resort & Lower Kachura</li><li>Boating at Upper Kachura Lake</li><li>Night stay in Skardu</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">3</div><div class="timeline-content"><h4>The Roof of the World</h4><ul><li>4x4 Jeep Safari to Deosai National Park</li><li>Visit Sadpara Lake and Sheosar Lake</li><li>Explore Katpana Cold Desert during sunset</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">4</div><div class="timeline-content"><h4>Shigar Valley</h4><ul><li>Visit the centuries-old Shigar Fort</li><li>Explore Mantokha Waterfall</li><li>Night stay and local shopping in Skardu Bazaar</li></ul></div></div>
-                    <div class="timeline-item"><div class="timeline-badge">5</div><div class="timeline-content"><h4>Safe Return Journey</h4><ul><li>Commence the journey back home</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Midway Stopover</h4><ul><li>Departure for Skardu via Karakoram Highway</li><li>Night stay at Chilas / Jaglot</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">2</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Arrival in Skardu & Lakes</h4><ul><li>Scenic drive along the Indus River</li><li>Visit iconic Shangrila Resort & Lower Kachura</li><li>Boating at Upper Kachura Lake</li><li>Night stay in Skardu</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">3</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">The Roof of the World</h4><ul><li>4x4 Jeep Safari to Deosai National Park</li><li>Visit Sadpara Lake and Sheosar Lake</li><li>Explore Katpana Cold Desert during sunset</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">4</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Shigar Valley</h4><ul><li>Visit the centuries-old Shigar Fort</li><li>Explore Mantokha Waterfall</li><li>Night stay and local shopping in Skardu Bazaar</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">5</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Safe Return Journey</h4><ul><li>Commence the journey back home</li></ul></div></div>
                 </div>
             </div>
 
@@ -334,7 +373,7 @@
                     <span class="highlight-tag">🍽️ Lakeside Dining</span>
                 </div>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Action-Packed Day Trip</h4><ul><li>Early morning departure to Khanpur Dam</li><li>Arrival at Mabali Island resort area</li><li>Engage in water sports (Boating, Jet Ski, Cliff Jumping)</li><li>Relax with Archery and Zip-lining</li><li>Enjoy lakeside lunch & evening departure back home</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Action-Packed Day Trip</h4><ul><li>Early morning departure to Khanpur Dam</li><li>Arrival at Mabali Island resort area</li><li>Engage in water sports (Boating, Jet Ski, Cliff Jumping)</li><li>Relax with Archery and Zip-lining</li><li>Enjoy lakeside lunch & evening departure back home</li></ul></div></div>
                 </div>
             </div>
 
@@ -348,7 +387,7 @@
                     <span class="highlight-tag">🥾 Scenic Hiking Trail</span>
                 </div>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>Hiking Adventure</h4><ul><li>Morning departure towards Dunga Gali</li><li>Start the 3-hour scenic hike through lush pine forests</li><li>Reach the breathtaking Mushkpuri Top (2800m)</li><li>Photography and relaxation at the summit</li><li>Hike down, enjoy snacks in Nathia Gali & return</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Hiking Adventure</h4><ul><li>Morning departure towards Dunga Gali</li><li>Start the 3-hour scenic hike through lush pine forests</li><li>Reach the breathtaking Mushkpuri Top (2800m)</li><li>Photography and relaxation at the summit</li><li>Hike down, enjoy snacks in Nathia Gali & return</li></ul></div></div>
                 </div>
             </div>
 
@@ -362,7 +401,7 @@
                     <span class="highlight-tag">🚗 Mountain Drive</span>
                 </div>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4>The Coolest Peak</h4><ul><li>Morning departure via Hazara Motorway</li><li>Scenic uphill drive to Thandiani peak</li><li>Sightseeing, photography, and tea at the top</li><li>Stop at Harno River & famous Ilyasi Mosque pakoras</li><li>Safe travel back home in the evening</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-badge">1</div><div class="timeline-content"><h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">The Coolest Peak</h4><ul><li>Morning departure via Hazara Motorway</li><li>Scenic uphill drive to Thandiani peak</li><li>Sightseeing, photography, and tea at the top</li><li>Stop at Harno River & famous Ilyasi Mosque pakoras</li><li>Safe travel back home in the evening</li></ul></div></div>
                 </div>
             </div>
         </div>
@@ -370,10 +409,10 @@
         <!-- Package Inclusions & Terms -->
         <div class="grid-layout" style="margin-top: 3rem;">
             <div class="info-panel" style="grid-column: 1 / -1;">
-                <h3 style="text-align: center;">Package Details</h3>
+                <h3 style="text-align: center; font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Package Details</h3>
                 <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
                     <div style="flex: 1; min-width: 280px; background: #f0fdf4; padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--accent);">
-                        <h4 style="color: var(--primary); margin-bottom: 1rem;">✅ What's Included</h4>
+                        <h4 style="color: var(--primary); margin-bottom: 1rem; font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">✅ What's Included</h4>
                         <ul style="list-style: none; padding: 0;">
                             <li style="margin-bottom: 8px;">✦ Air Conditioned Vehicle & Fuel</li>
                             <li style="margin-bottom: 8px;">✦ All Highway Tolls, Taxes & Driver Allowance</li>
@@ -384,7 +423,7 @@
                         </ul>
                     </div>
                     <div style="flex: 1; min-width: 280px; background: #fef2f2; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ef4444;">
-                        <h4 style="color: #991b1b; margin-bottom: 1rem;">❌ Not Included</h4>
+                        <h4 style="color: #991b1b; margin-bottom: 1rem; font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">❌ Not Included</h4>
                         <ul style="list-style: none; padding: 0;">
                             <li style="margin-bottom: 8px;">✦ Fort / National Park / Boating Entry Tickets</li>
                             <li style="margin-bottom: 8px;">✦ Off-road 4x4 Jeep Charges (Unless stated)</li>
@@ -400,22 +439,22 @@
         <!-- Payment Methods & Cancellation Policy Grid -->
         <div class="grid-layout centered-grid" style="margin-top: 3rem;">
             <div class="info-panel green-edge">
-                <h3>Payment Methods</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Payment Methods</h3>
                 <div class="payment-card">
-                    <h4>🏛️ United Bank Limited</h4>
+                    <h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">🏛️ United Bank Limited</h4>
                     <p>Title: <strong>Shahzaib Shahid</strong></p>
                     <p>A/C: <strong>1302333094279</strong></p>
                     <p>IBAN: <strong>PK35UNIL0109000333094279</strong></p>
                 </div>
                 <div class="payment-card">
-                    <h4>📱 JazzCash</h4>
+                    <h4 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">📱 JazzCash</h4>
                     <p>Title: <strong>Shahzaib Shahid</strong></p>
                     <p>No: <strong>0322 7134860</strong></p>
                 </div>
             </div>
 
             <div class="info-panel red-edge">
-                <h3>Cancellation Policy</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Cancellation Policy</h3>
                 <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: var(--text-muted);">
                     <li style="margin-bottom: 10px;">✦ <strong>5+ Days Before:</strong> 0% Cancellation Fee</li>
                     <li style="margin-bottom: 10px;">✦ <strong>3-4 Days Before:</strong> 20% Cancellation Fee</li>
@@ -431,7 +470,7 @@
 
     <!-- Live Seat Availability Section -->
     <section id="live-seats" class="container">
-        <h2 class="section-title">Live Seat Availability</h2>
+        <h2 class="section-title" style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Live Seat Availability</h2>
         <p class="section-subtitle">Check real-time seating for our premium fleet before submitting your inquiry.</p>
 
         <div class="info-panel" style="max-width: 600px; margin: 0 auto; padding: 2rem;">
@@ -475,7 +514,7 @@
     <!-- Custom Trip Planning Form -->
     <section id="plan-trip" class="form-section">
         <div class="container form-container">
-            <h2 style="font-size: 2.8rem;">Plan Your Custom Trip</h2>
+            <h2 style="font-size: 2.8rem; font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Plan Your Custom Trip</h2>
             <p>Tell us your travel vision, and our specialists will formulate an optimized, transparent itinerary for you.</p>
             
             <form class="contact-form" id="inquiryForm">
@@ -533,14 +572,14 @@
 
     <!-- Team Section -->
     <section id="team" class="team-section container">
-        <h2 class="section-title">Meet Our Team</h2>
+        <h2 class="section-title" style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Meet Our Team</h2>
         <p class="section-subtitle">Our dedicated travel organizers ensure your trip is seamless, safe, and memorable.</p>
         <div class="team-grid">
             <div class="team-card">
                 <div class="team-img-wrapper">
                     <img src="Team%20Member%201.jpeg?v=1.2" alt="Rana Shahzaib Rajput" class="team-img" id="member1-img" style="object-fit: cover; object-position: center 23%;">
                 </div>
-                <h3>Rana Shahzaib Rajput</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Rana Shahzaib Rajput</h3>
                 <p>Lead Tour Organizer</p>
                 <div style="color: var(--text-muted); font-size: 0.9rem;">Spearheading bespoke tourism and luxury expeditions across Pakistan.</div>
             </div>
@@ -548,7 +587,7 @@
                 <div class="team-img-wrapper">
                     <img src="Team%20Member%202.jpeg" alt="Malik Umar Awan" class="team-img" id="member2-img">
                 </div>
-                <h3>Malik Umar Awan</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Malik Umar Awan</h3>
                 <p>Lead Travel Specialist</p>
                 <div style="color: var(--text-muted); font-size: 0.9rem;">Specialist in high-altitude itinerary curation and logistics.</div>
             </div>
@@ -556,7 +595,7 @@
                 <div class="team-img-wrapper">
                     <img src="Team%20Member%203.jpeg" alt="Malik Arslan Bari" class="team-img" id="member3-img">
                 </div>
-                <h3>Malik Arslan Bari</h3>
+                <h3 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Malik Arslan Bari</h3>
                 <p>Operations Manager</p>
                 <div style="color: var(--text-muted); font-size: 0.9rem;">Ensures flawless ground execution, hotel management, and client safety.</div>
             </div>
