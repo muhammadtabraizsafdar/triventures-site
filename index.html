@@ -138,14 +138,14 @@
     </header>
 
     <!-- Hero Section with Cinematic Background Video -->
-    <section id="home" class="hero">
-        <video autoplay muted loop playsinline preload="auto" class="hero-video-bg">
+    <section id="home" class="hero" style="position: relative; overflow: hidden; background-color: #000; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; padding: 2rem 1rem;">
+        <video autoplay muted loop playsinline webkit-playsinline x5-playsinline preload="auto" class="hero-video-bg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none;">
             <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4" type="video/mp4">
         </video>
-        <div class="hero-content">
-            <h1 style="font-family: 'Playfair Display', italic, serif !important; font-style: italic !important;">Craft Your Perfect Journey</h1>
-            <p style="font-family: 'Barlow', sans-serif !important;">Don't just travel. Experience customized tours tailored uniquely to your style, budget, and pace across Northern Pakistan.</p>
-            <a href="#plan-trip" class="btn btn-primary">Start Planning</a>
+        <div class="hero-content" style="position: relative; z-index: 10; max-width: 800px; margin: 0 auto;">
+            <h1 style="font-family: 'Playfair Display', serif !important; font-style: italic !important; font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px;">Craft Your Perfect Journey</h1>
+            <p style="font-family: 'Barlow', 'Poppins', sans-serif !important; font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 2rem; color: rgba(255,255,255,0.9);">Don't just travel. Experience customized tours tailored uniquely to your style, budget, and pace across Northern Pakistan.</p>
+            <a href="#plan-trip" class="btn btn-primary" style="display: inline-block; padding: 0.8rem 2rem; background: var(--accent, #22c55e); color: #fff; border-radius: 50px; text-decoration: none; font-weight: 600;">Start Planning</a>
         </div>
         <span class="hero-scroll-cue" aria-hidden="true"></span>
     </section>
