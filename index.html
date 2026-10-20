@@ -251,13 +251,6 @@
                 <button class="tab-btn" onclick="openLocation('thandiani', event)">Thandiani (1 Day)</button>
             </div>
 
-            <!-- Trip Duration Slider Element restored as seen in PNG -->
-            <div class="trip-duration-slider-wrapper" style="max-width: 400px; margin: 1.5rem auto 2.5rem auto; text-align: center;">
-                <label for="tripDurationSlider" style="font-size: 0.9rem; font-weight: 600; color: var(--text-dark); display: block; margin-bottom: 8px;">Trip Duration</label>
-                <input type="range" id="tripDurationSlider" min="1" max="10" value="3" style="width: 100%; accent-color: var(--accent); cursor: pointer;" oninput="document.getElementById('sliderValueDisplay').innerText = this.value + ' Days'">
-                <span id="sliderValueDisplay" style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-top: 4px;">3 Days</span>
-            </div>
-
             <!-- Tab: Naran -->
             <div id="naran" class="location-content active">
                 <div class="highlight-tags">
@@ -377,10 +370,10 @@
         <!-- Package Inclusions & Terms -->
         <div class="grid-layout" style="margin-top: 3rem;">
             <div class="info-panel" style="grid-column: 1 / -1;">
-                <h3 style="text-align: center;">Inclusions</h3>
+                <h3 style="text-align: center;">Package Details</h3>
                 <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
                     <div style="flex: 1; min-width: 280px; background: #f0fdf4; padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--accent);">
-                        <h4 style="color: var(--primary); margin-bottom: 1rem;">✅ What's included</h4>
+                        <h4 style="color: var(--primary); margin-bottom: 1rem;">✅ What's Included</h4>
                         <ul style="list-style: none; padding: 0;">
                             <li style="margin-bottom: 8px;">✦ Air Conditioned Vehicle & Fuel</li>
                             <li style="margin-bottom: 8px;">✦ All Highway Tolls, Taxes & Driver Allowance</li>
@@ -391,7 +384,7 @@
                         </ul>
                     </div>
                     <div style="flex: 1; min-width: 280px; background: #fef2f2; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ef4444;">
-                        <h4 style="color: #991b1b; margin-bottom: 1rem;">❌ What's NOT included</h4>
+                        <h4 style="color: #991b1b; margin-bottom: 1rem;">❌ Not Included</h4>
                         <ul style="list-style: none; padding: 0;">
                             <li style="margin-bottom: 8px;">✦ Fort / National Park / Boating Entry Tickets</li>
                             <li style="margin-bottom: 8px;">✦ Off-road 4x4 Jeep Charges (Unless stated)</li>
