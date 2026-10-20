@@ -26,6 +26,9 @@
     <!-- External Luxury Design CSS -->
     <link rel="stylesheet" href="styles.css?v=2.9">
 
+    <!-- Three.js for Mobile 3D Hero Simulation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <!-- Modern Layout Enhancements & Bi-Directional Scroll Animations -->
     <style>
         .scroll-down-anim, .scroll-up-anim, .scroll-scale-anim {
@@ -43,6 +46,32 @@
         .scroll-scale-anim.is-visible {
             opacity: 1;
             transform: translateY(0) scale(1);
+        }
+
+        /* --- THREE.JS MOBILE HERO CANVAS --- */
+        #mobile-hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: none; /* Shown only on mobile view via media query */
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            #mobile-hero-canvas {
+                display: block;
+            }
+            .hero {
+                background: linear-gradient(rgba(15, 45, 44, 0.65), rgba(9, 28, 27, 0.75)) !important;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         /* --- EXECUTIVE SEAT STYLES --- */
@@ -103,6 +132,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <canvas id="mobile-hero-canvas"></canvas>
         <div class="hero-content">
             <h1>Craft Your Perfect Journey</h1>
             <p>Don't just travel. Experience customized tours tailored uniquely to your style, budget, and pace across Northern Pakistan.</p>
@@ -583,8 +613,76 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT LOGIC, ANIMATIONS & DYNAMIC THEME ROTATOR -->
+    <!-- INTERACTIVE JAVASCRIPT LOGIC, ANIMATIONS & MOBILE 3D HERO RENDERER -->
     <script>
+        // MOBILE 3D HERO BACKGROUND INITIALIZATION (Three.js)
+        window.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('mobile-hero-canvas');
+            if (!canvas) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Create floating low-poly mountain peak particles & glowing terrain rings
+            const particleCount = 120;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 60;
+                positions[i + 1] = (Math.random() - 0.5) * 40;
+                positions[i + 2] = (Math.random() - 0.5) * 40;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const material = new THREE.PointsMaterial({
+                color: 0x22c55e,
+                size: 0.8,
+                transparent: true,
+                opacity: 0.7
+            });
+
+            const particleSystem = new THREE.Points(geometry, material);
+            scene.add(particleSystem);
+
+            // Add rotating wireframe mountain wire
+            const mountainGeometry = new THREE.ConeGeometry(12, 16, 6, 4);
+            const mountainMaterial = new THREE.MeshBasicMaterial({
+                color: 0x22c55e,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.25
+            });
+            const mountainMesh = new THREE.Mesh(mountainGeometry, mountainMaterial);
+            mountainMesh.position.set(0, -5, -10);
+            scene.add(mountainMesh);
+
+            // Animation Loop
+            let clock = new THREE.Clock();
+            function animateHero() {
+                requestAnimationFrame(animateHero);
+                const elapsedTime = clock.getElapsedTime();
+
+                particleSystem.rotation.y = elapsedTime * 0.05;
+                mountainMesh.rotation.y = elapsedTime * 0.1;
+
+                renderer.render(scene, camera);
+            }
+            animateHero();
+
+            // Responsive Resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        });
+
         // RANDOM COLOR THEME ROTATOR
         document.addEventListener('DOMContentLoaded', () => {
             const themes = [
