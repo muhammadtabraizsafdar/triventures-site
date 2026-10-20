@@ -21,12 +21,12 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- External Luxury Design CSS -->
     <link rel="stylesheet" href="styles.css?v=2.9">
 
-    <!-- Modern Layout Enhancements & Bi-Directional Scroll Animations -->
+    <!-- Modern Layout Enhancements, Animations & Mobile Video Hero Styling -->
     <style>
         .scroll-down-anim, .scroll-up-anim, .scroll-scale-anim {
             opacity: 0;
@@ -45,6 +45,39 @@
             transform: translateY(0) scale(1);
         }
 
+        /* --- DESKTOP VS MOBILE HERO VIDEO SWITCHER --- */
+        .mobile-hero-video {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            /* Make hero section relative & full height for background video layer */
+            section.hero {
+                position: relative;
+                overflow: hidden;
+                background: #091c1b !important;
+            }
+            /* Hide desktop static background image on mobile */
+            section.hero::before {
+                display: none !important;
+            }
+            .mobile-hero-video {
+                display: block;
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: 0;
+                pointer-events: none;
+            }
+            /* Ensure content sits cleanly above the video */
+            .hero-content {
+                position: relative;
+                z-index: 10;
+            }
+        }
+
         /* --- EXECUTIVE SEAT STYLES --- */
         .seat-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
         .seat-wrapper { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.2s ease; }
@@ -57,12 +90,10 @@
         .seat-trim { fill: #e5e7eb; stroke: #a1a1aa; stroke-width: 2.5; transition: all 0.3s ease; }
         .seat-text { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; fill: #374151; pointer-events: none; }
 
-        /* Base colors for Fixed & Jump Seats */
         .seat-wrapper.fixed .seat-bg, .seat-wrapper.jump .seat-bg { fill: #f3f4f6; stroke: #d1d5db; }
         .seat-wrapper.fixed .seat-trim, .seat-wrapper.jump .seat-trim { fill: #e5e7eb; stroke: #d1d5db; }
         .seat-wrapper.fixed .seat-text, .seat-wrapper.jump .seat-text { fill: #9ca3af; }
 
-        /* Booked colors MUST override standard, fixed, and jump seat base colors */
         .seat-wrapper.booked .seat-bg { fill: #ef4444 !important; stroke: #b91c1c !important; }
         .seat-wrapper.booked .seat-trim { fill: #fca5a5 !important; stroke: #b91c1c !important; }
         .seat-wrapper.booked .seat-text { fill: #ffffff !important; }
@@ -101,8 +132,13 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (Desktop: Original Image/Theme | Mobile: Cinematic Loop Video Background) -->
     <section id="home" class="hero">
+        <!-- Fullscreen Looping Video Background (Visible on Mobile Viewports Only) -->
+        <video class="mobile-hero-video" autoplay loop muted playsinline>
+            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4">
+        </video>
+
         <div class="hero-content">
             <h1>Craft Your Perfect Journey</h1>
             <p>Don't just travel. Experience customized tours tailored uniquely to your style, budget, and pace across Northern Pakistan.</p>
