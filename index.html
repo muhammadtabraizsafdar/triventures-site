@@ -1,151 +1,485 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tri Ventures Official | Customized Tours & Premium Northern Pakistan Trips</title>
-    
-    <!-- Meta Description & SEO -->
-    <meta name="description" content="Experience customized luxury & standard tours across Swat, Naran Kaghan, Hunza, and Skardu tailored to your budget and pace with Tri Ventures Official.">
-    <meta name="keywords" content="Tri Ventures, Pakistan tours, Hunza trip, Skardu tour, Naran Kaghan packages, customized trip Pakistan">
-    
-    <!-- Open Graph Previews -->
-    <meta property="og:title" content="Tri Ventures Official | Customized Tours & Expeditions">
-    <meta property="og:description" content="Craft your bespoke trip across Northern Pakistan with premium fleet vehicles and expert local guides.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1200&q=80">
-    <meta name="theme-color" content="#0f2d2c">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1a2b">
+<title>Tri Ventures Official | Customized Tours & Premium Northern Pakistan Trips</title>
 
-    <link rel="icon" type="image/jpeg" href="logo.jpeg">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- External Luxury Design CSS -->
-    <link rel="stylesheet" href="styles.css?v=2.9">
+<!-- Meta Description & SEO -->
+<meta name="description" content="Experience customized luxury & standard tours across Swat, Naran Kaghan, Hunza, and Skardu tailored to your budget and pace with Tri Ventures Official.">
+<meta name="keywords" content="Tri Ventures, Pakistan tours, Hunza trip, Skardu tour, Naran Kaghan packages, customized trip Pakistan">
 
-    <!-- Modern Layout Enhancements, Animations & Mobile Video Hero Styling -->
-    <style>
-        .scroll-down-anim, .scroll-up-anim, .scroll-scale-anim {
-            opacity: 0;
-            will-change: opacity, transform;
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+<!-- Open Graph Previews -->
+<meta property="og:title" content="Tri Ventures Official | Customized Tours & Expeditions">
+<meta property="og:description" content="Craft your bespoke trip across Northern Pakistan with premium fleet vehicles and expert local guides.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1200&q=80">
 
-        .scroll-down-anim { transform: translateY(-30px); }
-        .scroll-up-anim { transform: translateY(35px); }
-        .scroll-scale-anim { transform: scale(0.96); }
+<link rel="icon" type="image/jpeg" href="logo.jpeg">
 
-        .scroll-down-anim.is-visible,
-        .scroll-up-anim.is-visible,
-        .scroll-scale-anim.is-visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@700&family=Outfit:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=block" rel="stylesheet">
 
-        /* --- DESKTOP VS MOBILE HERO VIDEO SWITCHER --- */
-        .mobile-hero-video {
-            display: none;
-        }
+<!-- External Luxury Design CSS -->
+<link rel="stylesheet" href="styles.css?v=2.9">
 
-        @media (max-width: 768px) {
-            /* Make hero section relative & full height for background video layer */
-            section.hero {
-                position: relative;
-                overflow: hidden;
-                background: #091c1b !important;
-            }
-            /* Hide desktop static background image on mobile */
-            section.hero::before {
-                display: none !important;
-            }
-            .mobile-hero-video {
-                display: block;
-                position: absolute;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                z-index: 0;
-                pointer-events: none;
-            }
-            /* Ensure content sits cleanly above the video */
-            .hero-content {
-                position: relative;
-                z-index: 10;
-            }
-        }
+<style>
+:root {
+  --orange:#ec4f30; --orange-hi:#f15a3c; --underline:#7e80d7;
+  --ink:#ffffff; --ink-soft:rgba(255,255,255,.92); --rule:rgba(255,255,255,.92); --night:#0b1a2b;
+  --h1-size:104.64; --h1-ls:1.72; --h1-lh:101; --h1-off:2.1;
+  --p-size:16.6; --p-lh:24.7; --p-w:322; --p-gap:32;
+  --btn-gap:30; --btn-w:178; --btn-h:51; --btn-size:17.48;
+  --nav-size:13.79; --nav-gap:93.9; --nav-shift:3;
+  --logo-size:23.34; --logo-shift:1;
+  --su-size:14.34; --su-w:122; --su-h:41; --su-bw:1.5;
+  --head-top:25; --head-left:65.6; --head-right:69;
+  --ul-w:37; --ul-h:2; --ul-top:31.5;
+  --u:1; --hero-top:272px; --scrim:0;
+}
 
-        /* --- EXECUTIVE SEAT STYLES --- */
-        .seat-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
-        .seat-wrapper { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.2s ease; }
-        .seat-wrapper:hover:not(.empty):not(.driver) { transform: translateY(-2px); }
-        .seat-wrapper.jump { height: 38px; align-self: center; }
-        .seat-wrapper.empty { visibility: hidden; }
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html, body {
+  height:100%;
+  overflow-x:hidden;
+  background:var(--night);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-family:'Outfit','Century Gothic','Poppins',system-ui,sans-serif;
+  color:var(--ink);
+}
 
-        .seat-svg { width: 100%; height: 100%; overflow: visible; }
-        .seat-bg { fill: #ffffff; stroke: #a1a1aa; stroke-width: 2.5; transition: all 0.3s ease; }
-        .seat-trim { fill: #e5e7eb; stroke: #a1a1aa; stroke-width: 2.5; transition: all 0.3s ease; }
-        .seat-text { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; fill: #374151; pointer-events: none; }
+#app {
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
 
-        .seat-wrapper.fixed .seat-bg, .seat-wrapper.jump .seat-bg { fill: #f3f4f6; stroke: #d1d5db; }
-        .seat-wrapper.fixed .seat-trim, .seat-wrapper.jump .seat-trim { fill: #e5e7eb; stroke: #d1d5db; }
-        .seat-wrapper.fixed .seat-text, .seat-wrapper.jump .seat-text { fill: #9ca3af; }
+/* STAGE & VIDEO & 3D CANVAS */
+#stage {
+  position:absolute;
+  width:1280px;
+  height:960px;
+  transform-origin:0 0;
+  transform:translate(var(--tx), var(--ty)) scale(var(--s));
+  will-change:transform;
+}
 
-        .seat-wrapper.booked .seat-bg { fill: #ef4444 !important; stroke: #b91c1c !important; }
-        .seat-wrapper.booked .seat-trim { fill: #fca5a5 !important; stroke: #b91c1c !important; }
-        .seat-wrapper.booked .seat-text { fill: #ffffff !important; }
+#bg {
+  width:1280px;
+  height:960px;
+  object-fit:cover;
+  object-position:50% 58%;
+  pointer-events:none;
+  display:block;
+}
 
-        .seat-wrapper.driver .seat-bg { fill: #f3f4f6; stroke: #9ca3af; stroke-dasharray: 4; }
-        .seat-wrapper.driver .seat-trim { fill: #e5e7eb; stroke: #9ca3af; }
-        .seat-wrapper.driver .seat-text { fill: #9ca3af; }
+#three-canvas {
+  position:absolute;
+  inset:0;
+  width:1280px;
+  height:960px;
+  pointer-events:none;
+  display:none;
+  z-index:2;
+}
 
-        #tripNameDisplay { transition: opacity 0.3s ease; }
-    </style>
+#topscrim {
+  position:absolute;
+  top:0; left:0; right:0;
+  height:calc(178px * var(--u));
+  background:linear-gradient(180deg, rgba(8,17,29,.88) 0%, rgba(8,17,29,.52) 42%, rgba(8,17,29,.18) 74%, rgba(8,17,29,0) 100%);
+  opacity:var(--scrim);
+  pointer-events:none;
+  z-index:3;
+}
+
+#scrim {
+  position:absolute;
+  inset:0;
+  background:rgba(5,12,22,.5);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.34s cubic-bezier(.4,0,.2,1);
+  z-index:10;
+}
+
+/* HEADER & MASTHEAD */
+header#masthead {
+  position:absolute;
+  top:calc(var(--head-top) * 1px * var(--u));
+  left:calc(var(--head-left) * 1px * var(--u));
+  right:calc(var(--head-right) * 1px * var(--u));
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:20;
+}
+
+a.logo-brand {
+  font-size:calc(var(--logo-size) * 1px * var(--u));
+  font-weight:700;
+  color:var(--ink);
+  text-decoration:none;
+  transform:translateY(calc(var(--logo-shift) * 1px * var(--u)));
+  letter-spacing:-0.01em;
+}
+a.logo-brand span { color: var(--accent, #22c55e); }
+
+.cluster {
+  display:flex;
+  align-items:center;
+  gap:calc(var(--nav-gap) * 1px * var(--u));
+}
+
+nav.links {
+  display:flex;
+  gap:calc(var(--nav-gap) * 1px * var(--u));
+  position:relative;
+}
+
+nav.links a {
+  font-size:calc(var(--nav-size) * 1px * var(--u));
+  font-weight:600;
+  color:var(--ink-soft);
+  text-decoration:none;
+  transform:translateY(calc(var(--nav-shift) * 1px * var(--u)));
+  transition:color 0.2s ease;
+  position:relative;
+  padding-bottom:4px;
+}
+
+nav.links a:hover {
+  color:var(--ink);
+}
+
+nav.links a.is-active::after {
+  content:'';
+  position:absolute;
+  left:50%;
+  bottom:calc(var(--ul-top) * -0.5px * var(--u));
+  transform:translateX(-50%);
+  width:calc(var(--ul-w) * 1px * var(--u));
+  height:calc(var(--ul-h) * 1px * var(--u));
+  background:var(--underline);
+}
+
+a.signup {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:calc(var(--su-w) * 1px * var(--u));
+  height:calc(var(--su-h) * 1px * var(--u));
+  border:calc(var(--su-bw) * 1px * var(--u)) solid var(--ink);
+  font-size:calc(var(--su-size) * 1px * var(--u));
+  font-weight:500;
+  color:var(--ink);
+  text-decoration:none;
+  transition:background 0.2s ease, color 0.2s ease;
+}
+
+@media (hover: hover) {
+  a.signup:hover {
+    background:var(--ink);
+    color:var(--night);
+  }
+}
+
+/* BURGER MENU BUTTON */
+#menu-btn {
+  display:none;
+  background:none;
+  border:none;
+  cursor:pointer;
+  width:44px;
+  height:44px;
+  position:relative;
+  align-items:center;
+  justify-content:center;
+  z-index:30;
+}
+
+#menu-btn span {
+  position:absolute;
+  display:block;
+  height:calc(1.6px * var(--u, 1));
+  width:calc(28px * var(--u, 1));
+  background:var(--ink);
+  transition:transform 0.3s cubic-bezier(.4,0,.2,1), width 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+#menu-btn span:nth-child(1) { transform:translateY(calc(-5px * var(--u, 1))); }
+#menu-btn span:nth-child(2) { transform:translateY(calc(5px * var(--u, 1))); width:calc(20px * var(--u, 1)); }
+
+/* HERO SECTION */
+section#hero {
+  position:absolute;
+  left:calc(72px * var(--u));
+  top:var(--hero-top);
+  width:calc(620px * var(--u));
+  z-index:15;
+}
+
+section#hero h1 {
+  font-family:'Gelasio', Georgia, 'Times New Roman', serif;
+  font-size:calc(var(--h1-size) * 1px * var(--u));
+  line-height:calc(var(--h1-lh) * 1px * var(--u));
+  letter-spacing:calc(var(--h1-ls) * 1px * var(--u));
+  font-weight:700;
+  color:var(--ink);
+  margin-top:calc(var(--h1-off) * -1px * var(--u));
+}
+
+section#hero h1 .ln {
+  display:block;
+  overflow:hidden;
+  clip-path:inset(-40% -8% -8% -8%);
+}
+
+section#hero h1 .ln span {
+  display:block;
+}
+
+section#hero p {
+  font-size:calc(var(--p-size) * 1px * var(--u));
+  line-height:calc(var(--p-lh) * 1px * var(--u));
+  width:calc(var(--p-w) * 1px * var(--u));
+  margin-top:calc(var(--p-gap) * 1px * var(--u));
+  color:var(--ink-soft);
+  font-weight:400;
+}
+
+a.explore {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:calc(var(--btn-w) * 1px * var(--u));
+  height:calc(var(--btn-h) * 1px * var(--u));
+  margin-top:calc(var(--btn-gap) * 1px * var(--u));
+  background:var(--orange);
+  color:var(--ink);
+  font-size:calc(var(--btn-size) * 1px * var(--u));
+  font-weight:400;
+  text-decoration:none;
+  transition:background 0.2s ease;
+  clip-path:inset(0 0 0 0);
+}
+
+@media (hover: hover) {
+  a.explore:hover {
+    background:var(--orange-hi);
+  }
+}
+
+a.explore:active {
+  transform:translateY(1px);
+}
+
+/* FOCUS VISIBLE */
+a:focus-visible, button:focus-visible {
+  outline:2px solid var(--ink);
+  outline-offset:3px;
+}
+
+/* TABLET & COMPACT DRAWER STATES */
+#app[data-mode="tablet"] #menu-btn,
+#app[data-mode="compact"] #menu-btn {
+  display:flex;
+}
+
+#app[data-mode="tablet"] .cluster,
+#app[data-mode="compact"] .cluster {
+  position:fixed;
+  top:0; right:0; bottom:0;
+  width:min(64vw, 360px);
+  background:rgba(9,20,34,.93);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  border-left:1px solid rgba(255,255,255,.14);
+  flex-direction:column;
+  align-items:flex-start;
+  padding:80px 36px 36px 36px;
+  gap:28px;
+  transform:translateX(102%);
+  transition:transform 0.34s cubic-bezier(.4,0,.2,1);
+  z-index:25;
+}
+
+#app[data-menu="open"] .cluster {
+  transform:translateX(0);
+}
+
+#app[data-menu="open"] #scrim {
+  opacity:1;
+  pointer-events:auto;
+}
+
+#app[data-menu="open"] #menu-btn span:nth-child(1) {
+  transform:translateY(0) rotate(45deg);
+  width:24px;
+}
+#app[data-menu="open"] #menu-btn span:nth-child(2) {
+  transform:translateY(0) rotate(-45deg);
+  width:24px;
+}
+
+#app[data-mode="tablet"] nav.links,
+#app[data-mode="compact"] nav.links {
+  flex-direction:column;
+  gap:20px;
+  width:100%;
+}
+
+#app[data-mode="tablet"] nav.links a.is-active::after,
+#app[data-mode="compact"] nav.links a.is-active::after {
+  left:0;
+  transform:none;
+  bottom:-6px;
+  width:36px;
+}
+
+/* COMPACT MODE OVERRIDES FOR MOBILE */
+#app[data-mode="compact"] {
+  height:100vh;
+}
+
+#app[data-mode="compact"] #stage {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  transform:none !important;
+}
+
+#app[data-mode="compact"] #bg,
+#app[data-mode="compact"] #three-canvas {
+  width:100%;
+  height:100%;
+  object-position:72% 50%;
+}
+
+#app[data-mode="compact"] #topscrim {
+  height:clamp(240px, 52vh, 520px);
+  opacity:.55;
+}
+
+#app[data-mode="compact"] header#masthead {
+  position:relative;
+  top:auto; left:auto; right:auto;
+  margin:clamp(14px, min(4.4vw, 2.6vh), 28px) clamp(22px, 5.6vw, 34px) 0 clamp(22px, 5.6vw, 34px);
+}
+
+#app[data-mode="compact"] a.logo-brand {
+  font-size:clamp(23px, min(4.4vw, 5.4vh), 34px);
+  transform:none;
+}
+
+#app[data-mode="compact"] section#hero {
+  position:relative;
+  left:auto; top:auto;
+  width:100%;
+  max-width:min(90vw, 480px);
+  margin:clamp(20px, min(7.4vh, 8vw), 72px) clamp(22px, 5.6vw, 34px) clamp(18px, 3vh, 30px) clamp(22px, 5.6vw, 34px);
+}
+
+#app[data-mode="compact"] section#hero h1 {
+  font-size:clamp(40px, min(14.2vw, 15vh), 112px);
+  line-height:0.96;
+  letter-spacing:0;
+  margin-left:-0.02em;
+  margin-top:0;
+}
+
+#app[data-mode="compact"] section#hero p {
+  font-size:clamp(14px, min(3.9vw, 2.3vh), 19px);
+  line-height:1.47;
+  width:100%;
+  max-width:38ch;
+  margin-top:clamp(16px, 2.4vh, 24px);
+}
+
+#app[data-mode="compact"] a.explore {
+  width:clamp(150px, 44vw, 196px);
+  height:clamp(46px, min(12vw, 11vh), 58px);
+  font-size:clamp(15px, min(4vw, 3.4vh), 18px);
+  margin-top:clamp(20px, 3vh, 30px);
+}
+
+/* --- EXECUTIVE SEAT STYLES FOR SUBSEQUENT SECTIONS --- */
+.seat-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.seat-wrapper { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.2s ease; }
+.seat-wrapper:hover:not(.empty):not(.driver) { transform: translateY(-2px); }
+.seat-wrapper.jump { height: 38px; align-self: center; }
+.seat-wrapper.empty { visibility: hidden; }
+
+.seat-svg { width: 100%; height: 100%; overflow: visible; }
+.seat-bg { fill: #ffffff; stroke: #a1a1aa; stroke-width: 2.5; transition: all 0.3s ease; }
+.seat-trim { fill: #e5e7eb; stroke: #a1a1aa; stroke-width: 2.5; transition: all 0.3s ease; }
+.seat-text { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; fill: #374151; pointer-events: none; }
+
+.seat-wrapper.fixed .seat-bg, .seat-wrapper.jump .seat-bg { fill: #f3f4f6; stroke: #d1d5db; }
+.seat-wrapper.fixed .seat-trim, .seat-wrapper.jump .seat-trim { fill: #e5e7eb; stroke: #d1d5db; }
+.seat-wrapper.fixed .seat-text, .seat-wrapper.jump .seat-text { fill: #9ca3af; }
+
+.seat-wrapper.booked .seat-bg { fill: #ef4444 !important; stroke: #b91c1c !important; }
+.seat-wrapper.booked .seat-trim { fill: #fca5a5 !important; stroke: #b91c1c !important; }
+.seat-wrapper.booked .seat-text { fill: #ffffff !important; }
+
+.seat-wrapper.driver .seat-bg { fill: #f3f4f6; stroke: #9ca3af; stroke-dasharray: 4; }
+.seat-wrapper.driver .seat-trim { fill: #e5e7eb; stroke: #9ca3af; }
+.seat-wrapper.driver .seat-text { fill: #9ca3af; }
+
+#tripNameDisplay { transition: opacity 0.3s ease; }
+</style>
 </head>
-<body>
+<body data-mode="exact" data-menu="closed">
 
     <!-- Scroll Progress Indicator -->
     <div class="scroll-progress" id="scroll-progress"></div>
 
-    <!-- Header Navigation -->
-    <header>
-        <div class="container nav-container">
-            <a href="#home" class="logo"><span class="logo-tri-ventures">Tri Ventures</span><span>Official</span></a>
-            <div class="menu-toggle" id="mobile-menu" aria-label="Toggle Navigation Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#why-us">Why Us</a></li>
-                    <li><a href="#tours">Featured Tours</a></li>
-                    <li><a href="#rates-calculator">Trip Details</a></li>
-                    <li><a href="#plan-trip">Plan Trip</a></li>
-                    <li><a href="#team">Our Team</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section (Desktop: Original Image/Theme | Mobile: Cinematic Loop Video Background) -->
-    <section id="home" class="hero">
-        <!-- Fullscreen Looping Video Background (Visible on Mobile Viewports Only) -->
-        <video class="mobile-hero-video" autoplay loop muted playsinline>
-            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4">
+    <!-- Full-Viewport Hero Section Container -->
+    <div id="app" data-mode="exact" data-menu="closed">
+      <div id="stage">
+        <video id="bg" autoplay muted loop playsinline disablepictureinpicture preload="auto" width="1280" height="960" aria-label="Moonlit winter camp: a dog watching a campfire beside cabins below snowy peaks">
+          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261005_115704_e1b28e05-aef1-477c-924b-0c1d4612f86f.mp4" type="video/mp4">
         </video>
+        <canvas id="three-canvas" width="1280" height="960"></canvas>
+        <div id="topscrim"></div>
+      </div>
 
-        <div class="hero-content">
-            <h1>Craft Your Perfect Journey</h1>
-            <p>Don't just travel. Experience customized tours tailored uniquely to your style, budget, and pace across Northern Pakistan.</p>
-            <a href="#plan-trip" class="btn btn-primary">Start Planning</a>
+      <div id="scrim"></div>
+
+      <header id="masthead">
+        <a class="logo-brand" href="#home">Tri Ventures <span>Official</span></a>
+        <div class="cluster" id="nav-panel">
+          <nav class="links" id="links" aria-label="Main">
+            <a class="is-active" href="#home" aria-current="page">Home</a>
+            <a href="#why-us">Why Us</a>
+            <a href="#tours">Featured Tours</a>
+            <a href="#rates-calculator">Trip Details</a>
+            <a href="#plan-trip">Plan Trip</a>
+            <a href="#team">Our Team</a>
+          </nav>
+          <a class="signup" href="#plan-trip">Sign up</a>
         </div>
-        <span class="hero-scroll-cue" aria-hidden="true"></span>
-    </section>
+        <button id="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-panel">
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <section id="hero">
+        <h1>
+          <span class="ln"><span>Overnight</span></span>
+          <span class="ln"><span>Camp</span></span>
+        </h1>
+        <p>Don't just travel. Experience customized tours tailored uniquely to your style, budget, and pace across Northern Pakistan.</p>
+        <a class="explore" href="#plan-trip">Explore</a>
+      </section>
+    </div>
 
     <!-- Why Choose Us -->
     <section id="why-us" class="why-us-section container">
@@ -619,375 +953,531 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT LOGIC, ANIMATIONS & DYNAMIC THEME ROTATOR -->
-    <script>
-        // RANDOM COLOR THEME ROTATOR
-        document.addEventListener('DOMContentLoaded', () => {
-            const themes = [
-                { primary: '#0f2d2c', primaryDark: '#091c1b', accent: '#22c55e', accentHover: '#16a34a', bgPage: '#fdfaf0' },
-                { primary: '#1e1b4b', primaryDark: '#0f172a', accent: '#6366f1', accentHover: '#4f46e5', bgPage: '#f8fafc' },
-                { primary: '#14532d', primaryDark: '#052e16', accent: '#10b981', accentHover: '#059669', bgPage: '#f0fdf4' },
-                { primary: '#701a75', primaryDark: '#4a044e', accent: '#ec4899', accentHover: '#db2777', bgPage: '#fdf4f8' },
-                { primary: '#1e3a8a', primaryDark: '#1e1b4b', accent: '#3b82f6', accentHover: '#2563eb', bgPage: '#eff6ff' },
-                { primary: '#78350f', primaryDark: '#451a03', accent: '#f59e0b', accentHover: '#d97706', bgPage: '#fffbeb' }
-            ];
+<!-- Three.js CDN for enhanced 3D effects (Glowing fire & twinkling stars) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const app = document.getElementById('app');
+  const stage = document.getElementById('stage');
+  const canvas3D = document.getElementById('three-canvas');
+  const menuBtn = document.getElementById('menu-btn');
+  const scrim = document.getElementById('scrim');
+  const navPanel = document.getElementById('nav-panel');
 
-            const randomTheme = themes[Math.floor(Math.random() * themes.length)];
-            const root = document.documentElement;
+  const DW = 1280, DH = 960, HERO_H = 411, HEAD_H = 66, UI_MIN_H = 560;
+  const U_DESK = 0.874, PHONE_W = 600, TAB_REF = 840, T_MIN = 0.873, T_MAX = 1.08;
 
-            root.style.setProperty('--primary', randomTheme.primary);
-            root.style.setProperty('--primary-dark', randomTheme.primaryDark);
-            root.style.setProperty('--accent', randomTheme.accent);
-            root.style.setProperty('--accent-hover', randomTheme.accentHover);
-            root.style.setProperty('--bg-page', randomTheme.bgPage);
-        });
+  let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // MOBILE MENU NAVIGATION
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navLinks = document.querySelector('.nav-links');
+  // Setup Three.js 3D Fire Glow & Twinkling Stars overlay for visual depth
+  let renderer, scene, camera, starsMesh, fireLight;
+  function init3D() {
+    if (!window.THREE) return;
+    renderer = new THREE.WebGLRenderer({ canvas: canvas3D, alpha: true, antialias: true });
+    renderer.setSize(DW, DH);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-            mobileMenu.addEventListener('click', () => {
-                mobileMenu.classList.toggle('is-active');
-                navLinks.classList.toggle('active');
-            });
+    scene = new THREE.Scene();
+    camera = new THREE.OrthographicCamera(DW/-2, DW/2, DH/2, DH/-2, 1, 1000);
+    camera.position.z = 10;
 
-            document.querySelectorAll('.nav-links li a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('is-active');
-                    navLinks.classList.remove('active');
-                });
-            });
-        });
+    // Twinkling Stars Particles
+    const starsGeo = new THREE.BufferGeometry();
+    const starCount = 120;
+    const starPositions = new Float32Array(starCount * 3);
 
-        // HEADER SHRINK & SCROLL PROGRESS
-        document.addEventListener('DOMContentLoaded', () => {
-            const header = document.querySelector('header');
-            const progress = document.getElementById('scroll-progress');
+    for(let i=0; i<starCount*3; i+=3) {
+      starPositions[i] = (Math.random() - 0.5) * DW;
+      starPositions[i+1] = (Math.random() * 0.5 + 0.1) * DH;
+      starPositions[i+2] = (Math.random() - 0.5) * 10;
+    }
+    starsGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
 
-            const onScroll = () => {
-                const scrolled = window.scrollY || document.documentElement.scrollTop;
-                header.classList.toggle('scrolled', scrolled > 30);
-                const max = document.documentElement.scrollHeight - window.innerHeight;
-                progress.style.width = max > 0 ? ((scrolled / max) * 100) + '%' : '0%';
-            };
+    const starMat = new THREE.PointsMaterial({
+      color: 0xffffff,
+      size: 2,
+      transparent: true,
+      opacity: 0.8
+    });
+    starsMesh = new THREE.Points(starsGeo, starMat);
+    scene.add(starsMesh);
 
-            window.addEventListener('scroll', onScroll, { passive: true });
-            window.addEventListener('resize', onScroll);
-            onScroll();
-        });
+    // Glowing Fire Light overlay near campfire position
+    const fireGeo = new THREE.SphereGeometry(35, 16, 16);
+    const fireMat = new THREE.MeshBasicMaterial({
+      color: 0xff5511,
+      transparent: true,
+      opacity: 0.25,
+      blending: THREE.AdditiveBlending
+    });
+    const fireGlow = new THREE.Mesh(fireGeo, fireMat);
+    fireGlow.position.set(-280, -120, 0);
+    scene.add(fireGlow);
 
-        // FAIL-SAFE MOBILE & DESKTOP SCROLL REVEAL
-        document.addEventListener('DOMContentLoaded', () => {
-            const targets = document.querySelectorAll(
-                '.section-title, .section-subtitle, .tour-card, .info-panel, .team-card, .timeline-item, .highlight-tags, .contact-form'
-            );
+    animate3D(fireGlow);
+  }
 
-            const animClasses = ['scroll-down-anim', 'scroll-up-anim', 'scroll-scale-anim'];
+  let clock = new THREE.Clock();
+  function animate3D(fireGlow) {
+    requestAnimationFrame(() => animate3D(fireGlow));
+    const elapsedTime = clock.getElapsedTime();
 
-            targets.forEach((el, index) => {
-                el.classList.add(animClasses[index % animClasses.length]);
-            });
+    if (starsMesh) {
+      starsMesh.material.opacity = 0.6 + Math.sin(elapsedTime * 3) * 0.3;
+    }
 
-            if (!('IntersectionObserver' in window)) {
-                targets.forEach(el => el.classList.add('is-visible'));
-                return;
-            }
+    if (fireGlow) {
+      fireGlow.scale.set(
+        1 + Math.sin(elapsedTime * 8) * 0.15,
+        1 + Math.cos(elapsedTime * 6) * 0.12,
+        1
+      );
+      fireGlow.material.opacity = 0.2 + Math.sin(elapsedTime * 10) * 0.08;
+    }
 
-            const observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, { 
-                threshold: 0.05,
-                rootMargin: '0px 0px -20px 0px'
-            });
+    if (renderer && scene && camera) {
+      renderer.render(scene, camera);
+    }
+  }
 
-            targets.forEach(el => observer.observe(el));
-        });
+  init3D();
 
-        // TAB SWITCHER
-        function openLocation(locationId, event) {
-            document.querySelectorAll('.location-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            
-            const target = document.getElementById(locationId);
-            if (target) target.classList.add('active');
-            if (event && event.currentTarget) event.currentTarget.classList.add('active');
+  // Layout Engine conforming to measured 1280x960 scaling and responsive modes
+  function updateLayout() {
+    let vw = window.visualViewport ? window.visualViewport.width : window.innerWidth;
+    let vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+
+    let uw = vw / DW;
+    let ut = Math.min(Math.min(Math.max(vw / TAB_REF, T_MIN), T_MAX), vh / UI_MIN_H);
+    let mode = uw >= U_DESK ? 'exact' : (vw >= PHONE_W && ut >= T_MIN) ? 'tablet' : 'compact';
+
+    app.setAttribute('data-mode', mode);
+    document.body.setAttribute('data-mode', mode);
+
+    if (mode === 'compact') {
+      canvas3D.style.display = 'block';
+      stage.style.transform = '';
+      stage.style.width = '100%';
+      stage.style.height = '100%';
+      rootStyle('--u', 1);
+      rootStyle('--scrim', '0.55');
+      return;
+    }
+
+    canvas3D.style.display = 'block';
+
+    let s, visW, visH, u, tx, ty, scrimVal, heroTop;
+
+    if (mode === 'exact') {
+      s = Math.max(vw / DW, vh / DH);
+      visW = Math.min(DW, vw / s);
+      visH = Math.min(DH, vh / s);
+      let k = Math.min(1, visW / DW);
+      u = Math.min(s * k, vh / UI_MIN_H);
+      tx = vw / 2 - DW * 0.5 * s;
+      tx = Math.min(0, Math.max(vw - DW * s, tx));
+      ty = (vh - DH * s) / 2;
+      scrimVal = Math.min(1, Math.max(0, (DH - visH) / 240)) * 0.45;
+      heroTop = Math.max(0, (vh - HERO_H * u)) * 0.495449;
+    } else {
+      u = ut;
+      s = Math.max(vw / DW, vh / DH);
+      visW = Math.min(DW, vw / s);
+      visH = Math.min(DH, vh / s);
+      let bias = 0.22 * (1 - visW / DW);
+      tx = vw / 2 - DW * (0.5 + bias) * s;
+      tx = Math.min(0, Math.max(vw - DW * s, tx));
+      ty = (vh - DH * s) / 2;
+      scrimVal = 0.35;
+      heroTop = Math.max(HEAD_H * u + 28 * u, Math.min(vh - HERO_H * u - 28 * u, (vh - HERO_H * u) * 0.5));
+    }
+
+    rootStyle('--s', s);
+    rootStyle('--tx', tx + 'px');
+    rootStyle('--ty', ty + 'px');
+    rootStyle('--u', u);
+    rootStyle('--scrim', scrimVal);
+    rootStyle('--hero-top', heroTop + 'px');
+  }
+
+  function rootStyle(prop, val) {
+    document.documentElement.style.setProperty(prop, val);
+  }
+
+  window.addEventListener('resize', updateLayout);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', updateLayout);
+  }
+
+  // Navigation menu toggle
+  menuBtn.addEventListener('click', () => {
+    let isOpen = app.getAttribute('data-menu') === 'open';
+    app.setAttribute('data-menu', isOpen ? 'closed' : 'open');
+    menuBtn.setAttribute('aria-expanded', !isOpen);
+  });
+
+  scrim.addEventListener('click', closeMenu);
+  navPanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  window.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+
+  function closeMenu() {
+    app.setAttribute('data-menu', 'closed');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  // Entrance Animations
+  async function runEntrance() {
+    await Promise.race([
+      document.fonts.ready,
+      new Promise(r => setTimeout(r, 1000))
+    ]);
+
+    const video = document.getElementById('bg');
+    await Promise.race([
+      new Promise(r => {
+        if(video.readyState >= 3) r();
+        else video.addEventListener('loadeddata', r, {once:true});
+      }),
+      new Promise(r => setTimeout(r, 1000))
+    ]);
+
+    if (reducedMotion) return;
+
+    const EXPO = 'cubic-bezier(.16,1,.3,1)';
+    const SOFT = 'cubic-bezier(.22,.75,.2,1)';
+
+    const h1Spans = document.querySelectorAll('#hero h1 .ln span');
+    h1Spans.forEach((span, i) => {
+      span.animate([
+        { transform: 'translateY(112%)' },
+        { transform: 'translateY(0)' }
+      ], {
+        duration: 900,
+        delay: 380 + i * 120,
+        easing: EXPO,
+        fill: 'both'
+      });
+    });
+
+    const headerItems = document.querySelectorAll('#masthead > *, #masthead .cluster > *');
+    headerItems.forEach((el, i) => {
+      el.animate([
+        { opacity: 0, transform: 'translateY(9px)' },
+        { opacity: 1, transform: 'translateY(0)' }
+      ], {
+        duration: 540,
+        delay: 90 + i * 55,
+        easing: SOFT,
+        fill: 'both'
+      });
+    });
+
+    const pEl = document.querySelector('#hero p');
+    pEl.animate([
+      { opacity: 0, transform: 'translateY(12px)' },
+      { opacity: 1, transform: 'translateY(0)' }
+    ], {
+      duration: 680,
+      delay: 860,
+      easing: SOFT,
+      fill: 'both'
+    });
+
+    const exploreEl = document.querySelector('a.explore');
+    exploreEl.animate([
+      { clipPath: 'inset(0 100% 0 0)' },
+      { clipPath: 'inset(0 0 0 0)' }
+    ], {
+      duration: 600,
+      delay: 1060,
+      easing: EXPO,
+      fill: 'both'
+    });
+  }
+
+  updateLayout();
+  runEntrance();
+});
+</script>
+
+<!-- TRI VENTURES CORE JAVASCRIPT LOGIC (Tabs, Cost Estimator, Live Seats, Form Submission) -->
+<script>
+    // TAB SWITCHER
+    function openLocation(locationId, event) {
+        document.querySelectorAll('.location-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        
+        const target = document.getElementById(locationId);
+        if (target) target.classList.add('active');
+        if (event && event.currentTarget) event.currentTarget.classList.add('active');
+    }
+
+    // DYNAMIC GUIDE POLICY
+    function updateGuidePolicy() {
+        const vehicle = document.getElementById('calc-vehicle').value;
+        const displayDiv = document.getElementById('guide-policy-display');
+        const textSpan = document.getElementById('guide-policy-text');
+        const travelersInput = document.getElementById('calc-travelers');
+        let maxCap = null;
+
+        if (vehicle === 'brv') {
+            textSpan.innerHTML = "1 Tour Guide Included. <br><small style='color: var(--text-muted);'>*Max capacity: 6 Travelers (Ideal for small families)</small>";
+            displayDiv.style.display = 'block';
+            maxCap = 6;
+        } else if (vehicle === 'grande') {
+            textSpan.innerHTML = "Tour Guide Optional. <br><small style='color: var(--text-muted);'>*Max capacity: 3 Travelers (Ideal for couples/executives)</small>";
+            displayDiv.style.display = 'block';
+            maxCap = 3;
+        } else if (vehicle === 'c4' || vehicle === 'c5') {
+            textSpan.innerHTML = "2 Tour Guides Mandatory. <br><small style='color: var(--text-muted);'>*Max capacity: 25 Travelers (Saloon Coaster)</small>";
+            displayDiv.style.display = 'block';
+            maxCap = 25;
+        } else {
+            displayDiv.style.display = 'none';
         }
 
-        // DYNAMIC GUIDE POLICY
-        function updateGuidePolicy() {
-            const vehicle = document.getElementById('calc-vehicle').value;
-            const displayDiv = document.getElementById('guide-policy-display');
-            const textSpan = document.getElementById('guide-policy-text');
-            const travelersInput = document.getElementById('calc-travelers');
-            let maxCap = null;
+        if (maxCap) {
+            travelersInput.setAttribute('max', maxCap);
+            travelersInput.placeholder = `Max ${maxCap}`;
+            if (parseInt(travelersInput.value) > maxCap) {
+                travelersInput.value = maxCap;
+            }
+        } else {
+            travelersInput.removeAttribute('max');
+            travelersInput.placeholder = "";
+        }
+    }
 
-            if (vehicle === 'brv') {
-                textSpan.innerHTML = "1 Tour Guide Included. <br><small style='color: var(--text-muted);'>*Max capacity: 6 Travelers (Ideal for small families)</small>";
-                displayDiv.style.display = 'block';
-                maxCap = 6;
-            } else if (vehicle === 'grande') {
-                textSpan.innerHTML = "Tour Guide Optional. <br><small style='color: var(--text-muted);'>*Max capacity: 3 Travelers (Ideal for couples/executives)</small>";
-                displayDiv.style.display = 'block';
-                maxCap = 3;
-            } else if (vehicle === 'c4' || vehicle === 'c5') {
-                textSpan.innerHTML = "2 Tour Guides Mandatory. <br><small style='color: var(--text-muted);'>*Max capacity: 25 Travelers (Saloon Coaster)</small>";
-                displayDiv.style.display = 'block';
-                maxCap = 25;
+    // TRAVELER ENFORCEMENT
+    document.getElementById('calc-travelers').addEventListener('input', function() {
+        const max = parseInt(this.getAttribute('max'));
+        if (max && parseInt(this.value) > max) {
+            this.value = max;
+            alert(`Notice: The chosen vehicle option is strictly capped at ${max} passengers.`);
+        }
+    });
+
+    // BASE COST CALCULATOR
+    function calculateCost(event) {
+        event.preventDefault();
+        const destSelect = document.getElementById('calc-destination');
+        const ratePerPersonPerDay = parseInt(destSelect.value);
+        const travelers = parseInt(document.getElementById('calc-travelers').value);
+        const days = parseInt(document.getElementById('calc-days').value);
+
+        if (!travelers || isNaN(travelers) || travelers < 1) {
+            alert("Please select a vehicle and enter a valid number of travelers.");
+            return;
+        }
+
+        const totalCost = ratePerPersonPerDay * travelers * days;
+        document.getElementById('total-cost').innerText = totalCost.toLocaleString();
+        document.getElementById('calc-result').style.display = 'block';
+    }
+
+    function applyEstimateToForm() {
+        const destSelect = document.getElementById('calc-destination');
+        const destName = destSelect.options[destSelect.selectedIndex].getAttribute('data-name');
+        const days = document.getElementById('calc-days').value;
+        const travelers = document.getElementById('calc-travelers').value;
+        const vehicleSelect = document.getElementById('calc-vehicle');
+        const vehicleName = vehicleSelect.options[vehicleSelect.selectedIndex].text;
+        const estimatedCost = document.getElementById('total-cost').innerText;
+
+        document.getElementById('destination').value = destName;
+        document.getElementById('duration').value = days;
+        document.getElementById('travelers').value = travelers;
+        document.getElementById('notes').value = `Calculated Base Estimate: ${estimatedCost} PKR\nSelected Vehicle: ${vehicleName}\nTrip: ${days} Days for ${travelers} Travelers to ${destName}.`;
+
+        document.getElementById('plan-trip').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // AJAX FORM SUBMISSION
+    document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const btn = document.getElementById('submitBtn');
+        const feedback = document.getElementById('formFeedback');
+
+        btn.disabled = true;
+        btn.innerHTML = `<span>Submitting Request...</span>`;
+        feedback.style.display = 'none';
+
+        const formData = new FormData(form);
+        const jsonObject = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(jsonObject)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                feedback.className = 'form-alert success';
+                feedback.innerHTML = `🎉 <strong>Request Received!</strong> Thank you ${jsonObject.name}. Our travel specialist will reach out to you within 2-4 hours.`;
+                feedback.style.display = 'block';
+                form.reset();
             } else {
-                displayDiv.style.display = 'none';
+                throw new Error(result.message || 'Submission failed');
+            }
+        } catch (err) {
+            feedback.className = 'form-alert error';
+            feedback.innerHTML = `⚠️ <strong>Submission Error:</strong> Unable to deliver message right now. Please reach us directly on WhatsApp via the green button!`;
+            feedback.style.display = 'block';
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = `<span>Submit Inquiry</span>`;
+        }
+    });
+
+    // LIVE SEAT LOGIC
+    document.addEventListener('DOMContentLoaded', () => {
+        const seatLayouts = {
+            coaster: { 
+                map: [
+                    ['S', '_', '_', 'D'],
+                    ['F', 'J', 'S', 'S'],
+                    ['_', 'J', 'S', 'S'],
+                    ['S', 'J', 'S', 'S'],
+                    ['S', 'J', 'S', 'S'],
+                    ['S', 'J', 'S', 'S'],
+                    ['S', 'J', 'S', 'S'],
+                    ['F', 'F', 'F', 'F']
+                ] 
+            },
+            cabin: { 
+                map: [
+                    ['S', '_', '_', 'D'],
+                    ['S', 'S', 'S', 'S'],
+                    ['S', 'J', 'S', 'S'],
+                    ['S', 'J', 'S', 'S'],
+                    ['S', 'S', 'S', 'S']
+                ] 
+            }
+        };
+
+        const vehicleSelectSeats = document.getElementById('vehicleSelectSeats');
+        const vehicleMapSeats = document.getElementById('vehicleMapSeats');
+        const tripNameDisplay = document.getElementById('tripNameDisplay');
+        const legendContainer = document.getElementById('legendContainer');
+        const seatFooterNote = document.getElementById('seatFooterNote');
+        
+        function getSeatSVG(text, cssClass) {
+            if (cssClass.includes('empty')) {
+                return `<div class="seat-wrapper empty"></div>`;
             }
 
-            if (maxCap) {
-                travelersInput.setAttribute('max', maxCap);
-                travelersInput.placeholder = `Max ${maxCap}`;
-                if (parseInt(travelersInput.value) > maxCap) {
-                    travelersInput.value = maxCap;
-                }
-            } else {
-                travelersInput.removeAttribute('max');
-                travelersInput.placeholder = "";
-            }
+            return `
+            <div class="seat-wrapper ${cssClass}">
+                <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" class="seat-svg">
+                    <rect x="2" y="10" width="8" height="35" rx="4" class="seat-trim"/>
+                    <rect x="50" y="10" width="8" height="35" rx="4" class="seat-trim"/>
+                    <path d="M 12 45 C 12 55, 48 55, 48 45 L 48 40 L 12 40 Z" class="seat-trim"/>
+                    <rect x="12" y="6" width="36" height="32" rx="6" class="seat-bg"/>
+                    <text x="30" y="28" class="seat-text" text-anchor="middle">${text}</text>
+                </svg>
+            </div>`;
         }
 
-        // TRAVELER ENFORCEMENT
-        document.getElementById('calc-travelers').addEventListener('input', function() {
-            const max = parseInt(this.getAttribute('max'));
-            if (max && parseInt(this.value) > max) {
-                this.value = max;
-                alert(`Notice: The chosen vehicle option is strictly capped at ${max} passengers.`);
-            }
-        });
-
-        // BASE COST CALCULATOR
-        function calculateCost(event) {
-            event.preventDefault();
-            const destSelect = document.getElementById('calc-destination');
-            const ratePerPersonPerDay = parseInt(destSelect.value);
-            const travelers = parseInt(document.getElementById('calc-travelers').value);
-            const days = parseInt(document.getElementById('calc-days').value);
-
-            if (!travelers || isNaN(travelers) || travelers < 1) {
-                alert("Please select a vehicle and enter a valid number of travelers.");
-                return;
-            }
-
-            const totalCost = ratePerPersonPerDay * travelers * days;
-            document.getElementById('total-cost').innerText = totalCost.toLocaleString();
-            document.getElementById('calc-result').style.display = 'block';
-        }
-
-        function applyEstimateToForm() {
-            const destSelect = document.getElementById('calc-destination');
-            const destName = destSelect.options[destSelect.selectedIndex].getAttribute('data-name');
-            const days = document.getElementById('calc-days').value;
-            const travelers = document.getElementById('calc-travelers').value;
-            const vehicleSelect = document.getElementById('calc-vehicle');
-            const vehicleName = vehicleSelect.options[vehicleSelect.selectedIndex].text;
-            const estimatedCost = document.getElementById('total-cost').innerText;
-
-            document.getElementById('destination').value = destName;
-            document.getElementById('duration').value = days;
-            document.getElementById('travelers').value = travelers;
-            document.getElementById('notes').value = `Calculated Base Estimate: ${estimatedCost} PKR\nSelected Vehicle: ${vehicleName}\nTrip: ${days} Days for ${travelers} Travelers to ${destName}.`;
-
-            document.getElementById('plan-trip').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // AJAX FORM SUBMISSION
-        document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const form = this;
-            const btn = document.getElementById('submitBtn');
-            const feedback = document.getElementById('formFeedback');
-
-            btn.disabled = true;
-            btn.innerHTML = `<span>Submitting Request...</span>`;
-            feedback.style.display = 'none';
-
-            const formData = new FormData(form);
-            const jsonObject = Object.fromEntries(formData.entries());
+        async function loadAndRenderSeats(type) {
+            let bookedSeats = [];
+            let tripNameText = "";
 
             try {
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(jsonObject)
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    feedback.className = 'form-alert success';
-                    feedback.innerHTML = `🎉 <strong>Request Received!</strong> Thank you ${jsonObject.name}. Our travel specialist will reach out to you within 2-4 hours.`;
-                    feedback.style.display = 'block';
-                    form.reset();
-                } else {
-                    throw new Error(result.message || 'Submission failed');
-                }
-            } catch (err) {
-                feedback.className = 'form-alert error';
-                feedback.innerHTML = `⚠️ <strong>Submission Error:</strong> Unable to deliver message right now. Please reach us directly on WhatsApp via the green button!`;
-                feedback.style.display = 'block';
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = `<span>Submit Inquiry</span>`;
-            }
-        });
-
-        // -----------------------------------------
-        // LIVE SEAT LOGIC
-        // -----------------------------------------
-        document.addEventListener('DOMContentLoaded', () => {
-            const seatLayouts = {
-                coaster: { 
-                    map: [
-                        ['S', '_', '_', 'D'],
-                        ['F', 'J', 'S', 'S'],
-                        ['_', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['F', 'F', 'F', 'F']
-                    ] 
-                },
-                cabin: { 
-                    map: [
-                        ['S', '_', '_', 'D'],
-                        ['S', 'S', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'J', 'S', 'S'],
-                        ['S', 'S', 'S', 'S']
-                    ] 
-                }
-            };
-
-            const vehicleSelectSeats = document.getElementById('vehicleSelectSeats');
-            const vehicleMapSeats = document.getElementById('vehicleMapSeats');
-            const tripNameDisplay = document.getElementById('tripNameDisplay');
-            const legendContainer = document.getElementById('legendContainer');
-            const seatFooterNote = document.getElementById('seatFooterNote');
-            
-            function getSeatSVG(text, cssClass) {
-                if (cssClass.includes('empty')) {
-                    return `<div class="seat-wrapper empty"></div>`;
-                }
-
-                return `
-                <div class="seat-wrapper ${cssClass}">
-                    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" class="seat-svg">
-                        <rect x="2" y="10" width="8" height="35" rx="4" class="seat-trim"/>
-                        <rect x="50" y="10" width="8" height="35" rx="4" class="seat-trim"/>
-                        <path d="M 12 45 C 12 55, 48 55, 48 45 L 48 40 L 12 40 Z" class="seat-trim"/>
-                        <rect x="12" y="6" width="36" height="32" rx="6" class="seat-bg"/>
-                        <text x="30" y="28" class="seat-text" text-anchor="middle">${text}</text>
-                    </svg>
-                </div>`;
-            }
-
-            async function loadAndRenderSeats(type) {
-                let bookedSeats = [];
-                let tripNameText = "";
-
-                try {
-                    const response = await fetch('/api/booking?t=' + new Date().getTime());
-                    
-                    if (response.ok) {
-                        const contentType = response.headers.get("content-type");
-                        if (contentType && contentType.indexOf("application/json") !== -1) {
-                            const rawData = await response.json();
-                            
-                            if (Array.isArray(rawData[type])) {
-                                bookedSeats = rawData[type];
-                            } else if (rawData[type]) {
-                                bookedSeats = rawData[type].seats || [];
-                                tripNameText = rawData[type].tripName || "";
-                            }
+                const response = await fetch('/api/booking?t=' + new Date().getTime());
+                
+                if (response.ok) {
+                    const contentType = response.headers.get("content-type");
+                    if (contentType && contentType.indexOf("application/json") !== -1) {
+                        const rawData = await response.json();
+                        
+                        if (Array.isArray(rawData[type])) {
+                            bookedSeats = rawData[type];
+                        } else if (rawData[type]) {
+                            bookedSeats = rawData[type].seats || [];
+                            tripNameText = rawData[type].tripName || "";
                         }
-                    } else {
-                        throw new Error("Network response was not OK");
                     }
-                } catch (error) {
-                    console.warn("Live API unavailable. Using fallback preview data.", error);
-                    const fallbackData = {
-                        coaster: { tripName: "Naran Kaghan Expedition", seats: ["3", "4", "7", "8"] },
-                        cabin: { tripName: "", seats: [] }
-                    };
-                    if (fallbackData[type]) {
-                        bookedSeats = fallbackData[type].seats;
-                        tripNameText = fallbackData[type].tripName;
-                    }
+                } else {
+                    throw new Error("Network response was not OK");
                 }
+            } catch (error) {
+                const fallbackData = {
+                    coaster: { tripName: "Naran Kaghan Expedition", seats: ["3", "4", "7", "8"] },
+                    cabin: { tripName: "", seats: [] }
+                };
+                if (fallbackData[type]) {
+                    bookedSeats = fallbackData[type].seats;
+                    tripNameText = fallbackData[type].tripName;
+                }
+            }
 
-                bookedSeats = bookedSeats.map(String);
+            bookedSeats = bookedSeats.map(String);
 
-                if (tripNameText.trim() !== "") {
-                    tripNameDisplay.innerHTML = `📍 Active Trip:<br><span style="font-size:1.2rem; font-weight:700; color:var(--accent);">${tripNameText}</span>`;
-                    tripNameDisplay.style.borderColor = 'var(--accent)';
-                    tripNameDisplay.style.backgroundColor = 'var(--bg-page)';
-                    tripNameDisplay.style.display = 'block';
+            if (tripNameText.trim() !== "") {
+                tripNameDisplay.innerHTML = `📍 Active Trip:<br><span style="font-size:1.2rem; font-weight:700; color:var(--accent);">${tripNameText}</span>`;
+                tripNameDisplay.style.borderColor = 'var(--accent)';
+                tripNameDisplay.style.backgroundColor = 'var(--bg-page)';
+                tripNameDisplay.style.display = 'block';
+                
+                legendContainer.style.display = 'flex';
+                vehicleMapSeats.style.display = 'flex';
+                seatFooterNote.style.display = 'block';
+
+                const config = seatLayouts[type];
+                let seatHTML = ''; 
+                let seatNumber = 1;
+
+                config.map.forEach(rowData => {
+                    seatHTML += `<div class="seat-row">`;
                     
-                    legendContainer.style.display = 'flex';
-                    vehicleMapSeats.style.display = 'flex';
-                    seatFooterNote.style.display = 'block';
-
-                    const config = seatLayouts[type];
-                    let seatHTML = ''; 
-                    let seatNumber = 1;
-
-                    config.map.forEach(rowData => {
-                        seatHTML += `<div class="seat-row">`;
-                        
-                        rowData.forEach(cell => {
-                            if (cell === '_') {
-                                seatHTML += getSeatSVG('', 'empty');
-                            } else if (cell === 'D') {
-                                seatHTML += getSeatSVG('D', 'driver');
-                            } else {
-                                let seatClass = '';
-                                if (cell === 'J') seatClass += 'jump ';
-                                if (cell === 'F') seatClass += 'fixed ';
-                                
-                                if (bookedSeats.includes(seatNumber.toString())) {
-                                    seatClass += 'booked';
-                                }
-                                
-                                seatHTML += getSeatSVG(seatNumber, seatClass.trim());
-                                seatNumber++;
+                    rowData.forEach(cell => {
+                        if (cell === '_') {
+                            seatHTML += getSeatSVG('', 'empty');
+                        } else if (cell === 'D') {
+                            seatHTML += getSeatSVG('D', 'driver');
+                        } else {
+                            let seatClass = '';
+                            if (cell === 'J') seatClass += 'jump ';
+                            if (cell === 'F') seatClass += 'fixed ';
+                            
+                            if (bookedSeats.includes(seatNumber.toString())) {
+                                seatClass += 'booked';
                             }
-                        });
-                        
-                        seatHTML += `</div>`;
+                            
+                            seatHTML += getSeatSVG(seatNumber, seatClass.trim());
+                            seatNumber++;
+                        }
                     });
                     
-                    vehicleMapSeats.innerHTML = seatHTML;
+                    seatHTML += `</div>`;
+                });
+                
+                vehicleMapSeats.innerHTML = seatHTML;
 
-                } else {
-                    tripNameDisplay.innerHTML = `📍 Status:<br><span style="font-size:1.05rem; font-weight:600; color: #4b5563;">No trip currently scheduled for this vehicle.</span>`;
-                    tripNameDisplay.style.borderColor = '#d1d5db';
-                    tripNameDisplay.style.backgroundColor = '#f9fafb';
-                    tripNameDisplay.style.display = 'block';
+            } else {
+                tripNameDisplay.innerHTML = `📍 Status:<br><span style="font-size:1.05rem; font-weight:600; color: #4b5563;">No trip currently scheduled for this vehicle.</span>`;
+                tripNameDisplay.style.borderColor = '#d1d5db';
+                tripNameDisplay.style.backgroundColor = '#f9fafb';
+                tripNameDisplay.style.display = 'block';
 
-                    legendContainer.style.display = 'none';
-                    vehicleMapSeats.style.display = 'none';
-                    seatFooterNote.style.display = 'none';
-                }
+                legendContainer.style.display = 'none';
+                vehicleMapSeats.style.display = 'none';
+                seatFooterNote.style.display = 'none';
             }
+        }
 
-            if(vehicleSelectSeats && vehicleMapSeats) {
-                vehicleSelectSeats.addEventListener('change', (e) => loadAndRenderSeats(e.target.value));
-                loadAndRenderSeats('coaster');
-            }
-        });
-    </script>
+        if(vehicleSelectSeats && vehicleMapSeats) {
+            vehicleSelectSeats.addEventListener('change', (e) => loadAndRenderSeats(e.target.value));
+            loadAndRenderSeats('coaster');
+        }
+    });
+</script>
 </body>
 </html>
