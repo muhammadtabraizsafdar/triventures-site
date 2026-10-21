@@ -68,6 +68,15 @@
             box-sizing: border-box;
         }
 
+        /* Tab Content Visibility Fixes */
+        .location-content {
+            display: none !important;
+        }
+
+        .location-content.active {
+            display: block !important;
+        }
+
         /* Completely suppress native media playback controls on all browsers/mobile webviews */
         video::-webkit-media-controls,
         video::-webkit-media-controls-panel,
@@ -702,6 +711,28 @@
             }
         });
 
+        // TAB SWITCHING LOGIC FOR EXPLORE ITINERARIES
+        function openLocation(locationId, event) {
+            const contents = document.querySelectorAll('.location-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const targetContent = document.getElementById(locationId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+        }
+
         // BASE COST CALCULATOR
         function calculateCost(event) {
             event.preventDefault();
@@ -909,7 +940,7 @@
                     
                     vehicleMapSeats.innerHTML = seatHTML;
 
-                } else {
+        } else {
                     tripNameDisplay.innerHTML = `📍 Status:<br><span style="font-size:1.05rem; font-weight:600; color: #4b5563;">No trip currently scheduled for this vehicle.</span>`;
                     tripNameDisplay.style.borderColor = '#d1d5db';
                     tripNameDisplay.style.backgroundColor = '#f9fafb';
